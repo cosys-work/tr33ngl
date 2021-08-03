@@ -18,8 +18,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.subscriptions = this.imagesStore.stateChanged.subscribe((states) => {
-      console.log("state changed subscription", states);
+    this.subscriptions = this.imagesStore.stateChanged.subscribe((_) => {
       this.images = this.imagesService.upcomingImageObjects();
     });
   }

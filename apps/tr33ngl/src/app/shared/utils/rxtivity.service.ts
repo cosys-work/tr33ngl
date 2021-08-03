@@ -10,7 +10,6 @@ export function createBSubSubscript<T>(
   initializer: BehaviorSubject<T>
 ) {
   const initial = new BehaviorSubject<T>(initializer.value);
-  console.log("init bSub", initial);
   return () => pipeable.pipe(map((atom) => initial.next(atom)));
 }
 

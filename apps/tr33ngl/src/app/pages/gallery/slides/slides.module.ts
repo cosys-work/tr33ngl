@@ -14,7 +14,9 @@ import { NgImageSliderModule } from "ng-image-slider";
     MatProgressBarModule
   ],
   exports: [
-    SlidesComponent
+    SlidesComponent,
+    NgImageSliderModule,
+    MatProgressBarModule
   ]
 })
 export class SlidesModule {}

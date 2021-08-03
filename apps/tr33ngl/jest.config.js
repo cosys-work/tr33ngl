@@ -17,4 +17,11 @@ module.exports = {
     'jest-preset-angular/build/serializers/ng-snapshot',
     'jest-preset-angular/build/serializers/html-comment',
   ],
+  moduleNameMapper: {
+    "base.element.css": "@clr/core/common/base/base.element.css.js"
+  },
+  transformIgnorePatterns: [
+    'node_modules/(?!(@clr/core/common|lit-html|lit-element|ramda)/)',
+    'node_modules/(?!(@cds/core/common|lit-html|lit-element|ramda)/)'
+  ],
 };

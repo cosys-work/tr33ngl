@@ -21,7 +21,6 @@ export class ImagesService {
     this.imagesStore.add(
       new ImgDeckStateMachine(this.imageUtils.imageObjects(20))
     );
-    console.log("state", this.imagesStore.get());
   }
 
   public upcomingImageObjects: () => Observable<ImgObjSkel8n[]> = () => {

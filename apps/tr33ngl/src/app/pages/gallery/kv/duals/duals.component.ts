@@ -16,6 +16,5 @@ export class DualsComponent
 
   constructor(imagesStore: ImagesStore, pagesManifest: PagesManifestService) {
     super(imagesStore, pagesManifest);
-    console.log("duals ko keys", this.keySteps);
   }
 }

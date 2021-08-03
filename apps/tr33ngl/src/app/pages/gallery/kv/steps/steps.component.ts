@@ -23,7 +23,6 @@ export class StepsComponent
     pagesManifest: PagesManifestService
   ) {
     super(imagesStore, pagesManifest);
-    console.log("keys ko steps", this.keySteps);
   }
 
   ngOnInit() {

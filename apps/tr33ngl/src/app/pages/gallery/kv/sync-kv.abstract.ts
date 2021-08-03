@@ -20,12 +20,11 @@ export abstract class SyncKVComponent implements OnInit, OnDestroy {
     private imagesStore: ImagesStore,
     private pagesManifest: PagesManifestService
   ) {
-    console.log("abstract kv", this.keySteps);
     this.syncContentWithCursor();
   }
 
   syncContentWithCursor() {
-    const currentIndex = this.imagesStore.get().currentIndex;
+    const currentIndex = this.imagesStore.get()?.currentIndex ?? 0;
     const contentHasCurrentIndex =
       this.pagesManifest.content.length >= currentIndex;
     this.keySteps =
@@ -44,3 +43,5 @@ export abstract class SyncKVComponent implements OnInit, OnDestroy {
     );
   }
 }
+
+export class SyncKVComponentStub extends SyncKVComponent {}

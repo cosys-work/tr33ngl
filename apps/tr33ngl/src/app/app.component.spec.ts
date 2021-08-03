@@ -1,12 +1,16 @@
 import {TestBed, waitForAsync} from '@angular/core/testing';
 import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
+import { PagesModule } from "./pages/pages.module";
 
 describe('AppComponent', () => {
   beforeEach( waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [AppComponent],
-      imports: [HttpClientModule],
+      imports: [
+        HttpClientModule,
+        PagesModule
+      ],
     }).compileComponents();
   }));
 

@@ -5,6 +5,11 @@ function isArray(maybeArray: Array<unknown> | unknown): maybeArray is Array<unkn
   return !!maybeArray.hasOwnProperty("length") && typeof maybeArray !== "string";
 }
 
+//**
+// const toFlatten = [["A", ["B", "C"], "D"], "E", "F"];
+// console.log("toFlatten", toFlatten);
+// console.log("flatter", flattener(toFlatten));
+// *
 export function flattener(nested: Array<unknown> | unknown): Array<unknown> {
   if (!nested) return;
   const tArray: Array<unknown> = [];
@@ -38,6 +43,3 @@ export function isMappable(
   return maybeMapped.hasOwnProperty("map")
 }
 
-const toFlatten = [["A", ["B", "C"], "D"], "E", "F"];
-console.log("toFlatten", toFlatten);
-console.log("flatter", flattener(toFlatten));

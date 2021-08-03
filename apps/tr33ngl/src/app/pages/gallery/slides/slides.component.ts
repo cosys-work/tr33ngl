@@ -23,7 +23,6 @@ export class SlidesComponent {
 
   constructor(private imagesService: ImagesService) {
     this.imageObjects = imagesService.imagesStore.get().currentImages;
-    console.log("images", this.imageObjects);
   }
 
   onImageClick(event: number) {
@@ -42,7 +41,7 @@ export class SlidesComponent {
     activeImageElem().style.boxShadow = `0px 0px 3px 3px var(--clr-color-success-200)`;
   }
 
-  onArrowClick(event: unknown) {
-    console.log("arrow click", event);
+  onArrowClick(_: unknown) {
+    console.log("arrow clicked");
   }
 }

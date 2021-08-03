@@ -23,7 +23,8 @@ import { SlidesModule } from "./slides/slides.module";
     GalleryComponent,
     ExperienceComponent,
     HGrafsModule,
-    KvModule
+    KvModule,
+    SlidesModule
   ]
 })
 export class GalleryModule {}

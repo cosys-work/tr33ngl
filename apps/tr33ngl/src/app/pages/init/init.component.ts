@@ -28,10 +28,10 @@ export class InitComponent implements OnInit {
   }
 
   onActivate(event: Event) {
-    console.log("event Activate", event);
+    console.log("activated", event);
   }
 
   onDeactivate(event: Event) {
-    console.log("event Deactivate", event);
+    console.log("deactivated", event)
   }
 }

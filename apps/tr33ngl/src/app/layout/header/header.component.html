@@ -1,14 +1,7 @@
-<clr-alert *ngIf="canShowAlert" [clrAlertAppLevel]="true">
-  <clr-alert-item>
-    <span class="alert-text">
-      Congratulations, you have installed tr3ngl! Let's get started..
-    </span>
-  </clr-alert-item>
-</clr-alert>
 <header class="header-3">
   <div class="branding">
     <a href="#" class="nav-link">
-      <cds-icon shape="organization"></cds-icon>
+      <mat-icon class="ac_unit"></mat-icon>
       <span class="title">Project tr33ngl</span>
     </a>
   </div>
@@ -24,8 +17,8 @@
       </label>
     </form>
     <a href="#" class="nav-link nav-icon" aria-label="settings">
-      <cds-icon *ngIf="className !== 'darkMode'" shape="lightbulb" (click)='onDarkening()'></cds-icon>
-      <cds-icon *ngIf="className === 'darkMode'" shape="lightbulb" solid (click)='onDarkening()'></cds-icon>
+      <mat-icon *ngIf="className !== 'darkMode'" class="lightbulb_outline" (click)='onDarkening()'>lightbulb_outline</mat-icon>
+      <mat-icon *ngIf="className === 'darkMode'" class="lightbulb" (click)='onDarkening()'>lightbulb</mat-icon>
     </a>
   </div>
 </header>

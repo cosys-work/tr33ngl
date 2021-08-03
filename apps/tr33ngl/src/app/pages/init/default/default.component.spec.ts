@@ -1,6 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { DefaultComponent } from './default.component';
+import { DefaultComponent } from "./default.component";
+import { GalleryModule } from "../../gallery/gallery.module";
+import { LayoutModule } from "../../../layout/layout.module";
 
 describe('DefaultComponent', () => {
   let component: DefaultComponent;
@@ -8,7 +10,11 @@ describe('DefaultComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DefaultComponent ]
+      declarations: [ DefaultComponent ],
+      imports: [
+        LayoutModule,
+        GalleryModule
+      ]
     })
     .compileComponents();
   });

@@ -24,7 +24,9 @@ import { MatButtonModule } from "@angular/material/button";
   ],
   exports: [
     DualsComponent,
-    StepsComponent
+    StepsComponent,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class KvModule {}
