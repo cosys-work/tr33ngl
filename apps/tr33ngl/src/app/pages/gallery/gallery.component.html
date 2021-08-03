@@ -1,0 +1,18 @@
+<div lightbox-group>
+  <ng-container *ngFor='let item of images | async; let id = index' >
+    <img
+      class='each-image'
+      [hidden]="id > 0"
+      [src]='item?.image'
+      [alt]='item?.id'
+      lightbox
+      [backgroundOpacity]="0.96"
+      width='100%'
+      [counter]='true'
+      animationMode='zoom-preloader'
+      closeButtonText='X'
+      [hideThumbnail]='false'
+    />
+  </ng-container>
+</div>
+

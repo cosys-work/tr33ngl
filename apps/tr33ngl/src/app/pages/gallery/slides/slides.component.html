@@ -1,0 +1,23 @@
+
+<ng-image-slider
+  #nav
+  (arrowClick)='onArrowClick($event)'
+  (imageClick)='onImageClick($event)'
+  [imagePopup]="false"
+  [images]="imageObjects"
+  [imageSize]="{ width: 240, height: 135, space: 2 }"
+  [animationSpeed]="0.3"
+  [slideImage]="2"
+  [defaultActiveImage]="currentIndex"
+></ng-image-slider>
+<section class='progress-section'>
+  <code>{{ currentIndex + 1}}/20</code>
+  <mat-progress-bar
+    class='progress-margin'
+    [color]='color'
+    [mode]='mode'
+    [value]='currentIndex * 5'
+    [bufferValue]='bufferValue'>
+  </mat-progress-bar>
+  <code>{{ (currentIndex + 1) * 5 }}%</code>
+</section>

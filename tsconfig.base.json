@@ -1,0 +1,25 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "resolveJsonModule": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@cosys/ack": ["libs/ack/tion/src/index.ts"],
+      "@cosys/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@cosys/func": ["libs/func/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

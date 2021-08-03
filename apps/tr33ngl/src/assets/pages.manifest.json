@@ -1,0 +1,35 @@
+{
+  "iSchema": {
+    "deck": 1,
+    "keys": 2,
+    "duals": 3
+  },
+  "iContent": [
+    {
+      "deck": 0,
+      "keys": [
+        ["Spatio-temporal", "Large Scale"],
+        ["Domain & Context", "Projects"],
+        ["Historicity", "Timescapes"]
+      ],
+      "duals": [
+        ["Linear", "D4", "Beyond"],
+        ["Quantitative", "Quaternion", "Back"],
+        ["Around", "Round", "Loop"]
+      ]
+    },
+    {
+      "deck": 1,
+      "keys": [
+        ["Grammar", "Non-universal"],
+        ["Domain & Context", "Projects"],
+        ["Guided Tour", "Timescapes and Landscapes"]
+      ],
+      "duals": [
+        ["Near", "4DD", "Blonde"],
+        [],
+        []
+      ]
+    }
+  ]
+}

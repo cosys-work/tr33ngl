@@ -1,0 +1,27 @@
+{
+  "name": "@cosys/func",
+  "version": "0.0.6",
+  "description": "Nominative monads and their monadic laws implementation for typescript.",
+  "main": "src/index.ts",
+  "scripts": {
+    "pubdate": "pnpm publish . --tag latest --access public --publish-branch main"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cosys-work/tr33ngl.git"
+  },
+  "keywords": [
+    "nominative-monads",
+    "naked-functors",
+    "runtime-type-check-on-demand"
+  ],
+  "author": "Risav Karna",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cosys-work/tr33ngl/issues"
+  },
+  "homepage": "https://github.com/cosys-work/tr33ngl#readme",
+  "directories": {
+    "doc": "docs"
+  }
+}

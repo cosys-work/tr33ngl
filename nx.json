@@ -1,0 +1,60 @@
+{
+  "npmScope": "cosys",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "accessToken": "MjY5ZTliYTctMGM2Ny00YWIxLWI1OTUtMmY3NmNhMmE0NzIwfHJlYWQtd3JpdGU=",
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
+      }
+    }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
+  },
+  "projects": {
+    "ack-tion": {
+      "tags": [
+        "action",
+        "monad",
+        "monoid",
+        "closed",
+        "category",
+        "simple types"
+      ]
+    },
+    "api": {
+      "tags": []
+    },
+    "api-interfaces": {
+      "tags": []
+    },
+    "func": {
+      "tags": ["simple types", "functors", "applicatives", "monads"]
+    },
+    "tr33ngl": {
+      "tags": []
+    },
+    "tr33ngl-e2e": {
+      "tags": [],
+      "implicitDependencies": ["tr33ngl"]
+    }
+  }
+}

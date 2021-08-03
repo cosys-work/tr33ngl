@@ -1,0 +1,28 @@
+{
+  "name": "@cosys/ack",
+  "version": "0.0.1",
+  "description": "Action Monad experiments using @cosys/func Monad-like API.",
+  "main": "tion.ts",
+  "scripts": {
+    "test": "echo \"proven, not tested\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cosys-work/tr33ngl.git"
+  },
+  "keywords": [
+    "action",
+    "monad",
+    "simple",
+    "types",
+    "monoid",
+    "closed",
+    "category"
+  ],
+  "author": "Risav Karna",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cosys-work/tr33ngl/issues"
+  },
+  "homepage": "https://github.com/cosys-work/tr33ngl#readme"
+}

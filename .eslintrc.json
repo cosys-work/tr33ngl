@@ -1,0 +1,37 @@
+{
+  "root": true,
+  "ignorePatterns": ["**/*", "**/*.spec.ts"],
+  "plugins": ["@nrwl/nx", "@angular-eslint/eslint-plugin", "eslint-plugin-import", "@typescript-eslint", "fp", "eslint-plugin-prettier"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "@nrwl/nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allow": [],
+            "depConstraints": [
+              {
+                "sourceTag": "*",
+                "onlyDependOnLibsWithTags": ["*"]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nrwl/nx/typescript"]
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nrwl/nx/javascript"]
+    },
+    {
+      "files": ["*.ts"],
+      "extends": ["./eslintrc-cosys.json"]
+    }
+  ]
+}

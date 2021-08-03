@@ -1,0 +1,16 @@
+<mat-expansion-panel (opened)="panelOpenState = true"
+                     (closed)="panelOpenState = false"
+                     *ngFor='let item of keySteps.duals'
+>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{ item[0] }}
+    </mat-panel-title>
+    <mat-panel-description>
+      {{ item[1] }}
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <p>{{ item[2] }}</p>
+
+</mat-expansion-panel>
+

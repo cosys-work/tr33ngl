@@ -1,0 +1,37 @@
+{
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "rules": {
+        "prefer-const": ["error", {
+          "destructuring": "any",
+          "ignoreReadBeforeAssign": false
+        }],
+        "@angular-eslint/no-empty-lifecycle-method": "warn",
+        "@angular-eslint/no-host-metadata-property": "warn",
+        "no-explicit-any": 0,
+        "no-loop-func": 2,
+        "fp/no-arguments": "error",
+        "fp/no-delete": "error",
+        "fp/no-events": "error",
+        "fp/no-get-set": "warn",
+        "fp/no-let": "error",
+        "fp/no-loops": "error",
+        "fp/no-mutating-assign": "error",
+        "fp/no-mutating-methods": "error",
+        "fp/no-mutation": ["error", {
+          "allowThis": true,
+          "exceptions": [
+            {"object": "foo", "property": "bar"}
+          ]
+        }],
+        "fp/no-proxy": "error",
+        "fp/no-rest-parameters": "error",
+        "fp/no-throw": "error",
+        "fp/no-valueof-field": "error",
+        "no-var": "error"
+      }
+    }
+  ]
+}
+

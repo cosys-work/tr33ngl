@@ -1,0 +1,29 @@
+<mat-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>{{ keySteps ? keySteps.keys[0][0] : '' }}</ng-template>
+      <h3>{{ keySteps ? keySteps.keys[0][1] : '' }}</h3>
+      <div>
+        <button mat-stroked-button matStepperNext><mat-icon>check_circle</mat-icon></button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <ng-template matStepLabel> {{ keySteps ? keySteps.keys[1][0] : '' }}</ng-template>
+    <form [formGroup]="secondFormGroup">
+      <h3>{{ keySteps ? keySteps.keys[1][1] : '' }}</h3>
+    </form>
+    <div>
+      <button mat-stroked-button matStepperPrevious><mat-icon>arrow_drop_down_circle</mat-icon></button>
+      <button mat-stroked-button matStepperNext><mat-icon>check_circle</mat-icon></button>
+    </div>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>{{ keySteps ? keySteps.keys[2][0] : ''}}</ng-template>
+    <h3> {{ keySteps ? keySteps.keys[2][1] : '' }}</h3>
+    <div>
+      <button mat-stroked-button matStepperPrevious><mat-icon>arrow_drop_down_circle</mat-icon></button>
+      <button mat-stroked-button (click)="stepper.reset()"><mat-icon>offline_bolt</mat-icon></button>
+    </div>
+  </mat-step>
+</mat-stepper>

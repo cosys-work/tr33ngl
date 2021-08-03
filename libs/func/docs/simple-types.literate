@@ -1,0 +1,65 @@
+# Notes on Simple and Dependent Types
+
+Types are not about aspects of reality or mathematics itself. These are about our modes of thought regarding the constituents of reality and/or mathematics.
+
+## Simple Types
+
+Some shapes can compose or even tesellate together. A jigsaw puzzle is sometimes obvious - as long as the saw-shapes and their picture-embeds are obviously distinct enough and positioned clearly enough respectively. We can think of a value as the embedded picture on any jigsaw puzzle piece and the simple types as these jigsaw shapes. 
+
+Outward shapes are often interesting and useful. Sometimes we might not want to look at the inside structure or picture on the jigsaw puzzle, and just focus on the outwards shapes and whether they definitively fit or don't fit together. Creating a row, column, or a blob of correct jigsaw pieces composed together is analgous to creating a type-checked valid sentence or a 'well-formed formula' or similar other admissible units to our type-verified system of thoughts or domain of discourse.
+
+This sort of outward focus is often considered a good habit for thinking in mathematical or functional programming terms. The outward shapes and their compositions, combinations and permutations are rich enough to model most aspects of our computations and programs written to aid said computations.
+
+Mathematical objects and conceptual objects in general also have 'shapes' or 'types' or 'kinds', apart from traditional mathematical staples like 'sets', 'groups', 'algebras' or 'categories', which can all also be thought of using a type-theoretic approach.
+
+## Simple Examples
+
+To remain eponymous, we start with some simple examples:
+
+1. Integer, Double, Set, Order
+2. Sets, Tuples, Lists, Trees, Graphs
+3. Number Lines, Cartesian Products, Cartesian Grids
+4. Monoid, Groupoid, Ringoid, Hypergraphs
+
+
+```idris
+data Nat = Z | S Nat
+
+```
+
+## Category-theoretic Examples
+
+We still remain simply typed, but we start to talk about the type of category-theoretic constructs.
+
+1. Orders
+2. Partitions
+3. Equivalences
+4. Morphisms
+
+## More on Morphisms
+
+We now leave to the borderline territory between simple and dependent types.
+
+1. Isomorphism
+2. Anamorphism
+3. Catamorphism
+4. Natural Isomorphism
+
+## More on Morphing Morphisms
+
+1. Initial, Terminal, Zero/Alpha-Omega
+2. Unary and n-arity
+3. Infinitary and Lazy
+4. Functors, Bifunctors and Profunctors
+
+## More on Closed Category Morphisms
+
+1. Cartesian Closed Categories
+2. Bi-cartesian Closed Categories
+3. Locally Closed Cartesian Categories
+4. 'Simple' Dependent Types
+
+## Case Study: Basic Langrangian Mechanics
+
+1. Local and global optimizations
+2. Universality of conservations

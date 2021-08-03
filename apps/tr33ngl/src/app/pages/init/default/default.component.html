@@ -1,0 +1,14 @@
+<ng-template #slidePrev>
+  <cosys-steps></cosys-steps>
+</ng-template>
+<ng-template #slideNext>
+  <cosys-duals></cosys-duals>
+</ng-template>
+<ng-template #slide>
+  <cosys-gallery></cosys-gallery>
+</ng-template>
+<ng-template #heading>
+  <cosys-slides></cosys-slides>
+</ng-template>
+<cosys-grid [itemTemplates]="[heading, slide, slidePrev, slideNext]" [items]="items">
+</cosys-grid>
