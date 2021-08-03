@@ -1,6 +1,6 @@
 import { LayoutModule } from "@angular/cdk/layout";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { ComponentFixture, inject, TestBed, waitForAsync } from "@angular/core/testing";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatGridListModule } from "@angular/material/grid-list";
@@ -9,14 +9,15 @@ import { MatMenuModule } from "@angular/material/menu";
 
 import { GridComponent } from "./grid.component";
 import { GridService } from "./grid.service";
+import { BreakpointsService } from "../breakpoints.service";
 
 describe('GridComponent', () => {
   let component: GridComponent;
   let fixture: ComponentFixture<GridComponent>;
   let service: GridService;
+  let breakpointsService: BreakpointsService;
 
   beforeEach(waitForAsync(() => {
-
     TestBed.configureTestingModule({
       declarations: [GridComponent],
       imports: [
@@ -29,27 +30,26 @@ describe('GridComponent', () => {
         MatMenuModule,
       ],
       providers: [
-        {
-          provide: GridService, useClass: GridService
-        }
+        GridService,
+        BreakpointsService
       ]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GridComponent);
-    spyOn(service, 'gridMaker').and.returnValue({
-      isSmall: false,
-      cards: {
-        title: `Title of Card`,
-        contents: { someKey: "someVal" },
-      }
+    inject(
+      [GridService, BreakpointsService],
+      (svc: GridService, bp: BreakpointsService) => {
+      service = svc;
+      breakpointsService = bp;
     });
+    fixture = TestBed.createComponent(GridComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should compile', () => {
+    console.log("svc", service.gridMaker());
     expect(component).toBeTruthy();
   });
 });

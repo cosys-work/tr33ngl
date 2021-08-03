@@ -1,8 +1,8 @@
 <div class='grid-container'>
   <mat-grid-list cols='2' rowHeight='300px'>
-    <mat-grid-tile *ngFor='let card of (grid | async)?.cards; let i = index' [colspan]='card.cols'
+    <mat-grid-tile *ngFor='let card of (grid | async); let i = index' [colspan]='card.cols'
                    [rowspan]='card.rows'>
-      <mat-card class='dashboard-card' [id]="'id-card-' + i">
+      <mat-card *ngIf="card" class='dashboard-card' [id]="'id-card-' + i">
         <mat-card-header>
           <mat-card-title>
             <span class='dashboard-header'>{{card.title}}</span>

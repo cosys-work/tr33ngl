@@ -146,10 +146,15 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "apps/tr33ngl/src/favicon.ico",
-              "apps/tr33ngl/src/assets"
+              "apps/tr33ngl/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
-              "node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "apps/tr33ngl/src/theme.less",
               "node_modules/ngx-lightbox/lightbox.css",
               "apps/tr33ngl/src/styles.scss"
             ],
@@ -161,13 +166,12 @@
                 "inlineCritical": false
               },
               "fonts": {
-                "inline": false
+                "inline": true
               }
             },
             "scripts": [
               "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js",
-              "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js",
-              "node_modules/@clr/icons/clr-icons.min.js"
+              "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"
             ],
             "allowedCommonJsDependencies": ["@codewithdan/observable-store"]
           },

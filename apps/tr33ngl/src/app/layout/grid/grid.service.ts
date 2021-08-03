@@ -53,7 +53,7 @@ export class GridService {
   ];
 
   public gridMaker: GridMaker = (forceSmallness?) => {
-    const small = forceSmallness || this.isSmall;
+    const small = forceSmallness ?? this.isSmall;
     this.grid.next(this.addContents(small));
     return this.grid;
   };
