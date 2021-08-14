@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { GrafComponent } from "./graf/graf.component";
+import { ChartGridComponent } from "./chart-grid/chart-grid/chart-grid.component";
 
 const routes: Routes = [
   {
     path: '',
-    component: GrafComponent
-  }
+    component: ChartGridComponent
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class HGrafsRoutingModule { }
+export class GridishRoutingModule { }

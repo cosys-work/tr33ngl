@@ -1,27 +1,25 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
-import { PagesRoutingModule } from "./pages-routing.module";
-import { InitComponent } from "./init/init.component";
 import { MatButtonModule } from "@angular/material/button";
 import { LayoutModule } from "../layout/layout.module";
 import { GalleryModule } from "./gallery/gallery.module";
-import { DefaultComponent } from "./init/default/default.component";
+import { DefaultComponent } from "./init/default.component";
 import { SlidesModule } from "./gallery/slides/slides.module";
+import { PagesRoutingModule } from "./pages-routing.module";
 
 @NgModule({
   declarations: [
-    InitComponent,
     DefaultComponent
   ],
   imports: [
     CommonModule,
-    PagesRoutingModule,
     MatButtonModule,
     LayoutModule,
+    PagesRoutingModule,
     GalleryModule,
-    SlidesModule,
+    SlidesModule
   ],
-  exports: [InitComponent],
+  exports: [DefaultComponent],
 })
 export class PagesModule {}

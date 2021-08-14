@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { DefaultComponent } from "./default.component";
-import { GalleryModule } from "../../gallery/gallery.module";
-import { LayoutModule } from "../../../layout/layout.module";
+import { GalleryModule } from "../gallery/gallery.module";
+import { LayoutModule } from "../../layout/layout.module";
 
 describe('DefaultComponent', () => {
   let component: DefaultComponent;

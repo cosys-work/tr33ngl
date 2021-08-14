@@ -3,10 +3,12 @@ import { CommonModule } from "@angular/common";
 import { SlidesComponent } from "./slides.component";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { NgImageSliderModule } from "ng-image-slider";
+import { ExperienceComponent } from "./experience/experience.component";
 
 @NgModule({
   declarations: [
-    SlidesComponent
+    SlidesComponent,
+    ExperienceComponent
   ],
   imports: [
     CommonModule,
@@ -15,6 +17,7 @@ import { NgImageSliderModule } from "ng-image-slider";
   ],
   exports: [
     SlidesComponent,
+    ExperienceComponent,
     NgImageSliderModule,
     MatProgressBarModule
   ]

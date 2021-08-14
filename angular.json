@@ -156,7 +156,7 @@
             "styles": [
               "apps/tr33ngl/src/theme.less",
               "node_modules/ngx-lightbox/lightbox.css",
-              "apps/tr33ngl/src/styles.scss"
+              "apps/tr33ngl/src/styles.less"
             ],
             "stylePreprocessorOptions": {
 

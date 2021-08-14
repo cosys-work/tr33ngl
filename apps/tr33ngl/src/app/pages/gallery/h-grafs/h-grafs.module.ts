@@ -1,8 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { HGrafsRoutingModule } from './h-grafs-routing.module';
-import { GrafComponent } from './graf/graf.component';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { GrafComponent } from "./graf/graf.component";
+import { HGrafsRoutingModule } from "./h-grafs-routing.module";
 
 
 @NgModule({
