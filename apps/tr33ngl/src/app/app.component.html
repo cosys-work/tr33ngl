@@ -3,14 +3,14 @@
             nzCollapsible
             nzWidth="256px"
             nzBreakpoint="md"
-            [(nzCollapsed)]="isCollapsed"
-            [nzTrigger]="null">
+            [(nzCollapsed)]="isColPSD"
+            >
     <div class="sidebar-logo">
       <a href="#">
         <mat-icon>ac_unit</mat-icon> <h1>Project Tr33ngl</h1>
       </a>
     </div>
-    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isColPSD">
       <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
         <ul>
           <li nz-menu-item nzMatchRouter>
@@ -27,13 +27,13 @@
       <li nz-submenu nzOpen nzTitle="Schema" nzIcon="form">
         <ul>
           <li nz-menu-item nzMatchRouter>
-            <a>Schemes</a>
+            <a routerLink="schemes">Schemes</a>
           </li>
           <li nz-menu-item nzMatchRouter>
             <a>Symbols</a>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a>Synonyms</a>
+            <a routerLink="key-val">Synonyms</a>
           </li>
         </ul>
       </li>
@@ -42,10 +42,10 @@
   <nz-layout>
     <nz-header>
       <div class="app-header">
-        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+        <span class="header-trigger" (click)="toggleCollapsed($event)">
             <em class="trigger"
                nz-icon
-               [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+               [nzType]="isColPSD ? 'menu-unfold' : 'menu-fold'"
             ></em>
         </span>
       </div>

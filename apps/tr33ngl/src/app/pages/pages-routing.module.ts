@@ -16,7 +16,7 @@ const routes: Routes = [
     loadChildren: () => import('./gallery/kv/kv.module').then(m => m.KvModule)
   },
   {
-    path: 'slides',
+    path: 'schemes',
     loadChildren: () => import('./gallery/slides/slides.module').then(m => m.SlidesModule)
   },
   {

@@ -1,1 +1,88 @@
-<p>chart-grid works!</p>
+<cosys-chart-chrome></cosys-chart-chrome>
+<nz-card style="width: 100%;">
+  <nz-card-tab>
+    <nz-tabset nzSize="large" [(nzSelectedIndex)]="index2">
+      <nz-tab nzTitle="Article"></nz-tab>
+      <nz-tab nzTitle="App"></nz-tab>
+      <nz-tab nzTitle="Project"></nz-tab>
+    </nz-tabset>
+  </nz-card-tab>
+  <div nz-row [nzGutter]="8">
+    <div nz-col [nzSpan]="8">
+      <nz-card nzTitle="Card 0">
+        <p>Card content {{ index2 }} </p>
+        <nz-progress
+          [nzPercent]="100"
+          [nzStrokeColor]="{ '0%': '#108ee9', '100%': '#87d068' }"
+          nzStatus="active"
+          [nzShowInfo]="false"
+        ></nz-progress>
+      </nz-card>
+    </div>
+    <div nz-col [nzSpan]="8">
+      <nz-card nzTitle="Card 1">
+        <p>Card content {{ index2 + 1}}</p>
+      </nz-card>
+    </div>
+    <div nz-col [nzSpan]="8">
+      <nz-card nzTitle="Card 2">
+        <p>Card content {{ index2 + 2}}</p>
+      </nz-card>
+    </div>
+  </div>
+</nz-card>
+<div>
+  <p>Align Top</p>
+  <div nz-row nzJustify="center" nzAlign="top">
+    <div nz-col nzSpan="4"><p class="height-100">col-4</p></div>
+    <div nz-col nzSpan="4"><p class="height-50">col-4</p></div>
+    <div nz-col nzSpan="4"><p class="height-120">col-4</p></div>
+    <div nz-col nzSpan="4"><p class="height-80">col-4</p></div>
+  </div>
+  <p>Align Center</p>
+  <div nz-row nzJustify="space-around" nzAlign="middle">
+    <div nz-col nzSpan="4"><p class="height-100">col-4</p></div>
+    <div nz-col nzSpan="4"><p class="height-50">col-4</p></div>
+    <div nz-col nzSpan="4"><p class="height-120">col-4</p></div>
+    <div nz-col nzSpan="4"><p class="height-80">col-4</p></div>
+  </div>
+  <p>Align Bottom</p>
+  <div nz-row nzJustify="space-between" nzAlign="bottom">
+    <div nz-col nzSpan="4"><p class="height-100">col-4</p></div>
+    <div nz-col nzSpan="4"><p class="height-50">col-4</p></div>
+    <div nz-col nzSpan="4"><p class="height-120">col-4</p></div>
+    <div nz-col nzSpan="4"><p class="height-80">col-4</p></div>
+  </div>
+</div>
+<div class="slider-container">
+  <span>Horizontal Gutter (px):</span>
+  <div class="slider">
+    <nz-slider [nzMarks]="marksHGutter" [nzStep]="null" [nzMin]="8" [nzMax]="48" [(ngModel)]="hGutter"></nz-slider>
+  </div>
+  <span>Vertical Gutter (px):</span>
+  <div class="slider">
+    <nz-slider [nzMarks]="marksVGutter" [nzStep]="null" [nzMin]="8" [nzMax]="48" [(ngModel)]="vGutter"></nz-slider>
+  </div>
+  <span>Column Count:</span>
+  <div class="slider">
+    <nz-slider
+      [nzMarks]="marksCount"
+      [nzStep]="null"
+      [nzMin]="2"
+      [nzMax]="12"
+      [(ngModel)]="count"
+      (ngModelChange)="reGenerateArray($event)"
+    ></nz-slider>
+  </div>
+</div>
+
+<div class="gutter-example">
+  <div nz-row [nzGutter]="[hGutter, vGutter]">
+    <div nz-col class="gutter-row" [nzSpan]="24 / count" *ngFor="let i of array">
+      <div class="grid-config">Column</div>
+    </div>
+    <div nz-col class="gutter-row" [nzSpan]="24 / count" *ngFor="let i of array">
+      <div class="grid-config">Column</div>
+    </div>
+  </div>
+</div>
