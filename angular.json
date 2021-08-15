@@ -156,7 +156,8 @@
             "styles": [
               "apps/tr33ngl/src/theme.less",
               "node_modules/ngx-lightbox/lightbox.css",
-              "apps/tr33ngl/src/styles.less"
+              "apps/tr33ngl/src/styles.less",
+              "node_modules/visjs-network/dist/vis-network.min.css"
             ],
             "stylePreprocessorOptions": {
 
@@ -171,7 +172,8 @@
             },
             "scripts": [
               "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js",
-              "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"
+              "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js",
+              "node_modules/visjs-network/dist/vis-network.min.js"
             ],
             "allowedCommonJsDependencies": ["@codewithdan/observable-store"]
           },

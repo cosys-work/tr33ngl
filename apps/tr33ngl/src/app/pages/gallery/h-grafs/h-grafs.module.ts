@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { GrafComponent } from "./graf/graf.component";
 import { HGrafsRoutingModule } from "./h-grafs-routing.module";
 
+import { NzDividerModule } from 'ng-zorro-antd/divider';
 
 @NgModule({
   declarations: [
@@ -10,6 +11,7 @@ import { HGrafsRoutingModule } from "./h-grafs-routing.module";
   ],
   imports: [
     CommonModule,
+    NzDividerModule,
     HGrafsRoutingModule
   ],
   exports: [
