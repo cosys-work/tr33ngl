@@ -26,7 +26,7 @@ Install the following:
 1. Visual Studio Code or Webstorm
 2. nvm and pnpm
 3. Angular CLI (`pnpm i -g @angular/cli@latest`), NRWL NX ClI (`pnpm i -g nx@latest`)
-4. From withing the project root, run `pnpm i`.
+4. Switch the cloned/unzipped project folder. From within the project root, run `pnpm i`.
 
 # NB
 1. We use `pnpm` as the package manager. 
