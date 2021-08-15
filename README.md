@@ -4,7 +4,9 @@
 CoSys or Collaborative Systems are systems built to be composed together for various collaborative needs. Collaborative document editing and project management is under the CurEdit project, which serves as a kernel for a lot of CoSys compositions.
 
 ## ToC
-Topics are from the 'Type Driven Development with Idris' book by Edwin Barry. [ Link to Preview ](https://livebook.manning.com/book/type-driven-development-with-idris/chapter-1/)
+
+Topics are mostly from the 'Type Driven Development with Idris' book by Edwin Barry. [ Link to Preview ](https://livebook.manning.com/book/type-driven-development-with-idris/chapter-1/)
+
 #### Types and Type Driven Development
 #### Simple and Dependent Types
 #### Atomic and Composite Types

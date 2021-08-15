@@ -1,7 +1,77 @@
-<p>graf works!</p>
 
-<div id="mySvgNetwork" #mySvgNetwork></div>
+<div nz-row>
+  <div nz-col nzSpan="8">Col</div>
+  <div nz-col nzSpan="8">Col</div>
+  <div nz-col nzSpan="8">Col</div>
+</div>
 
-<nz-divider nzText="Dual"></nz-divider>
+<div nz-row nzJustify="end">
+  <div nz-col class="gutter-row" *ngFor="let d of xyz" [nzSpan]="4" >
+    <div class="inner-box">
+      <ng-container *ngTemplateOutlet="timelineTemp"></ng-container>
+    </div>
+  </div>
+  <div nz-col class="gutter-row" [nzSpan]="12">
+    <div class="inner-box">
+      <div nz-col class="gutter-row">
+        <div class="inner-box">
+          <div id="myNetwork"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div nz-row nzJustify="center">
+  <div nz-col class="gutter-row" [nzSpan]="11"><div class="inner-box">
+    <nz-divider nzDashed [nzText]="text" id="vertDiv">
+      <ng-template #text>
+        Dual
+      </ng-template>
+    </nz-divider>
+  </div></div>
+  <div nz-col class="gutter-row" [nzSpan]="11">
+    <div class="inner-box">
+      <nz-divider nzDashed [nzText]="text2" id="reflected">
+        <ng-template #text2>
+          Meta
+        </ng-template>
+      </nz-divider>
+    </div>
+  </div>
+</div>
+<div nz-row nzJustify="start">
+  <div nz-col class="gutter-row" *ngFor="let d of xyz" [nzSpan]="4" >
+    <div class="inner-box">
+      <ng-container *ngTemplateOutlet="timelineTemp2"></ng-container>
+    </div>
+  </div>
+  <div nz-col class="gutter-row" [nzSpan]="12">
+    <div class="inner-box">
+      <div nz-col class="gutter-row">
+        <div class="inner-box">
+          <div id="myMetaNetwork"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #timelineTemp>
+  <nz-timeline>
+    <nz-timeline-item>y</nz-timeline-item>
+    <nz-timeline-item>y-1</nz-timeline-item>
+    <nz-timeline-item nzColor="red" [nzDot]="dotTemplate">...</nz-timeline-item>
+    <nz-timeline-item>0</nz-timeline-item>
+  </nz-timeline>
+</ng-template>
+<ng-template #timelineTemp2>
+  <nz-timeline>
+    <nz-timeline-item>0</nz-timeline-item>
+    <nz-timeline-item nzColor="red" [nzDot]="dotTemplate">...</nz-timeline-item>
+    <nz-timeline-item>y-1</nz-timeline-item>
+    <nz-timeline-item>y</nz-timeline-item>
+  </nz-timeline>
+</ng-template>
+<ng-template #dotTemplate>
+  <i nz-icon nzType="clock-circle-o" style="font-size: 16px;"></i>
+</ng-template>
 
-<div id="myNetwork" #myNetwork></div>
