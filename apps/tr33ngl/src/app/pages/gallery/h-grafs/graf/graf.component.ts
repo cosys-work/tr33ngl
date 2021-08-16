@@ -18,6 +18,14 @@ export class GrafComponent implements OnInit {
   public network!: OnAble;
   xyz = [0, 1, 2];
 
+  index = 0;
+
+  defSpin = false;
+
+  onIndexChange(event: number): void {
+    this.index = event;
+  }
+
   ngOnInit() {
     this.loadVisTree(this.getTreeData(), 'myNetwork');     // RENDER STANDARD NODES WITH TEXT LABEL
     this.loadVisTree(this.getTreeData(), 'myMetaNetwork');     // RENDER STANDARD NODES WITH TEXT LABEL
