@@ -5,7 +5,7 @@
       <nz-breadcrumb>
         <nz-breadcrumb-item>Design</nz-breadcrumb-item>
         <nz-breadcrumb-item>
-          <a>Composition</a>
+          <a href="#">Composition</a>
         </nz-breadcrumb-item>
         <nz-breadcrumb-item [nzOverlay]="menu">
           <a href="#">Applications</a>
@@ -74,10 +74,14 @@
 
 <div nz-row nzAlign="middle" nzJustify="end">
   <div nz-col class="gutter-row" [nzSpan]="4" *ngFor="let d of xyz">
-    <div nz-row class="inner-box" >
-      <ng-container *ngTemplateOutlet="timelineTemp"></ng-container>
+    <div nz-row class="inner-box">
+      <ng-container *ngTemplateOutlet="timelineTemp" ></ng-container>
+    </div>
+    <div nz-row class="inner-box">
+      <nz-progress [nzPercent]="100" [nzSteps]="5" nzStrokeColor="#1890ff"></nz-progress>
     </div>
   </div>
+
   <div nz-col class="gutter-row" [nzSpan]="12">
     <div class="inner-box">
       <div nz-col class="gutter-row">
@@ -89,7 +93,7 @@
   </div>
 </div>
 <div nz-row nzAlign="middle" nzJustify="end">
-    <div nz-col class="gutter-row" [nzSpan]="24">
+  <div nz-col class="gutter-row" [nzSpan]="24">
     <div class="inner-box">
       <nz-divider nzDashed [nzText]="text2" >
         <ng-template #text2>
@@ -100,9 +104,12 @@
   </div>
 </div>
 <div nz-row nzAlign="middle" nzJustify="end">
-  <div nz-col class="gutter-row" *ngFor="let d of xyz" [nzSpan]="4" >
+  <div nz-col class="gutter-row" [nzSpan]="4" *ngFor="let d of xyz">
     <div class="inner-box">
       <ng-container *ngTemplateOutlet="timelineTemp2"></ng-container>
+    </div>
+    <div nz-row class="inner-box">
+      <nz-progress [nzPercent]="100" [nzSteps]="5" nzStrokeColor="#1890ff"></nz-progress>
     </div>
   </div>
   <div nz-col class="gutter-row" [nzSpan]="12">

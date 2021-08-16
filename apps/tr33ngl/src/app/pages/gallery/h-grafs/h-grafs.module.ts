@@ -14,6 +14,7 @@ import { NzStatisticModule } from "ng-zorro-antd/statistic";
 import { NzTabsModule } from "ng-zorro-antd/tabs";
 import { NzBreadCrumbModule } from "ng-zorro-antd/breadcrumb";
 import { NzDropDownModule } from "ng-zorro-antd/dropdown";
+import { NzProgressModule } from "ng-zorro-antd/progress";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { NzDropDownModule } from "ng-zorro-antd/dropdown";
     NzStatisticModule,
     NzTabsModule,
     NzBreadCrumbModule,
-    NzDropDownModule
+    NzDropDownModule,
+    NzProgressModule
   ],
   exports: [
     GrafComponent
