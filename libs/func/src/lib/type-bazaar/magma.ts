@@ -1,7 +1,6 @@
-import { Valued } from "@cosys/func";
 import { Groupoidal } from "./groupoid";
 
-export class Magma<T extends Valued<unknown>> implements Groupoidal<T> {
+export class Magma<T> implements Groupoidal<T> {
 
   val(): T {
     return this.value;

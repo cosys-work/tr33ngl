@@ -21,8 +21,9 @@ export * from "./lib/monad/monad";
 export * from "./lib/type-bazaar/groupoid";
 export * from "./lib/type-bazaar/magma";
 export * from "./lib/type-bazaar/monoid";
-export * from "./lib/type-bazaar/semigroup";
 export * from "./lib/type-bazaar/shopzero";
 export * from "./lib/type-bazaar/unital";
 
 export * from "./examples/monadic";
+export * from "./examples/mono";
+export * from "./examples/semigroup";

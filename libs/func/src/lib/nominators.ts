@@ -6,6 +6,10 @@ export interface Valued<T> {
   value: T;
 }
 
+export function unwrapValued<T>(i: Valued<T>): T {
+  return i.value;
+}
+
 export function makeVal<T>(value: T): Valued<T> {
   return ({
     value

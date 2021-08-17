@@ -1,4 +1,4 @@
-import { FValued, Left, Right, Valued } from "@cosys/func";
+import { FValued, Left, Right } from "@cosys/func";
 import { Unital } from "./unital";
 
 // assoc op, id, inverse
@@ -6,7 +6,7 @@ export interface Groupoidal<T> extends FValued<T> {
   op: (a: Groupoidal<T>, func: (a: T, b: T) => T) => Groupoidal<T>;
 }
 
-export interface AssocGroupoidal<T> extends FValued<T> {
+export interface AssocGroupoidal<T> extends Groupoidal<T> {
   assocOp: (a: Groupoidal<T>, func: Left<(a: T, b: T) => T> | Right<(b: T, a: T) => T>) => Groupoidal<T>;
 }
 
@@ -18,7 +18,7 @@ export interface UnaryGroupoidal<T> extends InvGroupoidal<T> {
   unaryOp: (a: Groupoidal<T>) => (func: (a: T, b: T) => T) => Groupoidal<T>;
 }
 
-export class Groupoid<T extends Valued<unknown>> implements UnaryGroupoidal<T>, Unital<T> {
+export class Groupoid<T> implements UnaryGroupoidal<T>, Unital<T> {
 
   id(): Unital<T> {
     return this;
