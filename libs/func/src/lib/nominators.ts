@@ -6,6 +6,12 @@ export interface Valued<T> {
   value: T;
 }
 
+export function makeVal<T>(value: T): Valued<T> {
+  return ({
+    value
+  })
+}
+
 export type TValued<T> = Typed & Valued<T>;
 
 export interface Nominator<T> {
@@ -13,7 +19,7 @@ export interface Nominator<T> {
   value: T;
 }
 
-export function nominate<T>(type: string, value: T): Nominator<unknown> {
+export function nominate<T>(type: string, value: T): Nominator<T> {
   return ({ type, value });
 }
 

@@ -46,3 +46,5 @@ export class HGraph<N, E> extends Graf<N, E> implements HGraf<N, E> {
     this.nodes = new Listoid(nNodes);
   }
 }
+
+export type Graphoid<N, E> = HGraph<N, E>;

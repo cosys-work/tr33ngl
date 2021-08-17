@@ -14,3 +14,5 @@ export * from "./lib/either/either";
 export * from "./lib/either/result";
 
 export * from "./lib/listoid/listoid";
+
+export * from "./lib/type-bazaar/shopZero";
