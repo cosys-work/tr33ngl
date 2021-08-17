@@ -6,7 +6,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SyncKVComponent, SyncKVComponentStub } from "../sync-kv.abstract";
-import { ImagesStore } from "../../../../shared/stores/images.store";
+import { ImagesStore } from "../../../../../shared/stores/images.store";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 describe('StepsComponent', () => {

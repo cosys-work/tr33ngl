@@ -1,8 +1,8 @@
 import { Component, ViewChild } from "@angular/core";
 import { ProgressBarMode } from "@angular/material/progress-bar";
 import { ThemePalette } from "@angular/material/core";
-import { ImgObjSkel8n } from "../../../shared/models/image.model";
-import { ImagesService } from "../../../shared/services/pages/images.service";
+import { ImgObjSkel8n } from "../../../../shared/models/image.model";
+import { ImagesService } from "../../../../shared/services/pages/images.service";
 import { NgImageSliderComponent } from "ng-image-slider";
 
 @Component({

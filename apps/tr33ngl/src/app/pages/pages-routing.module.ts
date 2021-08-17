@@ -9,15 +9,15 @@ const routes: Routes = [
   },
   {
     path: 'ground',
-    loadChildren: () => import('./gallery/h-grafs/h-grafs.module').then(m => m.HGrafsModule)
+    loadChildren: () => import('./gallery/component/h-grafs/h-grafs.module').then(m => m.HGrafsModule)
   },
   {
     path: 'key-val',
-    loadChildren: () => import('./gallery/kv/kv.module').then(m => m.KvModule)
+    loadChildren: () => import('./gallery/component/kv/kv.module').then(m => m.KvModule)
   },
   {
     path: 'schemes',
-    loadChildren: () => import('./gallery/slides/slides.module').then(m => m.SlidesModule)
+    loadChildren: () => import('./gallery/component/slides/slides.module').then(m => m.SlidesModule)
   },
   {
     path: 'init',

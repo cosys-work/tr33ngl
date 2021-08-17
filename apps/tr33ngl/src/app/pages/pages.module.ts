@@ -5,7 +5,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { LayoutModule } from "../layout/layout.module";
 import { GalleryModule } from "./gallery/gallery.module";
 import { DefaultComponent } from "./init/default.component";
-import { SlidesModule } from "./gallery/slides/slides.module";
+import { SlidesModule } from "./gallery/component/slides/slides.module";
 import { PagesRoutingModule } from "./pages-routing.module";
 
 @NgModule({

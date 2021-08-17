@@ -1,6 +1,6 @@
-import { IContent } from "../../../shared/models/pages-manifest.model";
-import { ImagesStore } from "../../../shared/stores/images.store";
-import { PagesManifestService } from "../../../shared/services/pages/pages-manifest.service";
+import { IContent } from "../../../../shared/models/pages-manifest.model";
+import { ImagesStore } from "../../../../shared/stores/images.store";
+import { PagesManifestService } from "../../../../shared/services/pages/pages-manifest.service";
 import { Subscription } from "rxjs";
 import { Component, OnDestroy, OnInit } from "@angular/core";
 

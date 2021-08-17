@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { ImagesStore } from "../../../../shared/stores/images.store";
-import { PagesManifestService } from "../../../../shared/services/pages/pages-manifest.service";
+import { ImagesStore } from "../../../../../shared/stores/images.store";
+import { PagesManifestService } from "../../../../../shared/services/pages/pages-manifest.service";
 import { SyncKVComponent } from "../sync-kv.abstract";
 
 @Component({
