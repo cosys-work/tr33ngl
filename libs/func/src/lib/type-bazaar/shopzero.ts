@@ -17,7 +17,7 @@ export function isPromisable<T>(rx: any): rx is Promise<T> {
 }
 
 export function isPromising<T>(rx: any): rx is Observable<T> {
-  return rx.hasOwnProperty("toPromise") && rx.hasOwnProperty("subscribe");
+  return rx.hasOwnProperty("subscribe") && rx.hasOwnProperty("unsubscribe");
 }
 
 export type Callable<T> = ((u?: unknown) => T);
