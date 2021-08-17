@@ -45,9 +45,9 @@ export class Right<T> extends Monad<T> implements Rightness<T> {
 export type Eitherness<L, R> = Leftness<L> | Rightness<R>;
 
 export function eitherLElseR<L, R>(l: L, r: R): Eitherness<L, R> {
-  return l !== undefined && l !== null
-    ? left(l)
-    : right(r);
+  return r !== undefined && r !== null
+    ? right(r)
+    : left(l);
 }
 
 export class Either<L, R> extends Monad<Eitherness<L, R>> {
