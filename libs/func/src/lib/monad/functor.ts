@@ -4,7 +4,7 @@ import { flatten } from "../utils";
 import { Mapper, Ts } from "../mappable";
 
 
-export interface NakedFunctorial<T> {
+export interface NakedFunctorial<T> extends Nominator<T> {
   extract() : Mapper<T>;
   observe() : Observable<Ts<T>>;
 }

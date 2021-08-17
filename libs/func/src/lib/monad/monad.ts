@@ -1,14 +1,15 @@
 import { Applicative, Applicativity } from "./applicative";
 import { Nominator } from "../nominators";
 import { Functorial } from "./functor";
-import { MonadMapper } from "../mappable";
+import { Mapper, MonadMapper, Ts } from "../mappable";
+import { Observable } from "rxjs";
 
 
-export interface Monadic<A> extends Applicativity<A>{
+export interface Monadic<A> extends Applicativity<A> {
   bind<U extends Array<A>>(ma: Monadic<A>, transformApp: (value: A) => Monadic<U>): Monadic<U[]>;
 }
 
-export class Monad<A> extends Applicative<A> implements Monadic<A>, Applicativity<A>, Functorial<A>, Nominator<A> {
+export class Monad<A> implements Monadic<A>, Applicativity<A>, Functorial<A>, Nominator<A> {
 
   readonly type: string = "Monad";
   readonly value!: A;
@@ -35,9 +36,28 @@ export class Monad<A> extends Applicative<A> implements Monadic<A>, Applicativit
   }
 
   constructor(value: A) {
-    super(value);
     this.value = value;
     this.applicative = new Applicative<A>(value);
+  }
+
+  apply<U>(transformApp: Functorial<(value: A) => U>, fa: Functorial<A>): Functorial<U[]> {
+    return this.applicative.apply(transformApp, fa);
+  }
+
+  fmap<U extends A[]>(transform: (value: A) => U, fa: Functorial<A>): Functorial<U[]> {
+    return this.applicative.fmap(transform, fa);
+  }
+
+  return<U>(value: U): Functorial<U> {
+    return this.applicative.return(value);
+  }
+
+  extract(): Mapper<A> {
+    return this.applicative.extract();
+  }
+
+  observe(): Observable<Ts<A>> {
+    return this.applicative.observe();
   }
 
 }
