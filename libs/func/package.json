@@ -1,7 +1,7 @@
 {
   "name": "@cosys/func",
-  "version": "0.0.7",
-  "description": "Monads, monadic laws, groupoid, magma, monoid, semigroup etc. implemented in typescript.",
+  "version": "0.0.8",
+  "description": "Monads, monadic laws, groupoid, magma, monoid, semigroup etc. implemented in Typescript.",
   "main": "src/index.ts",
   "scripts": {
     "pubdate": "pnpm publish . --tag latest --access public --publish-branch main"
