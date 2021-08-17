@@ -20,7 +20,7 @@ export interface UnaryGroupoidal<T> extends InvGroupoidal<T> {
 
 export class Groupoid<T> implements UnaryGroupoidal<T>, Unital<T> {
 
-  id(): Unital<T> {
+  id(): Groupoid<T> {
     return this;
   }
 
@@ -28,21 +28,21 @@ export class Groupoid<T> implements UnaryGroupoidal<T>, Unital<T> {
     return this.value;
   }
 
-  op(a: Groupoidal<T>, func: (xa: T, xb: T) => T): Groupoidal<T> {
+  op(a: Groupoid<T>, func: (xa: T, xb: T) => T): Groupoid<T> {
     return new Groupoid(func(this.val(), a.val()));
   }
 
-  inv(t: T, invFunc: (i: T) => [T, T]): [Groupoidal<T>, Groupoidal<T>] {
+  inv(t: T, invFunc: (i: T) => [T, T]): [Groupoid<T>, Groupoid<T>] {
     const [a, b] = invFunc(t);
     return [new Groupoid(a), new Groupoid(b)];
   }
 
-  invOp(t: T, invFunc: (t: T) => [a: Groupoidal<T>, b: Groupoidal<T>], func: (xa: T, xb: T) => T): Groupoidal<T> {
+  invOp(t: T, invFunc: (t: T) => [a: Groupoid<T>, b: Groupoid<T>], func: (xa: T, xb: T) => T): Groupoid<T> {
     const [a, b] = invFunc(t);
     return new Groupoid(func(a.val(), b.val()));
   }
 
-  readonly unaryOp: (a: Groupoidal<T>) => (func: (aT: T, bT: T) => T) => Groupoidal<T>
+  readonly unaryOp: (a: Groupoid<T>) => (func: (aT: T, bT: T) => T) => Groupoid<T>
     = (a) => (func) => new Groupoid(func(this.val(), a.val()));
 
   constructor(private readonly value: T) {

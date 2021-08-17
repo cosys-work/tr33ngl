@@ -9,7 +9,7 @@ export interface Unital<T> extends FValued<T> {
 
 export class UnitalMagma<T> extends Magma<T> {
 
-  id(): Unital<T> {
+  id(): UnitalMagma<T> {
     return this;
   }
 
