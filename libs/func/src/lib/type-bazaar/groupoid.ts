@@ -3,7 +3,7 @@ import { Unital } from "./unital";
 
 // assoc op, id, inverse
 export interface Groupoidal<T> extends FValued<T> {
-  op: (a: Groupoidal<T>, func: (a: T) => T) => Groupoidal<T>;
+  op: (a: Groupoidal<T>, func: (a: T, b: T) => T) => Groupoidal<T>;
 }
 
 export interface InvGroupoidal<T> extends Groupoidal<T> {
@@ -11,7 +11,7 @@ export interface InvGroupoidal<T> extends Groupoidal<T> {
 }
 
 export interface UnaryGroupoidal<T> extends InvGroupoidal<T> {
-  unaryOp: (a: Groupoidal<T>) => (b: Groupoidal<T>) => (func: (a: T, b: T) => T) => Groupoidal<T>;
+  unaryOp: (a: Groupoidal<T>) => (func: (a: T, b: T) => T) => Groupoidal<T>;
 }
 
 export class Groupoid<T extends Valued<unknown>> implements UnaryGroupoidal<T>, Unital<T> {
@@ -38,8 +38,8 @@ export class Groupoid<T extends Valued<unknown>> implements UnaryGroupoidal<T>, 
     return new Groupoid(func(a.val(), b.val()));
   }
 
-  readonly unaryOp: (a: Groupoidal<T>) => (b: Groupoidal<T>) => (func: (aT: T, bT: T) => T) => Groupoidal<T>
-    = (a) => (b) => (func) => new Groupoid(func(a.val(), b.val()));
+  readonly unaryOp: (a: Groupoidal<T>) => (func: (aT: T, bT: T) => T) => Groupoidal<T>
+    = (a) => (func) => new Groupoid(func(this.val(), a.val()));
 
   constructor(private readonly value: T) {
     this.value = value;
