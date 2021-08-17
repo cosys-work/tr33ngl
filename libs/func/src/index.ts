@@ -25,5 +25,6 @@ export * from "./lib/type-bazaar/shopzero";
 export * from "./lib/type-bazaar/unital";
 
 export * from "./examples/monadic";
-export * from "./examples/mono";
+export * from "./examples/additive-monoid";
+export * from "./examples/multiplicative-monoid";
 export * from "./examples/semigroup";
