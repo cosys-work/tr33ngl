@@ -26,25 +26,28 @@ export class Graf<N, E> implements Graph<N, E> {
   }
 }
 
-export class HGraph<N, E> extends Graf<N, E> implements HGraf<N, E> {
+export class HGraph<N, E> implements HGraf<N, E>, Graph<N, E> {
   readonly edges!: Listoid<E[]>;
   readonly nodes!: Listoid<N[]>;
 
   readonly hEdges!: Listoid<Graf<N, E>[]>;
 
-  constructor(e: Graf<N, E>[]) {
-    super(
-      e.map((val) => val.nodes.value).flat(),
-      e.map((val) => val.edges.value).flat()
-    );
-    this.hEdges = new Listoid(e);
+  readonly graph!: Graf<N, E>;
 
-    const eEdges = e.map((graf) => graf.edges.value).flat();
-    const nNodes = e.map((graf) => graf.nodes.value).flat();
+  constructor(n: N[], e: E[]) {
+    this.graph = new Graf(n, e);
+    this.hEdges = new Listoid([this.graph]);
+
+    const eEdges = e.map((_) => this.graph.edges.value).flat();
+    const nNodes = n.map((_) => this.graph.nodes.value).flat();
 
     this.edges = new Listoid(eEdges);
     this.nodes = new Listoid(nNodes);
   }
+
+  type: "HGraph";
+  value: Graf<N, E>;
+
 }
 
-export type Graphoid<N, E> = HGraph<N, E>;
+export type Graphoid<N, E> = HGraph<N, (e: E[]) => N[]>;
