@@ -30,7 +30,8 @@
     "compodoc": "pnpx compodoc -p apps/tr33ngl/tsconfig.app.json",
     "help": "pnx help",
     "scully": "npx scully --",
-    "scully:serve": "npx scully serve --"
+    "scully:serve": "npx scully serve --",
+    "publish": "pnpm publish . --tag latest --access private --publish-branch main"
   },
   "dependencies": {
     "@angular/animations": "^12.1.4",
