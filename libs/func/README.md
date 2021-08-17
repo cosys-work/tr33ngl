@@ -20,7 +20,23 @@ From the `applicative.ts` file you can see how an `applicative` is anything that
 
 From the `monad.ts` file you can see how a `monad` is anything that implements an extended applicative interface that we can use to 'bind' from within functor A to a value in functor B.
 
+`lib` contains the basic definitions of the following monads:
+
+- `Either`
+- `Graph`
+- `List`
+- `Maybe`
+- `Result`
+
 These are some powerful ideas that we will use in the rest of the course/documentation.
+
+`type-bazaar` contains basic definitions of the following algebraic structures:
+
+- `Groupoid`
+- `Magma`
+- `Monoid`
+- `Semigroup`
+- `Unital Magma`
 
 # Roadmap
 These 'simple' monads do not easily cover cases for future value or an undetermined value. However, a future addition generated using Idris will cover some of these advanced use cases. 

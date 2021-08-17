@@ -16,3 +16,8 @@ export * from "./lib/either/result";
 export * from "./lib/listoid/listoid";
 
 export * from "./lib/type-bazaar/shopZero";
+export * from "./lib/type-bazaar/groupoid";
+export * from "./lib/type-bazaar/magma";
+export * from "./lib/type-bazaar/monoid";
+export * from "./lib/type-bazaar/semigroup";
+export * from "./lib/type-bazaar/unital";
