@@ -34,6 +34,9 @@ export class HGraph<N, E> implements HGraf<N, E>, Graph<N, E> {
 
   readonly graph!: Graf<N, E>;
 
+  readonly type = "HGraph";
+  readonly value!: Graf<N, E>;
+
   constructor(n: N[], e: E[]) {
     this.graph = new Graf(n, e);
     this.hEdges = new Listoid([this.graph]);
@@ -43,11 +46,14 @@ export class HGraph<N, E> implements HGraf<N, E>, Graph<N, E> {
 
     this.edges = new Listoid(eEdges);
     this.nodes = new Listoid(nNodes);
+    this.value = this.graph;
   }
-
-  type: "HGraph";
-  value: Graf<N, E>;
-
 }
 
 export type Graphoid<N, E> = HGraph<N, (e: E[]) => N[]>;
+
+export function makeGraphoid<N, E>(n: N[], e: E[]): Graphoid<N, E> {
+  const proj = (_: E, id) => n[id];
+  const e2n:  (ez: E[]) => N[] = (ez) => ez.map(proj);
+  return new HGraph<N, (e: E[]) => N[]>(n, [(_: E[]) => e2n(e)])
+}
