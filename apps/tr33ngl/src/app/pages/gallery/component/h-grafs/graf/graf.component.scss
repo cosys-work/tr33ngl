@@ -10,6 +10,10 @@
   transform: translate(50%, 50%) rotate(90deg);
 }
 
+#reflected {
+  transform: translate(-50%, -50%) rotate(180deg);
+}
+
 .inner-box {
   margin-left: 0;
   padding-left: 0;
@@ -18,39 +22,7 @@
   align-content: baseline;
 }
 
-#reflected {
-  transform: translate(-50%, -50%) rotate(180deg);
-}
-
-.content {
-  display: flex;
-}
-
-.extra > div {
-  display: flex;
-  width: max-content;
-  justify-content: flex-end;
-}
-
-@media (max-width: 576px) {
-  .content {
-    display: block;
-  }
-
-  .main {
-    width: 100%;
-    margin-bottom: 12px;
-  }
-
-  .extra {
-    width: 100%;
-    margin-left: 0;
-    text-align: left;
-  }
-}
-
-nz-steps {
-  display: block;
-  margin-bottom: 60px;
-  box-shadow: rgb(232, 232, 232) 0px -1px 0px 0 inset;
+.network {
+  width: 725px;
+  height: 350px;
 }

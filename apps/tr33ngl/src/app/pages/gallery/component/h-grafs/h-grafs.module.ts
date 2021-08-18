@@ -15,10 +15,20 @@ import { NzTabsModule } from "ng-zorro-antd/tabs";
 import { NzBreadCrumbModule } from "ng-zorro-antd/breadcrumb";
 import { NzDropDownModule } from "ng-zorro-antd/dropdown";
 import { NzProgressModule } from "ng-zorro-antd/progress";
+import { GrafHeaderComponent } from './graf/graf-header/graf-header.component';
+import { GraphToolboxComponent } from './graf/graph-toolbox/graph-toolbox.component';
+import { GraphXyComponent } from './graf/graph-xy/graph-xy.component';
+import { GraphXyzComponent } from './graf/graph-xyz/graph-xyz.component';
+import { GraphDivComponent } from './graf/graph-div/graph-div.component';
 
 @NgModule({
   declarations: [
-    GrafComponent
+    GrafComponent,
+    GrafHeaderComponent,
+    GraphToolboxComponent,
+    GraphXyComponent,
+    GraphXyzComponent,
+    GraphDivComponent
   ],
   imports: [
     CommonModule,
