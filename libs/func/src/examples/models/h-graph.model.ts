@@ -1,38 +1,38 @@
 import { Edg, Gra, Graphoid, HGraph, Listoid, Nod } from "@cosys/func";
 
-export interface Node extends Nod {
+export interface HNode extends Nod {
   id: string;
   label: string;
   title: string;
 }
 
-export interface Edge extends Nod, Edg {
+export interface HEdge extends Nod, Edg {
   from: string;
   to: string;
 }
 
-export type Nodes = Listoid<Node[]>;
-export type Edges = Listoid<Edge[]>;
-export interface Graph extends Gra {
-  nodes: Nodes;
-  edges: Edges;
+export type HNodes = Listoid<HNode[]>;
+export type HEdges = Listoid<HEdge[]>;
+export interface HGGraph extends Gra {
+  nodes: HNodes;
+  edges: HEdges;
 }
 
-export type Phoid = Graphoid<Node, Edge>;
+export type Phoid = Graphoid<HNode, HEdge>;
 export interface GraphoidInit {
-  graph: Graph;
+  graph: HGGraph;
   maker: Partial<GraphoidInit>;
   oid: Phoid;
 }
 
-export type GeeRaph = HGraph<Node, Edge>;
+export type GeeRaph = HGraph<HNode, HEdge>;
 export interface GraphoidFromHG extends GraphoidInit {
   init: GraphoidInit;
   hg: GeeRaph;
   raph: Phoid;
 }
 
-export type MeGraPhoid = Graphoid<Nodes, Edges>;
+export type MeGraPhoid = Graphoid<HNodes, HEdges>;
 export interface MetaNetworkState {
   graph: MeGraPhoid;
 }

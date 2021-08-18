@@ -28,3 +28,4 @@ export * from "./examples/monadic";
 export * from "./examples/additive-monoid";
 export * from "./examples/multiplicative-monoid";
 export * from "./examples/semigroup";
+export * from "./examples/models/h-graph.model";
