@@ -11,6 +11,11 @@ export class Monad<A> implements Monadic<A>, Applicativity<A>, Functorial<A>, No
   readonly value!: A;
   readonly applicative!: Applicative<A>;
 
+  constructor(value: A) {
+    this.value = value;
+    this.applicative = new Applicative<A>(value);
+  }
+
   pure2<U>(us: U[]): Monadic<U[]> {
     return new Monad<U[]>(us);
   }
@@ -29,11 +34,6 @@ export class Monad<A> implements Monadic<A>, Applicativity<A>, Functorial<A>, No
 
   bindFlip<U extends Array<A>>(transformApp: (val: A) => Monadic<U>, ma: Monadic<A>): Monadic<U[]> {
     return this.bind(ma, transformApp);
-  }
-
-  constructor(value: A) {
-    this.value = value;
-    this.applicative = new Applicative<A>(value);
   }
 
   apply<U>(transformApp: Functorial<(value: A) => U>, fa: Functorial<A>): Functorial<U[]> {
