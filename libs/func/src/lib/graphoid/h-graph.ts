@@ -1,8 +1,34 @@
 import { Listoid, Nominator } from "@cosys/func";
 
+
+
 export interface Graph<N, E> extends Nominator<Graph<N, E>> {
   readonly nodes: Listoid<N[]>;
   readonly edges: Listoid<E[]>;
+}
+
+export const $id = Symbol.for('id');
+export const $di = Symbol.for('di');
+
+export interface Nod {
+  [key: string]: string;
+  [$id]: Partial<Nod>;
+  tag: string;
+}
+
+export interface Edg extends Partial<Nod> {
+  [$id]: Partial<Nod>;
+  [$di]: Listoid<Nod[]>;
+  tag: string;
+}
+
+export type Nods = Listoid<Nod[]>;
+
+export type Edgs = Listoid<Edg[]>;
+
+export interface Gra {
+  nodes: Nods;
+  edges: Edgs;
 }
 
 export interface HGraf<N, E> {
