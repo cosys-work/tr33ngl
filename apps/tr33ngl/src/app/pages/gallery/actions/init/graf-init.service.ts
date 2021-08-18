@@ -1,8 +1,17 @@
 import { Injectable } from "@angular/core";
-import { Edge, Edges, Graph, Node, Nodes } from "../../models/h-graph.model";
-import { HGraph, Listoid } from "@cosys/func";
+
 import { GraphInit } from "./graph-init";
 import { SeedInit } from "./seed-init";
+
+import {
+  HNodes as Nodes,
+  HEdges as Edges,
+  HEdge as Edge,
+  HNode as Node,
+  HGGraph as Graph,
+  HGraph,
+  Listoid
+} from "@cosys/func";
 
 @Injectable({
   providedIn: 'root'
