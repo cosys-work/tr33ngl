@@ -32,7 +32,7 @@ export interface GraphoidFromHG extends GraphoidInit {
   raph: Phoid;
 }
 
-export type MeGraPhoid = Graphoid<HNodes, HEdges>;
+export type MeGraPhoid = Graphoid<HNode, HEdge>;
 export interface MetaNetworkState {
   graph: MeGraPhoid;
 }

@@ -10,7 +10,9 @@ import {
   HNode as Node,
   HGGraph as Graph,
   HGraph,
-  Listoid
+  Listoid,
+  MetaNetworkState,
+  makeGraphoid
 } from "@cosys/func";
 
 @Injectable({
@@ -46,9 +48,11 @@ export class GrafInitService {
       GrafInitService.graphInit.makeDefault();
   }
 
+  get metaState(): MetaNetworkState {
+    return  ({ graph: makeGraphoid(this.graph.nodes.value, this.graph.edges.value) });
+  }
+
   get hGraph(): HGraph<Node, Edge> {
-    return this.isInitialized ?
-      new HGraph<Node, Edge>(this.nodes.value, this.edges.value) :
-      new HGraph<Node, Edge>(this.graph.nodes.value, this.graph.edges.value);
+    return new HGraph<Node, Edge>(this.graph.nodes.value, this.graph.edges.value);
   }
 }
