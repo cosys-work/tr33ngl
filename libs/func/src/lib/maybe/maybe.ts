@@ -1,8 +1,4 @@
-import { is, nominate, TValued } from "../nominators";
-
-import { JustNominator, NothingNominator } from "./nominator";
-import { Monad } from "../monad/monad";
-
+import { JustNominator, NothingNominator, is, nominate, TValued, Monad } from "@cosys/func";
 
 export function nothing(): NothingNominator {
   return nominate("Nothing", "Nothing") as NothingNominator;

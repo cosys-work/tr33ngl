@@ -1,11 +1,4 @@
-import { left as failure, Leftness as Failure, right as success, Rightness as Success } from "./either";
-import { Monad } from "../monad/monad";
-
-export {
-  isRight as isSuccess,
-  isLeft as isFailure
-} from "./either";
-
+import { left as failure, Leftness as Failure, Monad, right as success, Rightness as Success } from "@cosys/func";
 
 export class Succeeded<T> extends Monad<Success<T>> implements Success<T> {
   type: "Right" = "Right";

@@ -1,5 +1,4 @@
-import { Nominator } from "../nominators";
-import { Monad } from "../monad/monad";
+import { Nominator, Monad } from "@cosys/func";
 
 export class Listoid<A extends Array<unknown>> extends Monad<A> implements Nominator<A> {
   readonly type: "Listoid" = "Listoid";
