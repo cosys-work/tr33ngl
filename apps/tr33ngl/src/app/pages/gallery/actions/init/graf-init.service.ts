@@ -25,24 +25,24 @@ export class GrafInitService {
     return Object.assign({}, ...ret, { edges, nodes })
   }
 
-  createDefault(): Graph {
-    console.log("#TODO");
-    const nodes: Nodes = new Listoid<Node[]>(this.seedNodes);
-    const edges: Edges = new Listoid<Edge[]>(this.seedEdges);
-    return this.makeGraph(nodes, edges);
+  makeDefault(): Graph {
+    return this.makeGraph(
+      this.seedNodes,
+      this.seedEdges
+    );
   }
 
-  get seedNodes(): Node[] {
-    return [
+  get seedNodes(): Nodes {
+    return new Listoid<Node[]>([
       {id: '1', label: 'Node 1', title: 'I am node 1!'},
       {id: '2', label: 'Node 2', title: 'I am node 2!'},
       {id: '3', label: 'Node 3', title: 'ma 3'},
       {id: '4', label: 'Node 4', title: 'ma 4'},
       {id: '5', label: 'Node 5', title: 'ma 5'}
-    ];
+    ]);
   }
 
-  get seedEdges(): Edge[] {
+  get seedEdges(): Edges {
     const ret = {
       edges: [
         { from: 1, to: 3 },
@@ -51,13 +51,13 @@ export class GrafInitService {
         { from: 2, to: 5 }
       ]
     };
-    return Object.assign({}, ...ret.edges, {});
+    return new Listoid<Edge[]>(
+      Object.assign({}, ...ret.edges, {})
+    );
   }
 
   get graph(): Graph {
-    const edges = this.edges.value;
-    const nodes = this.nodes.value;
-    return this.makeGraph(new Listoid(nodes), new Listoid(edges));
+    return this.makeGraph(this.nodes, this.edges);
   }
 
   get hGraph(): HGraph<Node, Edge> {
