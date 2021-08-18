@@ -1,7 +1,7 @@
-import { Edge, Edges, Graph, Node, Nodes } from "../../models/h-graph.model";
+import { Edge, Edges, Node, Nodes } from "../../models/h-graph.model";
 import { $di, $id, Listoid } from "@cosys/func";
 
-export class SimpleGraphInit {
+export class SeedInit {
 
   public static nodeMaker(iz: number): Node {
     const node = (ix: number) => ({
@@ -26,7 +26,7 @@ export class SimpleGraphInit {
         {
           from: `${ix}`,
           to: `${ix + 1}`,
-          ...SimpleGraphInit.nodeMaker(ix)
+          ...SeedInit.nodeMaker(ix)
         });
     const edgeWithDi = (iy: number) => {
       const edgeY = edge(iy);
@@ -38,34 +38,18 @@ export class SimpleGraphInit {
     return edgeWithDi(iz);
   }
 
-
-  public static makeGraph(nodes: Nodes, edges: Edges): Graph {
-    const ret = [
-      nodes,
-      edges
-    ];
-    return Object.assign({}, ...ret, { edges, nodes })
-  }
-
   public static seedNodes(): Nodes {
     const nodes = Array(5)
       .fill(1 )
-      .map((_, i) => SimpleGraphInit.nodeMaker(i));
+      .map((_, i) => SeedInit.nodeMaker(i));
     return new Listoid<Node[]>(nodes);
   }
 
   public static seedEdges(): Edges {
     const edges = Array(5)
       .fill(1 )
-      .map((_, i) => SimpleGraphInit.edgeMaker(i));
+      .map((_, i) => SeedInit.edgeMaker(i));
     return new Listoid<Edge[]>(edges);
-  }
-
-  public static makeDefault(): Graph {
-    return SimpleGraphInit.makeGraph(
-      SimpleGraphInit.seedNodes(),
-      SimpleGraphInit.seedEdges()
-    );
   }
 
 }
