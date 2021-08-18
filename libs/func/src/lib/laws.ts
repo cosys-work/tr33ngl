@@ -48,7 +48,7 @@ export class MonadicLaws<A extends []> extends Monad<A> {
       );
 
     const xBindFBindG: () => Monadic<A[]> =
-      () => this.monad.bind<A>(xBindF()[0], () => gun(a));
+      () => this.monad.bind<A>(new Monad<A>(xBindF().value[0]), () => gun(a));
 
     const lambdaFv = (v: A) => fun(v);
     const lambdaGw = (w: A) => gun(w);
@@ -57,7 +57,7 @@ export class MonadicLaws<A extends []> extends Monad<A> {
 
     const xBindLambdaFvBindG = (u: A) => this.monad.bind<A>(
       monadX,
-      () => lambdaFvBindG(u)[0]
+      () => new Monad<A>(lambdaFvBindG(u).value[0])
     );
 
     return () => xBindFBindG() === xBindLambdaFvBindG(a)

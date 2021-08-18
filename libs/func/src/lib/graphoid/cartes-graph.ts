@@ -18,14 +18,13 @@ export abstract class CartesHGraph<T, S> implements Nominator<CartesHGraph<T, S>
   abstract value: CartesHGraph<T, S>;
 
   protected constructor(ns: T[], es: S[]) {
-    const graf = new Graf(ns, es);
-    this.indices = new HGraph([graf]);
+    this.indices = new HGraph(ns, es);
   }
 }
 
 export class CartesTimeGraf extends CartesGraf<TimeCoordinate, TimeCoordinate>
   implements Nominator<CartesTimeGraf> {
-  type: "CartesTimeGraf";
+  type: "CartesTimeGraf" = "CartesTimeGraf";
   value!: CartesTimeGraf;
 
   constructor(ns: TimeCoordinate[], es: TimeCoordinate[]) {

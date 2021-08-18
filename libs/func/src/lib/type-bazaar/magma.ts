@@ -7,7 +7,7 @@ export class Magma<T> implements Groupoidal<T> {
   }
 
   // closed
-  op(a: Magma<T>, func: (a: T, b: T) => T): Magma<T> {
+  op(a: Groupoidal<T>, func: (a: T, b: T) => T): Groupoidal<T> {
     return new Magma(func(this.val(), a.val()));
   }
 

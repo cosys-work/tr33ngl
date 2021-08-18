@@ -14,8 +14,8 @@ export function isLeft<T>(v: TValued<T>): v is Leftness<T> {
 }
 
 export class Left<T> extends Monad<T> implements Leftness<T> {
-  type: "Left" = "Left";
-  value!: T;
+  readonly type: "Left" = "Left";
+  readonly value!: T;
 
   constructor(value: T) {
     super(left(value).value);
@@ -33,8 +33,8 @@ export function isRight<T>(v: TValued<T>): v is Rightness<T> {
 }
 
 export class Right<T> extends Monad<T> implements Rightness<T> {
-  readonly type: "Right";
-  value!: T;
+  readonly type: "Right" = "Right";
+  readonly value!: T;
 
   constructor(value: T) {
     super(right(value).value);
@@ -51,7 +51,7 @@ export function eitherLElseR<L, R>(l: L, r: R): Eitherness<L, R> {
 }
 
 export class Either<L, R> extends Monad<Eitherness<L, R>> {
-  constructor(l: L, r?: R) {
+  constructor(l: L, r: R) {
     super(eitherLElseR(l, r));
   }
 }

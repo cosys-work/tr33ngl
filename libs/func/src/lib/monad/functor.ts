@@ -1,4 +1,4 @@
-import { Nominator } from "../nominators";
+import { Nominator, Typed } from "../nominators";
 import { Observable, of } from "rxjs";
 import { flatten } from "../utils";
 import { Mapper, Ts } from "../mappable";
@@ -14,8 +14,8 @@ export interface Functorial<T> extends NakedFunctorial<T> {
   return<U>(value: U) : Functorial<U>;
 }
 
-export function isFunctor<T>(f: Functorial<T> | unknown): f is Functorial<T> {
-  return Object.keys(f).filter((key: string) => key === "type").map((type) => f[type]).includes("Functor")
+export function isFunctor<T>(f: Typed): f is Functorial<T> {
+  return f.type.startsWith("Functor");
 }
 
 export class Functor<T> implements Functorial<T>, Nominator<T> {

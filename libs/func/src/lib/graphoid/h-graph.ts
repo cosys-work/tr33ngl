@@ -53,33 +53,27 @@ export class Graf<N, E> implements Graph<N, E> {
 }
 
 export class HGraph<N, E> implements HGraf<N, E>, Graph<N, E> {
-  readonly edges!: Listoid<E[]>;
-  readonly nodes!: Listoid<N[]>;
-
-  readonly hEdges!: Listoid<Graf<N, E>[]>;
-
-  readonly graph!: Graf<N, E>;
-
   readonly type = "HGraph";
   readonly value!: Graf<N, E>;
+  readonly edges!: Listoid<E[]>;
+  readonly nodes!: Listoid<N[]>;
+  readonly hEdges!: Listoid<Graf<N, E>[]>;
+  readonly graph!: Graf<N, E>;
 
   constructor(n: N[], e: E[]) {
+    this.value = this.graph;
     this.graph = new Graf(n, e);
     this.hEdges = new Listoid([this.graph]);
-
     const eEdges = e.map((_) => this.graph.edges.value).flat();
     const nNodes = n.map((_) => this.graph.nodes.value).flat();
-
     this.edges = new Listoid(eEdges);
     this.nodes = new Listoid(nNodes);
-    this.value = this.graph;
   }
 }
 
 export type Graphoid<N, E> = HGraph<N, (e: E[]) => N[]>;
-
 export function makeGraphoid<N, E>(n: N[], e: E[]): Graphoid<N, E> {
-  const proj = (_: E, id) => n[id];
+  const proj = (_: E, id: number) => n[id];
   const e2n:  (ez: E[]) => N[] = (ez) => ez.map(proj);
   return new HGraph<N, (e: E[]) => N[]>(n, [(_: E[]) => e2n(e)])
 }

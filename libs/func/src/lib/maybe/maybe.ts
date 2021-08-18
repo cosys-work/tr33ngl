@@ -1,37 +1,37 @@
 import { is, nominate, TValued } from "../nominators";
 
-import { JustNominator as Justness, NothingNominator as Nothingness } from "./nominator";
+import { JustNominator, NothingNominator } from "./nominator";
 import { Monad } from "../monad/monad";
 
 
-export function nothing(): Nothingness {
-  return nominate("Nothing", "Nothing") as Nothingness;
+export function nothing(): NothingNominator {
+  return nominate("Nothing", "Nothing") as NothingNominator;
 }
 
-export function isNothing(v: TValued<unknown>): v is Nothingness {
-  return is<Nothingness>(v, nothing());
+export function isNothing(v: TValued<unknown>): v is NothingNominator {
+  return is<NothingNominator>(v, nothing());
 }
 
-export class Nothing extends Monad<undefined> implements Nothingness {
+export class Nothing extends Monad<"Nothing"> implements NothingNominator {
   readonly type: string = "Nothing";
-  readonly value!: undefined;
+  readonly value = "Nothing";
 
   constructor() {
-    super(undefined);
+    super("Nothing");
   }
 }
 
-export function just<T>(v: T): Justness<T> {
-  return nominate("Just", v) as Justness<T>;
+export function just<T>(v: T): JustNominator<T> {
+  return nominate("Just", v) as JustNominator<T>;
 }
 
-export function isJust<T>(v: TValued<T>): v is Justness<T> {
-  return is<Justness<T>>(v, just(v.value));
+export function isJust<T>(v: TValued<T>): v is JustNominator<T> {
+  return is<JustNominator<T>>(v, just(v.value));
 }
 
-export class Just<T> extends Monad<Justness<T>> implements Justness<T> {
+export class Just<T> extends Monad<JustNominator<T>> implements JustNominator<T> {
   readonly type: "Just" = "Just";
-  readonly value!: T & Justness<T>;
+  readonly value!: T & JustNominator<T>;
 
   constructor(value: T) {
     super(just(value));
@@ -40,7 +40,7 @@ export class Just<T> extends Monad<Justness<T>> implements Justness<T> {
 }
 
 
-export type Maybeness<T> = Justness<T> | Nothingness;
+export type Maybeness<T> = JustNominator<T> | NothingNominator;
 
 export function maybe<T>(t: T): Maybeness<T> {
   return t === undefined || t === null

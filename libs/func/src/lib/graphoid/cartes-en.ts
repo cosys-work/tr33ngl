@@ -52,8 +52,8 @@ export class CartesianPlaneIndex implements TimeCoordinate {
 }
 
 export class DiscreteCartesianPlane implements Nominator<DiscreteCartesianPlane> {
-  type: "DiscreteCartesianPlane";
-  value: DiscreteCartesianPlane;
+  type: "DiscreteCartesianPlane" = "DiscreteCartesianPlane";
+  value: DiscreteCartesianPlane = this;
   indices: Listoid<CartesianPlaneIndex[]>;
 
   constructor(indexes: CartesianPlaneIndex[]) {
