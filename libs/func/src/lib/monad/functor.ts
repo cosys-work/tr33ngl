@@ -1,8 +1,5 @@
-import { Nominator, Typed } from "../nominators";
+import { Nominator, Typed, flatten, Mapper, Ts } from "@cosys/func";
 import { Observable, of } from "rxjs";
-import { flatten } from "../utils";
-import { Mapper, Ts } from "../mappable";
-
 
 export interface NakedFunctorial<T> extends Nominator<T> {
   extract() : Mapper<T>;

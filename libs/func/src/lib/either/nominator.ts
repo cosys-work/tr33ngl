@@ -1,4 +1,4 @@
-import { Nominator } from "../nominators";
+import { Nominator } from "@cosys/func";
 
 export interface LeftNominator<T> extends Nominator<T> {
   type: 'Left';

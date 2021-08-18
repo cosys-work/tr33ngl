@@ -1,5 +1,4 @@
-import { FValued, Left, Right } from "@cosys/func";
-import { Unital } from "./unital";
+import { Unital, FValued, Left, Right } from "@cosys/func";
 
 // assoc op, id, inverse
 export interface Groupoidal<T> extends FValued<T> {

@@ -1,5 +1,4 @@
-import { Listoid } from "@cosys/func";
-import { Graphoid } from "../graphoid/h-graph";
+import { Graphoid, Listoid } from "@cosys/func";
 import { firstValueFrom, from, Observable, of } from "rxjs";
 
 export type FType<V> = V;

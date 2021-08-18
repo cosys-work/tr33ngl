@@ -1,9 +1,4 @@
-import { LeftNominator as Leftness, RightNominator as Rightness } from "./nominator";
-import { is, nominate, TValued } from "../nominators";
-import { Monad } from "../monad/monad";
-
-
-export { LeftNominator as Leftness, RightNominator as Rightness } from "./nominator";
+import { LeftNominator as Leftness, RightNominator as Rightness, is, nominate, TValued, Monad } from "@cosys/func";
 
 export function left<T>(v: T): Leftness<T> {
   return nominate("Left", v) as Leftness<T>;

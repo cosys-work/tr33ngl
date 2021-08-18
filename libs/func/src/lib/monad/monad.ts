@@ -1,9 +1,5 @@
-import { Applicative, Applicativity } from "./applicative";
-import { Nominator } from "../nominators";
-import { Functorial } from "./functor";
-import { Mapper, MonadMapper, Ts } from "../mappable";
+import { Nominator, Mapper, MonadMapper, Ts, Functorial, Applicative, Applicativity } from "@cosys/func";
 import { Observable } from "rxjs";
-
 
 export interface Monadic<A> extends Applicativity<A> {
   bind<U extends Array<A>>(ma: Monadic<A>, transformApp: (value: A) => Monadic<U>): Monadic<U[]>;

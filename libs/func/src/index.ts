@@ -1,7 +1,7 @@
-export * from "./lib/laws";
-export * from "./lib/mappable";
 export * from "./lib/nominators";
-export * from "./lib/utils";
+export * from "./lib/utils/utils";
+export * from "./lib/utils/mappable";
+export * from "./lib/utils/test/laws";
 
 export * from "./lib/either/either";
 export * from "./lib/either/nominator";

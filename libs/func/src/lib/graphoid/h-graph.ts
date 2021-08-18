@@ -1,7 +1,5 @@
 import { Listoid, Nominator } from "@cosys/func";
 
-
-
 export interface Graph<N, E> extends Nominator<Graph<N, E>> {
   readonly nodes: Listoid<N[]>;
   readonly edges: Listoid<E[]>;

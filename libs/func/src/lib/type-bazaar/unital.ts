@@ -1,11 +1,8 @@
-import { FValued } from "@cosys/func";
-import { Magma } from "./magma";
-
+import { Magma, FValued } from "@cosys/func";
 
 export interface Unital<T> extends FValued<T> {
   id : () => Unital<T>;
 }
-
 
 export class UnitalMagma<T> extends Magma<T> {
 

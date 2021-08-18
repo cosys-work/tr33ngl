@@ -1,6 +1,4 @@
-import { Nominator } from "@cosys/func";
-import { Graf, Graph, HGraph } from "./h-graph";
-import { TimeCoordinate } from "./cartes-en";
+import { Nominator, Graf, Graph, HGraph, TimeCoordinate  } from "@cosys/func";
 
 export abstract class CartesGraf<T, S> implements Nominator<CartesGraf<T, S>> {
   indices!: Graph<T, S>;

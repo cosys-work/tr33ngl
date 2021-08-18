@@ -1,4 +1,4 @@
-import { left as failure, Leftness as Failure, Monad, right as success, Rightness as Success } from "@cosys/func";
+import { left as failure, LeftNominator as Failure, Monad, right as success, RightNominator as Success } from "@cosys/func";
 
 export class Succeeded<T> extends Monad<Success<T>> implements Success<T> {
   type: "Right" = "Right";

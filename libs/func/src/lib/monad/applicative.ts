@@ -1,6 +1,4 @@
-import { Functor, Functorial } from "./functor";
-import { Nominator } from "../nominators";
-import { FuncMapper, Mapper, Ts } from "../mappable";
+import { Functor, Functorial, Nominator, FuncMapper, Mapper, Ts } from "@cosys/func";
 import { Observable } from "rxjs";
 
 export interface Applicativity<A> extends Functorial<A>{

@@ -1,14 +1,8 @@
-import { FuncMappable, Mappable } from "./mappable";
-
+import { FuncMappable, Mappable } from "@cosys/func";
 
 function isArray(maybeArray: Array<unknown> | string | number): maybeArray is Array<string | number> {
   return maybeArray.hasOwnProperty("length") && maybeArray.hasOwnProperty("map");
 }
-
-
-const toFlatten = [["A", ["B", "C"], "D"], "E", "F"];
-console.log("toFlatten", toFlatten);
-console.log("flatter", flattener(toFlatten));
 
 export function flattener(nested: Array<unknown> | string | number): Array<unknown> {
   const tArray: Array<unknown> = [];
