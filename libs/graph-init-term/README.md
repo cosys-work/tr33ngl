@@ -1,7 +1,5 @@
 # graph-init-term
 
-This library was generated with [Nx](https://nx.dev).
+This library can be used to create and dispose graphoids/categories create using @cosys/func.
 
-## Running unit tests
-
-Run `nx test graph-init-term` to execute the unit tests.
+Help needed: Please submit a PR with any documentation you can put in for the code. 

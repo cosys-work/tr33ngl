@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+// import { GrafStore } from "@cosys/graphoidal";
 
 declare const vis: any;
 
@@ -15,7 +16,7 @@ export class GraphXyzComponent implements OnInit {
   @Input("selector") selector: number = 0;
   public network!: OnAble;
 
-  constructor() { // protected grafStore: GrafStore
+  constructor() { // private grafStore: GrafStore
     // this.grafStore = grafStore;
   }
 

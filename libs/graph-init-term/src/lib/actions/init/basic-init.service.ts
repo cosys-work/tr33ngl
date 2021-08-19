@@ -1,11 +1,6 @@
 import { HEdges as Edges, HNodes as Nodes, HGGraph as Graph } from "@cosys/func";
 import { SeedInit } from "./seed-init.service";
-import { Injectable } from "@angular/core";
-import { GraphInitTermModule } from "@cosys/graphoidal";
 
-@Injectable({
-  providedIn: GraphInitTermModule
-})
 export class BasicInit {
 
   constructor(private seedInit: SeedInit) {

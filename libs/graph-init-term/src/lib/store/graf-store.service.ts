@@ -1,4 +1,3 @@
-import { Injectable } from "@angular/core";
 import { ObservableStore } from "@codewithdan/observable-store";
 import { GrafInit } from "../actions/init/graf-init.service";
 import { MetaNetworkState } from "@cosys/func";
@@ -8,9 +7,6 @@ export enum Actions {
   INIT="INIT",
 }
 
-@Injectable({
-  providedIn: 'any'
-})
 export class GrafStore extends ObservableStore<MetaNetworkState> {
 
   constructor(protected grafInit: GrafInit) {

@@ -1,5 +1,3 @@
-import { Injectable } from "@angular/core";
-
 import { BasicInit } from "./basic-init.service";
 
 import {
@@ -14,9 +12,6 @@ import {
   MetaNetworkState
 } from "@cosys/func";
 
-@Injectable({
-  providedIn: 'any'
-})
 export class GrafInit {
 
   private readonly nodes: Nodes = new Listoid<Node[]>([]);
