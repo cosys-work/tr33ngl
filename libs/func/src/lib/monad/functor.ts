@@ -15,7 +15,7 @@ export function isFunctor<T>(f: Typed): f is Functorial<T> {
   return f.type.startsWith("Functor");
 }
 
-export class Functor<T> implements Functorial<T>, Nominator<T> {
+export class Functor<T> implements Functorial<T> {
 
   readonly type: string = "Functor";
   readonly value!: T;

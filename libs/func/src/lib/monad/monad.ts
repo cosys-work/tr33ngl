@@ -1,11 +1,11 @@
-import { Nominator, Mapper, MonadMapper, Ts, Functorial, Applicative, Applicativity } from "@cosys/func";
+import { Applicative, Applicativity, Functorial, Mapper, MonadMapper, Ts } from "@cosys/func";
 import { Observable } from "rxjs";
 
 export interface Monadic<A> extends Applicativity<A> {
   bind<U extends Array<A>>(ma: Monadic<A>, transformApp: (value: A) => Monadic<U>): Monadic<U[]>;
 }
 
-export class Monad<A> implements Monadic<A>, Applicativity<A>, Functorial<A>, Nominator<A> {
+export class Monad<A> implements Monadic<A> {
 
   readonly type: string = "Monad";
   readonly value!: A;

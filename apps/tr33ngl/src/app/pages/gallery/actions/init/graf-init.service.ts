@@ -1,51 +1,45 @@
 import { Injectable } from "@angular/core";
 
-import { GraphInit } from "./graph-init";
-import { SeedInit } from "./seed-init";
+import { BasicInit } from "./basic-init.service";
 
 import {
-  HNodes as Nodes,
-  HEdges as Edges,
   HEdge as Edge,
-  HNode as Node,
+  HEdges as Edges,
   HGGraph as Graph,
   HGraph,
+  HNode as Node,
+  HNodes as Nodes,
   Listoid,
-  MetaNetworkState,
-  makeGraphoid
+  makeGraphoid,
+  MetaNetworkState
 } from "@cosys/func";
 
 @Injectable({
   providedIn: 'root'
 })
-export class GrafInitService {
+export class GrafInit {
 
   private readonly nodes: Nodes = new Listoid<Node[]>([]);
   private readonly edges: Edges = new Listoid<Edge[]>([]);
 
-  public static graphInit = GraphInit;
-  public static seedInit = SeedInit;
-
-  append( graph: { nodes: Nodes, edges: Edges} ) {
-    const { nodes, edges } = graph;
-    this.nodes.value = [...this.nodes.value, ...nodes.value];
-    this.edges.value = [...this.edges.value, ...edges.value];
+  constructor(private graphInit: BasicInit) {
+    this.graphInit = graphInit;
   }
 
-  prepend( graph: { nodes: Nodes, edges: Edges} ) {
+  add( graph: { nodes: Nodes, edges: Edges} ) {
     const { nodes, edges } = graph;
-    this.nodes.value = [...nodes.value, ...this.nodes.value];
-    this.edges.value = [...edges.value, ...this.edges.value];
+    this.nodes.value.push(...nodes.value);
+    this.edges.value.push(...edges.value);
   }
 
-  get isInitialized() {
-    return (this.edges.value.length && this.nodes.value.length);
+  get isInitialized(): boolean {
+    return (!!this.edges?.value?.length && !!this.nodes?.value?.length);
   }
 
   get graph(): Graph {
     return this.isInitialized ?
-      GrafInitService.graphInit.makeGraph(this.nodes, this.edges) :
-      GrafInitService.graphInit.makeDefault();
+      this.graphInit.makeGraph(this.nodes, this.edges) :
+      this.graphInit.makeDefault();
   }
 
   get metaState(): MetaNetworkState {

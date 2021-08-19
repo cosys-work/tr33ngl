@@ -34,6 +34,7 @@
     "publish": "pnpm publish . --tag latest --access private --publish-branch main"
   },
   "dependencies": {
+    "@cosys/func": "0.1.2",
     "@angular/animations": "^12.1.4",
     "@angular/cdk": "^12.1.4",
     "@angular/common": "^12.1.4",
@@ -170,7 +171,7 @@
     "ts-jest": "27.0.3",
     "ts-node": "~9.1.1",
     "typescript": "~4.2.4",
-    "webpack": "5.48.0"
+    "webpack": "5.50.0"
   },
   "engines": {
     "node": ">=14",

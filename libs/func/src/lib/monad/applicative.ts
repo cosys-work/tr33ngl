@@ -1,11 +1,11 @@
-import { Functor, Functorial, Nominator, FuncMapper, Mapper, Ts } from "@cosys/func";
+import { FuncMapper, Functor, Functorial, Mapper, Ts } from "@cosys/func";
 import { Observable } from "rxjs";
 
 export interface Applicativity<A> extends Functorial<A>{
   apply<U>(transformApp: Functorial<(value: A) => U>, fa: Functorial<A>): Functorial<U[]>;
 }
 
-export class Applicative<A> implements Applicativity<A>, Functorial<A>, Nominator<A> {
+export class Applicative<A> implements Applicativity<A> {
 
   readonly type: string = "Applicative";
   readonly value!: A;

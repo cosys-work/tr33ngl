@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { GrafStoreService } from "../../../../store/graf-store.service";
+import { GrafStore } from "../../../../store/graf-store.service";
 
 declare const vis: any;
 
@@ -16,7 +16,7 @@ export class GraphXyzComponent implements OnInit {
   @Input("selector") selector: number = 0;
   public network!: OnAble;
 
-  constructor(protected grafStore: GrafStoreService) {
+  constructor(protected grafStore: GrafStore) {
     this.grafStore = grafStore;
   }
 

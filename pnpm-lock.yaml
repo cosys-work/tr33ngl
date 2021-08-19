@@ -26,6 +26,7 @@ importers:
       '@babel/preset-env': ^7.15.0
       '@codewithdan/observable-store': ^2.2.12
       '@compodoc/compodoc': ^1.1.14
+      '@cosys/func': 0.1.2
       '@crystalui/angular-lightbox': ^1.1.8
       '@cypress/webpack-preprocessor': ^5.9.1
       '@egjs/hammerjs': ^2.0.17
@@ -134,7 +135,7 @@ importers:
       vis-timeline: ^7.4.9
       vis-util: ^5.0.2
       visjs-network: ^4.24.11
-      webpack: 5.48.0
+      webpack: 5.50.0
       wpapi: ^1.2.2
       xss: ^1.0.9
       zone.js: ~0.11.4
@@ -151,8 +152,9 @@ importers:
       '@angular/platform-browser-dynamic': 12.1.4_4d1ac74c7cdd3e166aa4f6345d13a29c
       '@angular/router': 12.1.4_7259ded5b4b293f1f4b0b9f8d6d7eb5a
       '@codewithdan/observable-store': 2.2.12_rxjs@7.2.0
+      '@cosys/func': link:libs/func
       '@crystalui/angular-lightbox': 1.1.8_344c3050eb47a73e408d539a6269438a
-      '@cypress/webpack-preprocessor': 5.9.1_4ebf43ceedabe6b5fc6d552291c90ddc
+      '@cypress/webpack-preprocessor': 5.9.1_4216686f250d981e67171e69de919e85
       '@egjs/hammerjs': 2.0.17
       '@nestjs/axios': 0.0.1_6f35cb2de9e4559b7940120970469a60
       '@nestjs/common': 7.6.18_e911b02ebc86a0e92191a7b133b2fcd0
@@ -169,7 +171,7 @@ importers:
       '@nestjs/throttler': 1.2.1_9241aa6ee00b75edbdf05596e17eb42e
       '@nestjs/typeorm': 7.1.5_14f67d0bb3d9efd418fe74326d94a6ab
       '@ngx-formly/core': 5.10.22_@angular+forms@12.1.4+rxjs@7.2.0
-      '@nrwl/angular': 12.5.0_d86c7910854d1df027a9ba8b7eb8a236
+      '@nrwl/angular': 12.5.0_3e0e2960dc7545240ad37c353280cc90
       '@nrwl/nx-plugin': 12.6.3_87d7acf9bcb284c73bfae13c6d68b44c
       '@scullyio/init': 1.1.4_9893ca85b1072a60988d5596c828ad2b
       '@scullyio/ng-lib': 1.1.1_8214491cb8ac974a295deb375bc57dac
@@ -237,7 +239,7 @@ importers:
       '@nestjs/schematics': 7.3.1_typescript@4.2.4
       '@nestjs/testing': 7.6.18_2664420588e0901c7943acb4693cbaf4
       '@nrwl/cli': 12.5.1
-      '@nrwl/cypress': 12.5.1_c3b7537be198e7fdeb4d2be519122965
+      '@nrwl/cypress': 12.5.1_3ea8548a7fe4a46b68543637a87140b1
       '@nrwl/eslint-plugin-nx': 12.5.1_641bd07c7d4eb783a05e3eabf6b9f961
       '@nrwl/jest': 12.5.1
       '@nrwl/linter': 12.5.1
@@ -259,7 +261,7 @@ importers:
       '@types/wpapi': 1.1.1
       '@typescript-eslint/eslint-plugin': 4.28.0_eac2d7ebf1a26224a739eda7905f14ae
       '@typescript-eslint/parser': 4.28.0_eslint@7.22.0+typescript@4.2.4
-      babel-loader: 8.2.2_191bd3a510be81782def5d6cfce1993f
+      babel-loader: 8.2.2_6a7208b678074d97b8e10779794541f1
       cypress: 7.7.0
       dotenv: 8.2.0
       eslint: 7.22.0
@@ -275,7 +277,7 @@ importers:
       ts-jest: 27.0.3_jest@27.0.6+typescript@4.2.4
       ts-node: 9.1.1_typescript@4.2.4
       typescript: 4.2.4
-      webpack: 5.48.0
+      webpack: 5.50.0
 
   libs/ack/tion:
     specifiers: {}
@@ -3960,22 +3962,22 @@ packages:
       uuid: 3.4.0
     dev: true
 
-  /@cypress/webpack-preprocessor/4.1.5_webpack@5.48.0:
+  /@cypress/webpack-preprocessor/4.1.5_webpack@5.50.0:
     resolution: {integrity: sha512-B4miSaS3VCMVSlfuvbWCjytTywdnquRsF1tQ3quC7TGUzEXnQZ4+o8WUKibjMozrOomALkUdMxqOJ1ib5oFkKw==}
     peerDependencies:
       webpack: ^4.18.1
     dependencies:
       bluebird: 3.7.1
       debug: 4.1.1
-      webpack: 5.48.0
+      webpack: 5.50.0
     optionalDependencies:
       '@babel/core': 7.14.8
       '@babel/preset-env': 7.14.9_@babel+core@7.14.8
-      babel-loader: 8.2.2_8b0464c8bf295490a69e78f11399b5a8
+      babel-loader: 8.2.2_15fcbb65a44a1f30443ae494d6c1d89a
     transitivePeerDependencies:
       - supports-color
 
-  /@cypress/webpack-preprocessor/5.9.1_4ebf43ceedabe6b5fc6d552291c90ddc:
+  /@cypress/webpack-preprocessor/5.9.1_4216686f250d981e67171e69de919e85:
     resolution: {integrity: sha512-cg1ikftIo7NdlRA8ocNSxWjHJlh1JlTkN9ZfXUuKWWcJgrEdYLjXk0UzY6gYbLLaFka4oIhN6SvL5Y/7iELvgg==}
     peerDependencies:
       '@babel/core': ^7.0.1
@@ -3985,11 +3987,11 @@ packages:
     dependencies:
       '@babel/core': 7.15.0
       '@babel/preset-env': 7.15.0_@babel+core@7.15.0
-      babel-loader: 8.2.2_191bd3a510be81782def5d6cfce1993f
+      babel-loader: 8.2.2_6a7208b678074d97b8e10779794541f1
       bluebird: 3.7.2
       debug: 4.3.2
       lodash: 4.17.21
-      webpack: 5.48.0
+      webpack: 5.50.0
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -4692,16 +4694,16 @@ packages:
       read-package-json-fast: 2.0.3
     dev: true
 
-  /@nrwl/angular/12.5.0_d86c7910854d1df027a9ba8b7eb8a236:
+  /@nrwl/angular/12.5.0_3e0e2960dc7545240ad37c353280cc90:
     resolution: {integrity: sha512-W9jL5WdncJJBuSr0RcTEJbrmOtnrwlOhCGlIuDIeEUpLHuNI4cNvR2HGJu1LzAKN/TbSPLHluhnE07Q7kJs8xA==}
     requiresBuild: true
     dependencies:
       '@angular-devkit/schematics': 12.1.4
-      '@nrwl/cypress': 12.5.0_c3b7537be198e7fdeb4d2be519122965
+      '@nrwl/cypress': 12.5.0_3ea8548a7fe4a46b68543637a87140b1
       '@nrwl/devkit': 12.5.0
       '@nrwl/jest': 12.5.0
       '@nrwl/linter': 12.5.0
-      '@nrwl/storybook': 12.5.0_c3b7537be198e7fdeb4d2be519122965
+      '@nrwl/storybook': 12.5.0_3ea8548a7fe4a46b68543637a87140b1
       '@schematics/angular': 12.1.4
       ignore: 5.1.8
       jasmine-marbles: 0.6.0_rxjs@7.2.0
@@ -4749,12 +4751,12 @@ packages:
       yargs-parser: 20.0.0
     dev: false
 
-  /@nrwl/cypress/12.5.0_c3b7537be198e7fdeb4d2be519122965:
+  /@nrwl/cypress/12.5.0_3ea8548a7fe4a46b68543637a87140b1:
     resolution: {integrity: sha512-pwwZoDKyMy5aw4WD0yueL5KyLHm2bzW3MZRKwPj6pKJNj2h0VBmQPM7olfS7hjyt/v8ieobgRAnGGkbIw611Fg==}
     peerDependencies:
       cypress: '>= 3 < 8'
     dependencies:
-      '@cypress/webpack-preprocessor': 4.1.5_webpack@5.48.0
+      '@cypress/webpack-preprocessor': 4.1.5_webpack@5.50.0
       '@nrwl/devkit': 12.5.0
       '@nrwl/linter': 12.5.0
       '@nrwl/workspace': 12.5.0_prettier@2.3.2
@@ -4773,12 +4775,12 @@ packages:
       - webpack
     dev: false
 
-  /@nrwl/cypress/12.5.1_c3b7537be198e7fdeb4d2be519122965:
+  /@nrwl/cypress/12.5.1_3ea8548a7fe4a46b68543637a87140b1:
     resolution: {integrity: sha512-Ew7riEYjRsAFu5pOUqnLKe2jJE0NOZydjbasiliz0f/H8qpsCvsx4ZE0h1hdsRvJQ+Pnkphi5ELcPVF4yv8l1g==}
     peerDependencies:
       cypress: '>= 3 < 8'
     dependencies:
-      '@cypress/webpack-preprocessor': 4.1.5_webpack@5.48.0
+      '@cypress/webpack-preprocessor': 4.1.5_webpack@5.50.0
       '@nrwl/devkit': 12.5.1
       '@nrwl/linter': 12.5.1
       '@nrwl/workspace': 12.5.1_prettier@2.3.2
@@ -5031,10 +5033,10 @@ packages:
       - webpack-command
     dev: false
 
-  /@nrwl/storybook/12.5.0_c3b7537be198e7fdeb4d2be519122965:
+  /@nrwl/storybook/12.5.0_3ea8548a7fe4a46b68543637a87140b1:
     resolution: {integrity: sha512-IUuYFcgFKAOv0bDH2rSFcOZviwkmSu9eu1CgNOYXdmEmYBEeEDKIP9mDUyR3wZQa2Z3LfjZgBR7FfOqUiiQfdA==}
     dependencies:
-      '@nrwl/cypress': 12.5.0_c3b7537be198e7fdeb4d2be519122965
+      '@nrwl/cypress': 12.5.0_3ea8548a7fe4a46b68543637a87140b1
       '@nrwl/devkit': 12.5.0
       '@nrwl/linter': 12.5.0
       '@nrwl/workspace': 12.5.0_prettier@2.3.2
@@ -5259,7 +5261,7 @@ packages:
       '@angular-devkit/architect': 0.1200.5
       '@angular-devkit/core': 12.1.4
       '@angular-devkit/schematics': 12.1.4
-      '@nrwl/cypress': 12.5.1_c3b7537be198e7fdeb4d2be519122965
+      '@nrwl/cypress': 12.5.1_3ea8548a7fe4a46b68543637a87140b1
       '@nrwl/devkit': 12.6.3
       '@nrwl/workspace': 12.5.0_prettier@2.3.2
       '@nxext/vite': 12.0.1
@@ -7541,22 +7543,7 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /babel-loader/8.2.2_191bd3a510be81782def5d6cfce1993f:
-    resolution: {integrity: sha512-JvTd0/D889PQBtUXJ2PXaKU/pjZDMtHA9V2ecm+eNRmmBCMR09a+fmpGTNwnJtFmFl5Ei7Vy47LjBb+L0wQ99g==}
-    engines: {node: '>= 8.9'}
-    peerDependencies:
-      '@babel/core': ^7.0.0
-      webpack: '>=2'
-    dependencies:
-      '@babel/core': 7.15.0
-      find-cache-dir: 3.3.1
-      loader-utils: 1.4.0
-      make-dir: 3.1.0
-      schema-utils: 2.7.1
-      webpack: 5.48.0
-    dev: true
-
-  /babel-loader/8.2.2_8b0464c8bf295490a69e78f11399b5a8:
+  /babel-loader/8.2.2_15fcbb65a44a1f30443ae494d6c1d89a:
     resolution: {integrity: sha512-JvTd0/D889PQBtUXJ2PXaKU/pjZDMtHA9V2ecm+eNRmmBCMR09a+fmpGTNwnJtFmFl5Ei7Vy47LjBb+L0wQ99g==}
     engines: {node: '>= 8.9'}
     peerDependencies:
@@ -7568,8 +7555,23 @@ packages:
       loader-utils: 1.4.0
       make-dir: 3.1.0
       schema-utils: 2.7.1
-      webpack: 5.48.0
+      webpack: 5.50.0
     optional: true
+
+  /babel-loader/8.2.2_6a7208b678074d97b8e10779794541f1:
+    resolution: {integrity: sha512-JvTd0/D889PQBtUXJ2PXaKU/pjZDMtHA9V2ecm+eNRmmBCMR09a+fmpGTNwnJtFmFl5Ei7Vy47LjBb+L0wQ99g==}
+    engines: {node: '>= 8.9'}
+    peerDependencies:
+      '@babel/core': ^7.0.0
+      webpack: '>=2'
+    dependencies:
+      '@babel/core': 7.15.0
+      find-cache-dir: 3.3.1
+      loader-utils: 1.4.0
+      make-dir: 3.1.0
+      schema-utils: 2.7.1
+      webpack: 5.50.0
+    dev: true
 
   /babel-loader/8.2.2_bdbf93c44932bbce0b7b7ee8ec67053a:
     resolution: {integrity: sha512-JvTd0/D889PQBtUXJ2PXaKU/pjZDMtHA9V2ecm+eNRmmBCMR09a+fmpGTNwnJtFmFl5Ei7Vy47LjBb+L0wQ99g==}
@@ -18136,7 +18138,7 @@ packages:
     dev: true
     optional: true
 
-  /terser-webpack-plugin/5.1.4_webpack@5.48.0:
+  /terser-webpack-plugin/5.1.4_webpack@5.50.0:
     resolution: {integrity: sha512-C2WkFwstHDhVEmsmlCxrXUtVklS+Ir1A7twrYzrDrQQOIMOaVAYykaoo/Aq1K0QRkMoY2hhvDQY1cm4jnIMFwA==}
     engines: {node: '>= 10.13.0'}
     peerDependencies:
@@ -18148,7 +18150,7 @@ packages:
       serialize-javascript: 6.0.0
       source-map: 0.6.1
       terser: 5.7.1
-      webpack: 5.48.0
+      webpack: 5.50.0
     dev: true
 
   /terser/4.8.0:
@@ -19365,8 +19367,8 @@ packages:
       webpack-sources: 2.3.1
     dev: true
 
-  /webpack/5.48.0:
-    resolution: {integrity: sha512-CGe+nfbHrYzbk7SKoYITCgN3LRAG0yVddjNUecz9uugo1QtYdiyrVD8nP1PhkNqPfdxC2hknmmKpP355Epyn6A==}
+  /webpack/5.50.0:
+    resolution: {integrity: sha512-hqxI7t/KVygs0WRv/kTgUW8Kl3YC81uyWQSo/7WUs5LsuRw0htH/fCwbVBGCuiX/t4s7qzjXFcf41O8Reiypag==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     peerDependencies:
@@ -19396,7 +19398,7 @@ packages:
       neo-async: 2.6.2
       schema-utils: 3.1.1
       tapable: 2.2.0
-      terser-webpack-plugin: 5.1.4_webpack@5.48.0
+      terser-webpack-plugin: 5.1.4_webpack@5.50.0
       watchpack: 2.2.0
       webpack-sources: 3.2.0
     dev: true

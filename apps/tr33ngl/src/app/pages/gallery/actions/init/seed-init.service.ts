@@ -1,8 +1,12 @@
 import { HEdge as Edge, HEdges as Edges, HNode as Node, HNodes as Nodes, $di, $id, Listoid } from "@cosys/func";
+import { Injectable } from "@angular/core";
 
+@Injectable({
+  providedIn: 'root'
+})
 export class SeedInit {
 
-  public static nodeMaker(iz: number): Node {
+  public nodeMaker(iz: number): Node {
     const node = (ix: number) => ({
       id: `${ix}`,
       label: `Label ${ix}`,
@@ -19,13 +23,13 @@ export class SeedInit {
     return nodeWithId(iz);
   }
 
-  public static edgeMaker(iz: number): Edge {
+  public edgeMaker(iz: number): Edge {
     const edge =
       (ix: number) => (
         {
           from: `${ix}`,
           to: `${ix + 1}`,
-          ...SeedInit.nodeMaker(ix)
+          ...this.nodeMaker(ix)
         });
     const edgeWithDi = (iy: number) => {
       const edgeY = edge(iy);
@@ -37,17 +41,17 @@ export class SeedInit {
     return edgeWithDi(iz);
   }
 
-  public static seedNodes(): Nodes {
+  public seedNodes(): Nodes {
     const nodes = Array(5)
       .fill(1 )
-      .map((_, i) => SeedInit.nodeMaker(i));
+      .map((_, i) => this.nodeMaker(i));
     return new Listoid<Node[]>(nodes);
   }
 
-  public static seedEdges(): Edges {
+  public seedEdges(): Edges {
     const edges = Array(5)
       .fill(1 )
-      .map((_, i) => SeedInit.edgeMaker(i));
+      .map((_, i) => this.edgeMaker(i));
     return new Listoid<Edge[]>(edges);
   }
 
