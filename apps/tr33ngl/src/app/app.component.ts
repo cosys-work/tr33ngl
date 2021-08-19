@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Message } from "@cosys/api-interfaces";
 import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, timer } from "rxjs";
@@ -7,7 +7,6 @@ import { BehaviorSubject, timer } from "rxjs";
   selector: 'cosys-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
 
@@ -19,7 +18,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("called ");
-    timer(10000).subscribe(() => this.isCollapsed.next(true))
+    timer(3000).subscribe(() => {
+      this.isColPSD = true;
+      this.isCollapsed.next(this.isColPSD);
+      console.log("nexted ");
+    })
   }
 
   toggleCollapsed(_: Event) {
