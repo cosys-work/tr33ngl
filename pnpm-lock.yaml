@@ -26,7 +26,7 @@ importers:
       '@babel/preset-env': ^7.15.0
       '@codewithdan/observable-store': ^2.2.12
       '@compodoc/compodoc': ^1.1.14
-      '@cosys/func': 0.1.2
+      '@cosys/func': latest
       '@crystalui/angular-lightbox': ^1.1.8
       '@cypress/webpack-preprocessor': ^5.9.1
       '@egjs/hammerjs': ^2.0.17
@@ -285,7 +285,12 @@ importers:
     specifiers: {}
 
   libs/func:
-    specifiers: {}
+    specifiers:
+      '@codewithdan/observable-store': ^2.2.12
+      rxjs: ^7.3.0
+    dependencies:
+      '@codewithdan/observable-store': 2.2.12_rxjs@7.3.0
+      rxjs: 7.3.0
 
   libs/graph-init-term:
     specifiers:

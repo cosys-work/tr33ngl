@@ -42,3 +42,4 @@ Thumbs.db
 /**/.pnpm-debug.log
 /chrome-tome/
 /libs/func/docs/build/
+/libs/func/node_modules/

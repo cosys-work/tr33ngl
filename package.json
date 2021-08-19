@@ -34,7 +34,7 @@
     "publish": "pnpm publish . --tag latest --access private --publish-branch main"
   },
   "dependencies": {
-    "@cosys/func": "0.1.2",
+    "@cosys/func": "latest",
     "@angular/animations": "^12.1.4",
     "@angular/cdk": "^12.1.4",
     "@angular/common": "^12.1.4",
