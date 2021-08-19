@@ -6,6 +6,10 @@
   "scripts": {
     "pubdate": "pnpm publish . --tag latest --access public --publish-branch main"
   },
+  "dependencies": {
+    "@codewithdan/observable-store": "^2.2.12",
+    "rxjs": "^7.3.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cosys-work/tr33ngl.git"

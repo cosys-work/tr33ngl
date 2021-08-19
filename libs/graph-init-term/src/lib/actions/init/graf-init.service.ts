@@ -15,7 +15,7 @@ import {
 } from "@cosys/func";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class GrafInit {
 

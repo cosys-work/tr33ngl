@@ -4,5 +4,6 @@ module.exports = {
     "<rootDir>/apps/api",
     "<rootDir>/libs/func",
     "<rootDir>/libs/ack/tion",
+    "<rootDir>/libs/graph-init-term",
   ],
 };

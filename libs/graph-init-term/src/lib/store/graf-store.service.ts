@@ -9,7 +9,7 @@ export enum Actions {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class GrafStore extends ObservableStore<MetaNetworkState> {
 

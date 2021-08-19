@@ -1,8 +1,9 @@
 import { HEdge as Edge, HEdges as Edges, HNode as Node, HNodes as Nodes, $di, $id, Listoid } from "@cosys/func";
 import { Injectable } from "@angular/core";
+import { GraphInitTermModule } from "@cosys/graphoidal";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: GraphInitTermModule
 })
 export class SeedInit {
 

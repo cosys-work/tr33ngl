@@ -49,6 +49,9 @@
     "func": {
       "tags": ["simple types", "functors", "applicatives", "monads"]
     },
+    "graph-init-term": {
+      "tags": []
+    },
     "tr33ngl": {
       "tags": []
     },

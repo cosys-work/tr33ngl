@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
+import { GraphInitTermModule } from "@cosys/graphoidal";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: GraphInitTermModule
 })
 export class GrafActivityService {}
