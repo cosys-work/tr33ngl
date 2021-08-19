@@ -1,6 +1,6 @@
 import { $di, $id, HEdge as Edge, HEdges as Edges, HNode as Node, HNodes as Nodes, Listoid } from "@cosys/func";
 
-export class SeedInit {
+export class SeedInitService {
 
   public nodeMaker(iz: number): Node {
     const node = (ix: number) => ({

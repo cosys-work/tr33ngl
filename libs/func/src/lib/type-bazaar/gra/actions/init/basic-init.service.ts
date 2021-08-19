@@ -1,9 +1,8 @@
-import { HEdges as Edges, HNodes as Nodes, HGGraph as Graph } from "@cosys/func";
-import { SeedInit } from "./seed-init.service";
+import { SeedInitService, HEdges as Edges, HNodes as Nodes, HGGraph as Graph } from "@cosys/func";
 
-export class BasicInit {
+export class BasicInitService {
 
-  constructor(private seedInit: SeedInit) {
+  constructor(private seedInit: SeedInitService) {
     this.seedInit = seedInit;
   }
 

@@ -1,6 +1,5 @@
-import { BasicInit } from "./basic-init.service";
-
 import {
+  BasicInitService,
   HEdge as Edge,
   HEdges as Edges,
   HGGraph as Graph,
@@ -9,15 +8,15 @@ import {
   HNodes as Nodes,
   Listoid,
   makeGraphoid,
-  MetaNetworkState
+  Phoid
 } from "@cosys/func";
 
-export class GrafInit {
+export class GrafInitService {
 
   private readonly nodes: Nodes = new Listoid<Node[]>([]);
   private readonly edges: Edges = new Listoid<Edge[]>([]);
 
-  constructor(private graphInit: BasicInit) {
+  constructor(private graphInit: BasicInitService) {
     this.graphInit = graphInit;
   }
 
@@ -37,8 +36,8 @@ export class GrafInit {
       this.graphInit.makeDefault();
   }
 
-  get metaState(): MetaNetworkState {
-    return  ({ graph: makeGraphoid(this.graph.nodes.value, this.graph.edges.value) });
+  get metaState(): Phoid {
+    return makeGraphoid(this.graph.nodes.value, this.graph.edges.value);
   }
 
   get hGraph(): HGraph<Node, Edge> {

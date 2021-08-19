@@ -16,7 +16,9 @@ export class GraphXyzComponent implements OnInit {
   @Input("selector") selector: number = 0;
   public network!: OnAble;
 
-  constructor() { // private grafStore: GrafStore
+  constructor(
+    // private grafStore: GrafStore
+  ) { //
     // this.grafStore = grafStore;
   }
 

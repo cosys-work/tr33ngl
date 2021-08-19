@@ -31,8 +31,3 @@ export interface GraphoidFromHG extends GraphoidInit {
   hg: GeeRaph;
   raph: Phoid;
 }
-
-export type MeGraPhoid = Graphoid<HNode, HEdge>;
-export interface MetaNetworkState {
-  graph: MeGraPhoid;
-}
