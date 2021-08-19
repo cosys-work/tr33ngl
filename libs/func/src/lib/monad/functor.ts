@@ -32,10 +32,8 @@ export class Functor<T> implements Functorial<T> {
     return new Functor(value) as Functorial<U>;
   }
 
-
   fmap<U extends Array<T>>(transform: (value: T) => U, ft: Functorial<T>): Functorial<U[]> {
-    const flattened = flatten(ft.extract().map(transform));
-    return this.return(flattened);
+    return this.return(flatten(ft.extract().map(transform)));
   }
 
   constructor(tValue: T) {

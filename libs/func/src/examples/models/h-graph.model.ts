@@ -7,6 +7,7 @@ export interface HNode extends Nod {
 }
 
 export interface HEdge extends Nod, Edg {
+  at: string;
   from: string;
   to: string;
 }
@@ -16,6 +17,7 @@ export type HEdges = Listoid<HEdge[]>;
 export interface HGGraph extends Gra {
   nodes: HNodes;
   edges: HEdges;
+  levi: HGGraph;
 }
 
 export type Phoid = Graphoid<HNode, HEdge>;
@@ -25,9 +27,9 @@ export interface GraphoidInit {
   oid: Phoid;
 }
 
-export type GeeRaph = HGraph<HNode, HEdge>;
-export interface GraphoidFromHG extends GraphoidInit {
-  init: GraphoidInit;
-  hg: GeeRaph;
+export type GeeRaPh = HGraph<HNode, HEdge>;
+export interface GeeRaPhoid extends GraphoidInit {
+  init: Partial<GraphoidInit>;
+  hg: GeeRaPh;
   raph: Phoid;
 }

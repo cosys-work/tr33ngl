@@ -26,13 +26,13 @@ export function flatten<T>(nest: Array<T> | T): Array<T> {
   return flattener(nest as Array<any>) as Array<T>;
 }
 
-export function flatten2<T>(nest: Array<Array<unknown>>): Array<T> {
+export function flatten2<T>(nest: Array<Array<any>>): Array<T> {
   return flattener(nest as Array<any>) as Array<T>;
 }
 
 export function isMappable(
-  maybeMapped: Array<unknown> | Mappable<any> | FuncMappable<any>
-): maybeMapped is Mappable<unknown> | FuncMappable<unknown> | Array<unknown> {
+  maybeMapped: Array<any> | Mappable<any> | FuncMappable<any>
+): maybeMapped is Mappable<any> | FuncMappable<any> | Array<any> {
   return maybeMapped?.hasOwnProperty("map")
 }
 

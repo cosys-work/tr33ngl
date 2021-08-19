@@ -25,6 +25,7 @@ export class SeedInitService {
         {
           from: `${ix}`,
           to: `${ix + 1}`,
+          at: `${ix} => ${ix+1}`,
           ...this.nodeMaker(ix)
         });
     const edgeWithDi = (iy: number) => {

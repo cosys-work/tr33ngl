@@ -3,15 +3,15 @@ import { flatten2, Functorial, isMappable } from "@cosys/func";
 export type Ts<T> = T[];
 
 export interface Mappable<T> {
-  map: <U>(func: (value: T, index?: number, values?: T[]) => U) => U[];
+  map: <U>(func: (value: T, index?: number, values?: Ts<T>) => U) => Ts<U>;
 }
 
 export interface FuncMappable<T> {
-  map: <U>(func: Functorial<(value: T) => U>) => U[];
+  map: <U>(func: Functorial<(value: T) => U>) => Ts<U>;
 }
 
 export interface MonadMappable<T> {
-  map: <U>(func: (val: T) => Functorial<U>) => U[];
+  map: <U>(func: (val: T) => Functorial<U>) => Ts<U>;
 }
 
 export class Mapper<T> implements Mappable<T> {
@@ -21,7 +21,7 @@ export class Mapper<T> implements Mappable<T> {
     this.val = v;
   }
 
-  map<U>(func: (value: T, index?: number, values?: T[]) => U) : U[] {
+  map<U>(func: (value: T, index?: number, values?: Ts<T>) => U) : Ts<U> {
     if (isMappable(this.val)) {
       return this.val.map(func);
     }
@@ -37,7 +37,7 @@ export class FuncMapper<T> implements FuncMappable<T> {
     this.val = v;
   }
 
-  map<U>(func: Functorial<(value: T) => U>): U[] {
+  map<U>(func: Functorial<(value: T) => U>): Ts<U> {
     const funcs = func.extract().map((v) => v);
     if (funcs.length >= this.val.length) {
       return this.val.map((v, index) => funcs[index](v));
@@ -54,9 +54,9 @@ export class MonadMapper<T> implements MonadMappable<T> {
     this.val = v;
   }
 
-  map<U>(func: (val: T) => Functorial<U>): U[] {
-    const valMapFunc: Functorial<U>[]  = this.val.map(func);
-    const valMapFuncMap: U[][] = valMapFunc.map(((mu: Functorial<U>) => mu.extract().map(v => v)));
+  map<U>(func: (val: T) => Functorial<U>): Ts<U> {
+    const valMapFunc: Ts<Functorial<U>>  = this.val.map(func);
+    const valMapFuncMap: Ts<Ts<U>> = valMapFunc.map(((mu: Functorial<U>) => mu.extract().map(v => v)));
     return flatten2<U>(valMapFuncMap);
   }
 }
