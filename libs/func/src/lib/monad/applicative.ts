@@ -11,15 +11,15 @@ export class Applicative<A> implements Applicativity<A> {
   readonly value!: A;
   readonly functor!: Functor<A>;
 
+  constructor(value: A) {
+    this.value = value;
+    this.functor = new Functor<A>(value);
+  }
+
   apply<U>(transformApp: Functorial<(value: A) => U>, fa: Functorial<A>): Functorial<U[]> {
     const tsA: Ts<A> = fa.extract().val;
     const funcMapper = new FuncMapper(tsA);
     return this.return(funcMapper.map(transformApp));
-  }
-
-  constructor(value: A) {
-    this.value = value;
-    this.functor = new Functor<A>(value);
   }
 
   extract(): Mapper<A> {

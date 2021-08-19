@@ -15,7 +15,7 @@ export class Listoid<A extends Array<unknown>> implements Monadic<A>, Nominator<
     return this.monad.apply(transformApp, fa);
   }
 
-  bind<U extends Array<A>>(ma: Monadic<A>, transformApp: (value: A) => Monadic<U>): Monadic<U[]> {
+  bind<U extends Array<A>>(ma: Functorial<A>, transformApp: (value: A) => Functorial<U>): Functorial<U[]> {
     return this.monad.bind(ma, transformApp);
   }
 

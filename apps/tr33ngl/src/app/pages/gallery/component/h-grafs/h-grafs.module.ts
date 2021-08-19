@@ -44,7 +44,7 @@ import { GraphDivComponent } from './graf/graph-div/graph-div.component';
     NzTabsModule,
     NzBreadCrumbModule,
     NzDropDownModule,
-    NzProgressModule
+    NzProgressModule,
   ],
   exports: [
     GrafComponent

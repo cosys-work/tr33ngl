@@ -2,7 +2,7 @@ import { Applicative, Applicativity, Functorial, Mapper, MonadMapper, Ts } from 
 import { Observable } from "rxjs";
 
 export interface Monadic<A> extends Applicativity<A> {
-  bind<U extends Array<A>>(ma: Monadic<A>, transformApp: (value: A) => Monadic<U>): Monadic<U[]>;
+  bind<U extends Array<A>>(ma: Functorial<A>, transformApp: (value: A) => Functorial<U>): Functorial<U[]>;
 }
 
 export class Monad<A> implements Monadic<A> {
@@ -16,24 +16,19 @@ export class Monad<A> implements Monadic<A> {
     this.applicative = new Applicative<A>(value);
   }
 
-  pure2<U>(us: U[]): Monadic<U[]> {
-    return new Monad<U[]>(us);
-  }
-
-  pure<U>(u: U): Monadic<U> {
-    return new Monad<U>(u);
-  }
-
-
-  bind<U extends Array<A>>(ma: Monadic<A>, transformApp: (val: A) => Monadic<U>): Monadic<U[]> {
+  bind<U extends Array<A>>(ma: Functorial<A>, transformApp: (val: A) => Functorial<U>): Functorial<U[]> {
     const maExtract: A[] = ma.extract().map(v => v);
     const monMapper: MonadMapper<A> = new MonadMapper(maExtract);
     const mapMap: U[] = monMapper.map(transformApp);
-    return this.pure2(mapMap);
+    return this.returns(mapMap);
   }
 
-  bindFlip<U extends Array<A>>(transformApp: (val: A) => Monadic<U>, ma: Monadic<A>): Monadic<U[]> {
+  bindFlip<U extends Array<A>>(transformApp: (val: A) => Functorial<U>, ma: Functorial<A>): Functorial<U[]> {
     return this.bind(ma, transformApp);
+  }
+
+  returns<U>(us: U[]): Functorial<U[]> {
+    return new Monad<U[]>(us);
   }
 
   apply<U>(transformApp: Functorial<(value: A) => U>, fa: Functorial<A>): Functorial<U[]> {

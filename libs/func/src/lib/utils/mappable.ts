@@ -1,4 +1,4 @@
-import { flatten2, Functorial, isMappable, Monadic } from "@cosys/func";
+import { flatten2, Functorial, isMappable } from "@cosys/func";
 
 export type Ts<T> = T[];
 
@@ -11,7 +11,7 @@ export interface FuncMappable<T> {
 }
 
 export interface MonadMappable<T> {
-  map: <U>(func: (val: T) => Monadic<U>) => U[];
+  map: <U>(func: (val: T) => Functorial<U>) => U[];
 }
 
 export class Mapper<T> implements Mappable<T> {
@@ -54,9 +54,9 @@ export class MonadMapper<T> implements MonadMappable<T> {
     this.val = v;
   }
 
-  map<U>(func: (val: T) => Monadic<U>): U[] {
-    const valMapFunc: Monadic<U>[]  = this.val.map(func);
-    const valMapFuncMap: U[][] = valMapFunc.map(((mu: Monadic<U>) => mu.extract().map(v => v)));
+  map<U>(func: (val: T) => Functorial<U>): U[] {
+    const valMapFunc: Functorial<U>[]  = this.val.map(func);
+    const valMapFuncMap: U[][] = valMapFunc.map(((mu: Functorial<U>) => mu.extract().map(v => v)));
     return flatten2<U>(valMapFuncMap);
   }
 }
