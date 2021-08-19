@@ -27,6 +27,7 @@ importers:
       '@codewithdan/observable-store': ^2.2.12
       '@compodoc/compodoc': ^1.1.14
       '@cosys/func': latest
+      '@cosys/graphoidal': latest
       '@crystalui/angular-lightbox': ^1.1.8
       '@cypress/webpack-preprocessor': ^5.9.1
       '@egjs/hammerjs': ^2.0.17
@@ -154,6 +155,7 @@ importers:
       '@angular/router': 12.1.4_cefe032da487fa55906989f0250b32aa
       '@codewithdan/observable-store': 2.2.12_rxjs@7.3.0
       '@cosys/func': link:libs/func
+      '@cosys/graphoidal': link:libs/graph-init-term
       '@crystalui/angular-lightbox': 1.1.8_344c3050eb47a73e408d539a6269438a
       '@cypress/webpack-preprocessor': 5.9.1_4216686f250d981e67171e69de919e85
       '@egjs/hammerjs': 2.0.17

@@ -1,6 +1,6 @@
 {
   "name": "cosys",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "ng": "nx",
@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "@cosys/func": "latest",
+    "@cosys/graphoidal": "latest",
     "@angular/animations": "^12.1.4",
     "@angular/cdk": "^12.1.4",
     "@angular/common": "^12.1.4",

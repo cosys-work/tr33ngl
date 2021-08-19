@@ -6,9 +6,6 @@
     <div nz-row class="inner-box">
       <nz-progress [nzPercent]="100" [nzSteps]="5" nzStrokeColor="#1890ff" [nzShowInfo]="false"></nz-progress>
     </div>
-    <ng-template #dotTemplate>
-      <i nz-icon nzType="clock-circle-o" style="font-size: 16px;"></i>
-    </ng-template>
     <ng-template #timelineTemp>
       <nz-timeline>
         <nz-timeline-item>m</nz-timeline-item>
@@ -16,6 +13,9 @@
         <nz-timeline-item nzColor="red" [nzDot]="dotTemplate">...</nz-timeline-item>
         <nz-timeline-item>0</nz-timeline-item>
       </nz-timeline>
+    </ng-template>
+    <ng-template #dotTemplate>
+      <i nz-icon nzType="clock-circle-o" style="font-size: 16px;"></i>
     </ng-template>
   </div>
 </div>

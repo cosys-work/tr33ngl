@@ -1,10 +1,10 @@
 <cosys-graf-header></cosys-graf-header>
 <div *ngFor="let d of [0, 1]">
-  <cosys-graph-div [title]='title[d]'></cosys-graph-div>
   <div nz-row nzAlign="middle" nzJustify="end">
     <cosys-graph-xy *ngFor="let d of [0, 1, 2]"></cosys-graph-xy>
     <cosys-graph-xyz>
       <div class="network"></div>
     </cosys-graph-xyz>
   </div>
+  <cosys-graph-div *ngIf="d === 0" title='Meta'></cosys-graph-div>
 </div>

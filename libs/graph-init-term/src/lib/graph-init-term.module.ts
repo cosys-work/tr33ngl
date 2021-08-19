@@ -7,3 +7,5 @@ import { CommonModule } from "@angular/common";
   ],
 })
 export class GraphInitTermModule {}
+
+export * from "./store/graf-store.service";
