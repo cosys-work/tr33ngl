@@ -1,4 +1,4 @@
-import { Listoid, Nominator } from "@cosys/func";
+import { AlphaMonad, Listoid, Monadic, Nominator } from "@cosys/func";
 
 export interface Graph<N, E> extends Nominator<Graph<N, E>> {
   readonly nodes: Listoid<N[]>;
@@ -28,42 +28,49 @@ export interface Gra {
   edges: Edgs;
 }
 
-export interface HGraf<N, E> {
-  readonly nodes: Listoid<N[]>;
-  readonly edges: Listoid<E[]>;
-
-  readonly hEdges: Listoid<Graf<N, E>>;
+export interface HGraf<N, E> extends Graph<N, E> {
+  readonly hEdges: Listoid<Graph<N, E>[]>;
 }
 
-export class Graf<N, E> implements Graph<N, E> {
-  readonly edges: Listoid<E[]>;
-  readonly nodes: Listoid<N[]>;
+export class HGraaff<N, E>
+  implements HGraf<N, E> {
 
-  type: "Graf" = "Graf";
+  readonly edges!: Listoid<E[]>;
+  readonly hEdges!: Listoid<Graph<N, E>[]>;
+  readonly nodes!: Listoid<N[]>;
+
+  type: "H~HGraaff" = "H~HGraaff";
   value!: Graph<N, E>;
 
   constructor(n: N[], e: E[]) {
     this.edges = new Listoid(e);
     this.nodes = new Listoid(n);
-    this.value = this;
   }
 }
 
 
-export class HGraph<N, E> implements HGraf<N, E>, Graph<N, E> {
+export class HGraph<N, E>
+  extends AlphaMonad<HGraf<N, E>>
+  implements Monadic<HGraf<N, E>> {
+
   readonly type = "HGraph";
-  readonly value!: Graf<N, E>;
+  readonly value!: HGraf<N, E>;
   readonly edges!: Listoid<E[]>;
   readonly nodes!: Listoid<N[]>;
-  readonly hEdges!: Listoid<Graf<N, E>>;
-  readonly graph!: Graf<N, E>;
+  readonly hEdges!: Listoid<HGraf<N, E>>;
+  readonly graph!: HGraf<N, E>;
 
   constructor(n: N[], e: E[]) {
-    this.graph = new Graf(n, e);
+    super(new HGraaff(n, e));
+    this.graph = super.value;
     this.value = this.graph;
     this.hEdges = new Listoid(this.graph);
-    const eEdges = e.map((_) => this.graph.edges.value).flat();
-    const nNodes = n.map((_) => this.graph.nodes.value).flat();
+    const eEdges = e.map(
+      (_) => this.graph.edges.value
+    ).flat();
+    const nNodes = n.map(
+      (_) => this.graph.nodes.value
+    ).flat();
     this.edges = new Listoid(eEdges);
     this.nodes = new Listoid(nNodes);
   }

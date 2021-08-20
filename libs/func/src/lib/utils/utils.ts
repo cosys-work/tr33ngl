@@ -4,6 +4,10 @@ export function isPrimitiveArray(maybeArray: unknown): maybeArray is Array<strin
   return maybeArray.hasOwnProperty("length") && maybeArray.hasOwnProperty("map");
 }
 
+export function isNullish(t: unknown): boolean {
+  return t === undefined || t === null;
+}
+
 export function flattener(nested: Array<unknown> | string | number): Array<unknown> {
   const tArray: Array<unknown> = [];
   if (isPrimitiveArray(nested)) {

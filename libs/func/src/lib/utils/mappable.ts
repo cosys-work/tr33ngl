@@ -17,7 +17,7 @@ export interface MonadMappable<T> {
 
 export class Mapper<T> implements Mappable<T> {
   readonly value!: T;
-  length: number;
+  readonly length!: number;
 
   constructor(v: T) {
     this.value = v;

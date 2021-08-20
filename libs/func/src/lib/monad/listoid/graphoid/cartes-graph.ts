@@ -1,4 +1,4 @@
-import { Graf, Graph, HGraph, Nominator, TimeCoordinate } from "@cosys/func";
+import { Graph, HGraaff, HGraph, Nominator, TimeCoordinate } from "@cosys/func";
 
 export abstract class CartesGraf<T, S> implements Nominator<CartesGraf<T, S>> {
   indices!: Graph<T, S>;
@@ -6,7 +6,7 @@ export abstract class CartesGraf<T, S> implements Nominator<CartesGraf<T, S>> {
   abstract value: CartesGraf<T, S>;
 
   protected constructor(ns: T[], es: S[]) {
-    this.indices = new Graf(ns, es);
+    this.indices = new HGraaff(ns, es);
   }
 }
 

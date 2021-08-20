@@ -1,50 +1,36 @@
-import { is, JustNominator, Monad, nominate, NothingNominator, TValued } from "@cosys/func";
+import { AlphaMonad, isNullish, just, JustNominator, Monad, Monadic, nothing, NothingNominator } from "@cosys/func";
 
-export function nothing(): NothingNominator {
-  return nominate("Nothing", "Nothing") as NothingNominator;
-}
-
-export function isNothing(v: TValued<unknown>): v is NothingNominator {
-  return is<NothingNominator>(v, nothing());
-}
-
-export class Nothing extends Monad<"Nothing"> implements NothingNominator {
-  readonly type: string = "Nothing";
-  readonly value = "Nothing";
-
+export class Nothing
+  extends AlphaMonad<NothingNominator<unknown>>
+  implements Monadic<NothingNominator<unknown>> {
   constructor() {
-    super("Nothing");
+    super(nothing());
   }
 }
 
-export function just<T>(v: T): JustNominator<T> {
-  return nominate("Just", v) as JustNominator<T>;
-}
-
-export function isJust<T>(v: TValued<T>): v is JustNominator<T> {
-  return is<JustNominator<T>>(v, just(v.value));
-}
-
-export class Just<T> extends Monad<JustNominator<T>> implements JustNominator<T> {
-  readonly type: "Just" = "Just";
+export class Just<T>
+  extends AlphaMonad<JustNominator<T>>
+  implements Monadic<JustNominator<T>> {
   readonly value!: T & JustNominator<T>;
-
   constructor(value: T) {
     super(just(value));
-    this.value = { ...super.value.value, ...{ value: value, type: this.type} };
+    this.value = { ...super.value, ...value};
   }
 }
 
 
-export type Maybeness<T> = JustNominator<T> | NothingNominator;
-
+export type Maybeness<T> =
+  Monadic<JustNominator<T>> |
+  Monadic<NothingNominator<T>>;
 export function maybe<T>(t: T): Maybeness<T> {
-  return t === undefined || t === null
-    ? nothing()
-    : just<T>(t);
+  return isNullish(t) ?
+    new Monad(nothing()) :
+    new Monad(just<T>(t));
 }
 
-export class Maybe<T> extends Monad<Maybeness<T>> {
+export class Maybe<T>
+  extends AlphaMonad<Maybeness<T>>
+  implements Monadic<Maybeness<T>> {
   constructor(value: T) {
     super(maybe(value));
   }
