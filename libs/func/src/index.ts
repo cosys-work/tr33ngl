@@ -3,18 +3,20 @@ export * from "./lib/utils/utils";
 export * from "./lib/utils/mappable";
 export * from "./lib/utils/test/laws";
 
-export * from "./lib/either/either";
-export * from "./lib/either/nominator";
-export * from "./lib/either/result";
+export * from "./lib/monad/either/either";
+export * from "./lib/monad/either/either.nominator";
+export * from "./lib/monad/either/result";
+export * from "./lib/monad/either/result.nominator";
 
-export * from "./lib/graphoid/cartes-en";
-export * from "./lib/graphoid/cartes-graph";
-export * from "./lib/graphoid/h-graph";
+export * from "./lib/monad/graphoid/listoid/listoid";
+export * from "./lib/monad/graphoid/listoid/listoid.nominator";
 
-export * from "./lib/listoid/listoid";
+export * from "./lib/monad/graphoid/cartes-en";
+export * from "./lib/monad/graphoid/cartes-graph";
+export * from "./lib/monad/graphoid/h-graph";
 
-export * from "./lib/maybe/maybe";
-export * from "./lib/maybe/nominator";
+export * from "./lib/monad/maybe/maybe";
+export * from "./lib/monad/maybe/nominator";
 
 export * from "./lib/monad/applicative";
 export * from "./lib/monad/functor";

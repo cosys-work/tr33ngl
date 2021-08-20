@@ -31,21 +31,21 @@ export class SeedInitService {
     const edgeWithDi = (iy: number) => {
       const edgeY = edge(iy);
       return  {
-        [$di]: new Listoid([edgeY]),
+        [$di]: new Listoid(edgeY),
         ...edgeY,
       };
     }
     return edgeWithDi(iz);
   }
 
-  public seedNodes(): Nodes {
+  public seedNodes(): Listoid<Nodes> {
     const nodes = Array(5)
       .fill(1 )
       .map((_, i) => this.nodeMaker(i));
     return new Listoid<Node[]>(nodes);
   }
 
-  public seedEdges(): Edges {
+  public seedEdges(): Listoid<Edges> {
     const edges = Array(5)
       .fill(1 )
       .map((_, i) => this.edgeMaker(i));

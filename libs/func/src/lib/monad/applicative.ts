@@ -17,7 +17,7 @@ export class Applicative<A> implements Applicativity<A> {
   }
 
   apply<U>(transformApp: Functorial<(value: A) => U>, fa: Functorial<A>): Functorial<U[]> {
-    const tsA: Ts<A> = fa.extract().val;
+    const tsA: Ts<A> = fa.extract().map(a => a);
     const funcMapper = new FuncMapper(tsA);
     return this.return(funcMapper.map(transformApp));
   }
@@ -30,7 +30,7 @@ export class Applicative<A> implements Applicativity<A> {
     return this.functor.fmap(transform, fa);
   }
 
-  observe(): Observable<Ts<A>> {
+  observe(): Observable<A> {
     return this.functor.observe();
   }
 

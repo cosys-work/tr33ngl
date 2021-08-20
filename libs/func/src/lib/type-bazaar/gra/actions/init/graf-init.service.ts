@@ -6,15 +6,14 @@ import {
   HGraph,
   HNode as Node,
   HNodes as Nodes,
-  Listoid,
   makeGraphoid,
   Phoid
 } from "@cosys/func";
 
 export class GrafInitService {
 
-  private readonly nodes: Nodes = new Listoid<Node[]>([]);
-  private readonly edges: Edges = new Listoid<Edge[]>([]);
+  private readonly nodes: Nodes = [];
+  private readonly edges: Edges = [];
 
   constructor(private graphInit: BasicInitService) {
     this.graphInit = graphInit;
@@ -22,12 +21,12 @@ export class GrafInitService {
 
   add( graph: { nodes: Nodes, edges: Edges} ) {
     const { nodes, edges } = graph;
-    this.nodes.value.push(...nodes.value);
-    this.edges.value.push(...edges.value);
+    this.nodes.push(...nodes);
+    this.edges.push(...edges);
   }
 
   get isInitialized(): boolean {
-    return (!!this.edges?.value?.length && !!this.nodes?.value?.length);
+    return (!!this.edges?.length && !!this.nodes?.length);
   }
 
   get graph(): Graph {
@@ -37,10 +36,10 @@ export class GrafInitService {
   }
 
   get metaState(): Phoid {
-    return makeGraphoid(this.graph.nodes.value, this.graph.edges.value);
+    return makeGraphoid(this.graph.nodes, this.graph.edges);
   }
 
   get hGraph(): HGraph<Node, Edge> {
-    return new HGraph<Node, Edge>(this.graph.nodes.value, this.graph.edges.value);
+    return new HGraph<Node, Edge>(this.graph.nodes, this.graph.edges);
   }
 }

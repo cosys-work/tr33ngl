@@ -25,6 +25,14 @@ export function nominate<T>(type: string, value: T): Nominator<T> {
   return ({ type, value });
 }
 
+export abstract class AlphaValued<T> {
+  readonly value!: T;
+
+  protected constructor(v: T) {
+    this.value = v;
+  }
+}
+
 export function str<T extends Nominator<unknown>>(v: T): string {
   return v.type.toString();
 }

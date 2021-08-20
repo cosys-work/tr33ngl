@@ -1,4 +1,4 @@
-import { Edg, Gra, Graphoid, HGraph, Listoid, Nod } from "@cosys/func";
+import { Edg, Gra, Graphoid, HGraph, Nod } from "@cosys/func";
 
 export interface HNode extends Nod {
   id: string;
@@ -12,8 +12,8 @@ export interface HEdge extends Nod, Edg {
   to: string;
 }
 
-export type HNodes = Listoid<HNode[]>;
-export type HEdges = Listoid<HEdge[]>;
+export type HNodes = HNode[];
+export type HEdges = HEdge[];
 export interface HGGraph extends Gra {
   nodes: HNodes;
   edges: HEdges;

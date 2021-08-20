@@ -16,13 +16,12 @@ export interface Nod {
 
 export interface Edg extends Partial<Nod> {
   [$id]: Partial<Nod>;
-  [$di]: Listoid<Nod[]>;
+  [$di]: Listoid<Nod>;
   tag: string;
 }
 
-export type Nods = Listoid<Nod[]>;
-
-export type Edgs = Listoid<Edg[]>;
+export type Nods = Nod[];
+export type Edgs = Edg[];
 
 export interface Gra {
   nodes: Nods;
@@ -33,7 +32,7 @@ export interface HGraf<N, E> {
   readonly nodes: Listoid<N[]>;
   readonly edges: Listoid<E[]>;
 
-  readonly hEdges: Listoid<Graf<N, E>[]>;
+  readonly hEdges: Listoid<Graf<N, E>>;
 }
 
 export class Graf<N, E> implements Graph<N, E> {
@@ -50,18 +49,19 @@ export class Graf<N, E> implements Graph<N, E> {
   }
 }
 
+
 export class HGraph<N, E> implements HGraf<N, E>, Graph<N, E> {
   readonly type = "HGraph";
   readonly value!: Graf<N, E>;
   readonly edges!: Listoid<E[]>;
   readonly nodes!: Listoid<N[]>;
-  readonly hEdges!: Listoid<Graf<N, E>[]>;
+  readonly hEdges!: Listoid<Graf<N, E>>;
   readonly graph!: Graf<N, E>;
 
   constructor(n: N[], e: E[]) {
-    this.value = this.graph;
     this.graph = new Graf(n, e);
-    this.hEdges = new Listoid([this.graph]);
+    this.value = this.graph;
+    this.hEdges = new Listoid(this.graph);
     const eEdges = e.map((_) => this.graph.edges.value).flat();
     const nNodes = n.map((_) => this.graph.nodes.value).flat();
     this.edges = new Listoid(eEdges);

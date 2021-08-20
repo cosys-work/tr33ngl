@@ -1,4 +1,4 @@
-import { SeedInitService, HEdges as Edges, HNodes as Nodes, HGGraph as Graph } from "@cosys/func";
+import { HEdges as Edges, HGGraph as Graph, HNodes as Nodes, SeedInitService } from "@cosys/func";
 
 export class BasicInitService {
 
@@ -16,8 +16,8 @@ export class BasicInitService {
 
   public makeDefault(): Graph {
     return this.makeGraph(
-      this.seedInit.seedNodes(),
-      this.seedInit.seedEdges()
+      this.seedInit.seedNodes().value,
+      this.seedInit.seedEdges().value
     );
   }
 

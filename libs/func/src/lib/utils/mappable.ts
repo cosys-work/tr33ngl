@@ -4,6 +4,7 @@ export type Ts<T> = T[];
 
 export interface Mappable<T> {
   map: <U>(func: (value: T, index?: number, values?: Ts<T>) => U) => Ts<U>;
+  length: number;
 }
 
 export interface FuncMappable<T> {
@@ -15,17 +16,20 @@ export interface MonadMappable<T> {
 }
 
 export class Mapper<T> implements Mappable<T> {
-  readonly val!: Ts<T>;
+  readonly value!: T;
+  length: number;
 
-  constructor(v: Ts<T>) {
-    this.val = v;
+  constructor(v: T) {
+    this.value = v;
+    this.length = isMappable(v) ? v.length : 1;
   }
 
   map<U>(func: (value: T, index?: number, values?: Ts<T>) => U) : Ts<U> {
-    if (isMappable(this.val)) {
-      return this.val.map(func);
+    if (isMappable<T>(this.value)) {
+      return this.value.map(func);
+    } else {
+      return [this.value].map(func);
     }
-    return [func(this.val)];
   }
 }
 
