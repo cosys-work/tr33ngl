@@ -1,7 +1,7 @@
 import { Mappable } from "@cosys/func";
 
-export function isPrimitiveArray(maybeArray: unknown): maybeArray is Array<string | number> {
-  return maybeArray.hasOwnProperty("length") && maybeArray.hasOwnProperty("map");
+export function isPrimitiveArray(maybeArray: any): maybeArray is Array<string | number> {
+  return maybeArray?.hasOwnProperty("length") && maybeArray?.hasOwnProperty("map");
 }
 
 export function isNullish(t: unknown): boolean {

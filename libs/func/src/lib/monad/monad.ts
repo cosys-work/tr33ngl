@@ -54,12 +54,16 @@ export class Monad<A> implements Monadic<A> {
 }
 
 
-export abstract class AlphaMonad<T> extends AlphaValued<T> implements Monadic<T> {
-  type: string;
+export abstract class AlphaMonad<T>
+  extends AlphaValued<T>
+  implements Monadic<T> {
+
+  readonly type!: string;
   protected readonly monad!: Monad<T>;
 
   protected constructor(value: T) {
     super(value);
+    this.type = typeof value;
     this.monad = new Monad<T>(value);
   }
 

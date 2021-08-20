@@ -1,4 +1,4 @@
-import { AlphaMonad, EitherNom, left, LeftNominator, Monad, Monadic, right, RightNominator } from "@cosys/func";
+import { AlphaMonad, left, LeftNominator, Monad, Monadic, right, RightNominator } from "@cosys/func";
 
 export class Right<T>
   extends AlphaMonad<RightNominator<T>>
@@ -32,8 +32,9 @@ export function eitherLElseR<L, R>(l: L, r: R): Eitherness<L, R> {
 }
 
 export class Either<L, R> extends Monad<Eitherness<L, R>> {
-  type: EitherNom.Left | EitherNom.Right;
+  readonly type!: string;
   constructor(l: L, r: R) {
     super(eitherLElseR(l, r));
+    this.type = super.type.toString();
   }
 }
