@@ -1,8 +1,8 @@
-import { FuncMapper, Functor, Functorial, Mapper, Ts } from "@cosys/func";
+import { FuncMapper, Functor, Functorial, FuncUOrFuncUs, Mappable, Ts } from "@cosys/func";
 import { Observable } from "rxjs";
 
 export interface Applicativity<A> extends Functorial<A>{
-  apply<U>(transformApp: Functorial<(value: A) => U>, fa: Functorial<A>): Functorial<U[]>;
+  apply<U>(transformApp: Functorial<(value: A) => U>, fa: Functorial<A>): FuncUOrFuncUs<U>;
 }
 
 export class Applicative<A> implements Applicativity<A> {
@@ -16,17 +16,25 @@ export class Applicative<A> implements Applicativity<A> {
     this.functor = new Functor<A>(value);
   }
 
-  apply<U>(transformApp: Functorial<(value: A) => U>, fa: Functorial<A>): Functorial<U[]> {
-    const tsA: Ts<A> = fa.extract().map(a => a);
-    const funcMapper = new FuncMapper(tsA);
-    return this.return(funcMapper.map(transformApp));
+  apply<U>(transformApp: Functorial<(value: A) => U>, fa: Functorial<A>): FuncUOrFuncUs<U> {
+    const tsA: Ts<A> = fa.extract().id();
+    const tsU: Ts<U> = new FuncMapper(tsA).map(transformApp);
+    return tsU.length === 1 ? this.return(tsU[0]) : this.return(tsU);
   }
 
-  extract(): Mapper<A> {
+  extract(): Mappable<A> {
     return this.functor.extract();
   }
 
-  fmap<U extends Array<A>>(transform: (value: A) => U, fa: Functorial<A>): Functorial<U[]> {
+  id(): Ts<A> {
+    return this.functor.id();
+  }
+
+  fmap2<U>(transform: (value: A) => U, fa: Functorial<A>): FuncUOrFuncUs<U> {
+    return this.functor.fmap2(transform, fa);
+  }
+
+  fmap<U>(transform: (value: A) => U, fa: Functorial<A>): Functorial<U[]> {
     return this.functor.fmap(transform, fa);
   }
 

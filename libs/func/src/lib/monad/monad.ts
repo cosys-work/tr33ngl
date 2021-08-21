@@ -1,8 +1,18 @@
-import { AlphaValued, Applicative, Applicativity, Functorial, Mapper, MonadMapper, Ts } from "@cosys/func";
+import {
+  AlphaValued,
+  Applicative,
+  Applicativity,
+  Functorial,
+  FuncUOrFuncUs,
+  Mappable,
+  MonadMapper,
+  Ts
+} from "@cosys/func";
 import { Observable } from "rxjs";
 
 export interface Monadic<A> extends Applicativity<A> {
-  bind<U extends Ts<A>>(ma: Functorial<A>, transformApp: (value: A) => Functorial<U>): Functorial<Ts<U>>;
+  bind<U>(ma: Functorial<A>, transformApp: (value: A) => Functorial<U>): FuncUOrFuncUs<U>;
+  bindFlip<U>(transformApp: (val: A) => Functorial<U>, ma: Functorial<A>): FuncUOrFuncUs<U>;
 }
 
 export class Monad<A> implements Monadic<A> {
@@ -16,35 +26,40 @@ export class Monad<A> implements Monadic<A> {
     this.applicative = new Applicative<A>(value);
   }
 
-  bind<U extends Ts<A>>(ma: Functorial<A>, transformApp: (val: A) => Functorial<U>): Functorial<Ts<U>> {
+  return<U>(value: U ): Functorial<U> {
+    return this.applicative.return(value) ;
+  }
+
+  bind<U>(ma: Functorial<A>, transformApp: (val: A) => Functorial<U>): FuncUOrFuncUs<U> {
     const maExtract: Ts<A> = ma.extract().map(v => v);
     const monMapper: MonadMapper<A> = new MonadMapper(maExtract);
     const mapMap: Ts<U> = monMapper.map(transformApp);
-    return this.returns(mapMap);
+    return this.return(mapMap);
   }
 
-  bindFlip<U extends Ts<A>>(transformApp: (val: A) => Functorial<U>, ma: Functorial<A>): Functorial<Ts<U>> {
+  bindFlip<U>(transformApp: (val: A) => Functorial<U>, ma: Functorial<A>): FuncUOrFuncUs<U> {
     return this.bind(ma, transformApp);
   }
 
-  returns<U>(us: Ts<U>): Functorial<Ts<U>> {
-    return new Monad<Ts<U>>(us);
-  }
 
-  apply<U>(transformApp: Functorial<(value: A) => U>, fa: Functorial<A>): Functorial<Ts<U>> {
+  apply<U>(transformApp: Functorial<(value: A) => U>, fa: Functorial<A>): FuncUOrFuncUs<U> {
     return this.applicative.apply(transformApp, fa);
   }
 
-  fmap<U extends Ts<A>>(transform: (value: A) => U, fa: Functorial<A>): Functorial<Ts<U>> {
+  fmap<U>(transform: (value: A) => U, fa: Functorial<A>): Functorial<U[]> {
     return this.applicative.fmap(transform, fa);
   }
 
-  return<U>(value: U): Functorial<U> {
-    return this.applicative.return(value);
+  fmap2<U>(transform: (value: A) => U, fa: Functorial<A>): FuncUOrFuncUs<U> {
+    return this.applicative.fmap2(transform, fa);
   }
 
-  extract(): Mapper<A> {
+  extract(): Mappable<A> {
     return this.applicative.extract();
+  }
+
+  id(): Ts<A> {
+    return this.applicative.id();
   }
 
   observe(): Observable<A> {
@@ -67,19 +82,31 @@ export abstract class AlphaMonad<T>
     this.monad = new Monad<T>(value);
   }
 
-  apply<U>(transformApp: Functorial<(value: T) => U>, fa: Functorial<T>): Functorial<U[]> {
+  apply<U>(transformApp: Functorial<(value: T) => U>, fa: Functorial<T>): FuncUOrFuncUs<U> {
     return this.monad.apply(transformApp, fa);
   }
 
-  bind<U extends Ts<T>>(ma: Functorial<T>, transformApp: (value: T) => Functorial<U>): Functorial<Ts<U>> {
+  bind<U>(ma: Functorial<T>, transformApp: (value: T) => Functorial<U>): FuncUOrFuncUs<U> {
     return this.monad.bind(ma, transformApp);
   }
 
-  extract(): Mapper<T> {
+  bindFlip<U>(transformApp: (val: T) => Functorial<U>, ma: Functorial<T>): FuncUOrFuncUs<U> {
+    return this.monad.bindFlip(transformApp, ma);
+  }
+
+  extract(): Mappable<T> {
     return this.monad.extract();
   }
 
-  fmap<U extends Ts<T>>(transform: (value: T) => U, fa: Functorial<T>): Functorial<U[]> {
+  id(): Ts<T> {
+    return this.monad.id();
+  }
+
+  fmap2<U>(transform: (value: T) => U, fa: Functorial<T>): FuncUOrFuncUs<U> {
+    return this.monad.fmap(transform, fa);
+  }
+
+  fmap<U>(transform: (value: T) => U, fa: Functorial<T>): Functorial<U[]> {
     return this.monad.fmap(transform, fa);
   }
 
@@ -87,7 +114,7 @@ export abstract class AlphaMonad<T>
     return this.monad.observe();
   }
 
-  return<U>(value: U): Functorial<U> {
+  return<U>(value: U): FuncUOrFuncUs<U> {
     return this.monad.return(value);
   }
 }
