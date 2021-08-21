@@ -21,7 +21,7 @@ export class Applicative<A> implements Applicativity<A> {
     const tsU: Ts<U> = new FuncMapper(tsA).map(transformApp);
     return tsU.length === 1 ? this.return(tsU[0]) : this.return(tsU);
   }
-
+2
   extract(): Mappable<A> {
     return this.functor.extract();
   }
