@@ -1,4 +1,5 @@
-import { flatten2, Functorial } from "@cosys/func";
+import { Functorial } from "@cosys/func";
+import { flatten2 } from "./utils";
 
 export type Ts<T> = T[];
 
@@ -29,7 +30,7 @@ export class FuncMapper<T> implements FuncMappable<T> {
   }
 
   map<U>(func: Functorial<(value: T) => U>): Ts<U> {
-    const funcs = func.extract().map(this.id);
+    const funcs = func.map(this.id);
     if (funcs.length >= this.val.length) {
       return this.val.map((v, index) => funcs[index](v));
     } else {
@@ -47,7 +48,7 @@ export class MonadMapper<T> implements MonadMappable<T> {
 
   map<U>(func: (val: T) => Functorial<U>): Ts<U> {
     const valMapFunc: Ts<Functorial<U>>  = this.val.map(func);
-    const valMapFuncMap: Ts<Ts<U>> = valMapFunc.map(((mu: Functorial<U>) => mu.extract().map(v => v)));
+    const valMapFuncMap: Ts<Ts<U>> = valMapFunc.map(((mu: Functorial<U>) => mu.map(v => v)));
     return flatten2<U>(valMapFuncMap);
   }
 }

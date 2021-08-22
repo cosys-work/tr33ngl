@@ -1,4 +1,5 @@
-import { Magma, FValued } from "@cosys/func";
+import { FValued } from "../../utils/shopzero";
+import { Magma } from "./magma";
 
 export interface Unital<T> extends FValued<T> {
   id : () => Unital<T>;

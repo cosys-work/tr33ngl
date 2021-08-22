@@ -1,4 +1,5 @@
-import { Groupoidal } from "@cosys/func";
+import { Groupoidal } from "../oid/groupoid";
+
 
 export class Magma<T> implements Groupoidal<T> {
 

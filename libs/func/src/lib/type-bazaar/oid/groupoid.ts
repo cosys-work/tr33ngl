@@ -1,6 +1,10 @@
-import { Unital, FValued, Left, Right } from "@cosys/func";
+
 
 // assoc op, id, inverse
+import { Left, Right } from "../../mon/either/either";
+import { Unital } from "../ma/unital";
+import { FValued } from "../../utils/shopzero";
+
 export interface Groupoidal<T> extends FValued<T> {
   op: (a: Groupoidal<T>, func: (a: T, b: T) => T) => Groupoidal<T>;
 }

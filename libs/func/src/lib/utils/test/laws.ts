@@ -1,10 +1,10 @@
-import { Functorial, Monad } from "@cosys/func";
+import { Monad, Monadic } from "@cosys/func";
 
 export class MonadicLaws<A extends []> extends Monad<A> {
   readonly monad!: Monad<A>;
 
   constructor(ma: Monad<A>) {
-    super(ma.value);
+    super(ma.chomsky.u);
     this.monad = ma;
   }
 
@@ -12,8 +12,8 @@ export class MonadicLaws<A extends []> extends Monad<A> {
   // @doc pure is a left-identity with respect to bind
   // */
   firstLaw(a: A, fun = (v: A ) => this.return(v)): () => void {
-    const ret: () => Functorial<A> = () => this.monad.return<A>(a);
-    const fx: () => Functorial<A> = () => fun(a);
+    const ret: () => Monadic<A> = () => this.monad.return<A>(a);
+    const fx: () => Monadic<A> = () => fun(a);
     const binder = () => this.monad.bind<A[]>(
       ret(),
       () => fx()
@@ -25,8 +25,8 @@ export class MonadicLaws<A extends []> extends Monad<A> {
   // @doc pure is a right-identity with respect to bind
   // */
   secondLaw(a: A, fun = (v: A ) => this.return(v)): () => void {
-    const ret: () => Functorial<A> = () => this.return(a);
-    const fx: () => Functorial<A> = () => fun(a);
+    const ret: () => Monadic<A> = () => this.return(a);
+    const fx: () => Monadic<A> = () => fun(a);
     const binder = () => this.monad.bind<A[]>(
       fx(),
       () => ret()
@@ -40,14 +40,14 @@ export class MonadicLaws<A extends []> extends Monad<A> {
   // */
   thirdLaw(a: A, fun = (v: A ) => this.return(v), gun = (val: A) => this.return(val)) {
     const monadX = this.return(a);
-    const xBindF: () => Functorial<A[]> =
+    const xBindF: () => Monadic<A[]> | Monadic<A[]>[] =
       () => this.monad.bind<A>(
         monadX,
         () => fun(a)
       );
 
-    const xBindFBindG: () => Functorial<A[]> =
-      () => this.monad.bind<A>(new Monad<A>(xBindF().value[0]), () => gun(a));
+    const xBindFBindG: () => Monadic<A[]> | Monadic<A[]>[] =
+      () => this.monad.bind<A>(new Monad<A>(xBindF()[0]), () => gun(a));
 
     const lambdaFv = (v: A) => fun(v);
     const lambdaGw = (w: A) => gun(w);
@@ -56,7 +56,7 @@ export class MonadicLaws<A extends []> extends Monad<A> {
 
     const xBindLambdaFvBindG = (u: A) => this.monad.bind<A>(
       monadX,
-      () => new Monad<A>(lambdaFvBindG(u).value[0])
+      () => new Monad<A>(lambdaFvBindG(u)[0])
     );
 
     return () => xBindFBindG() === xBindLambdaFvBindG(a)

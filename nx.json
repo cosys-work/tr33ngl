@@ -33,11 +33,9 @@
     "ack-tion": {
       "tags": [
         "action",
-        "monad",
         "monoid",
         "closed",
-        "category",
-        "simple types"
+        "category"
       ]
     },
     "api": {
@@ -47,10 +45,16 @@
       "tags": []
     },
     "func": {
-      "tags": ["simple types", "functors", "applicatives", "monads"]
-    },
-    "graph-init-term": {
-      "tags": []
+      "tags": [
+        "simple types",
+        "functors",
+        "applicatives",
+        "monads",
+        "action",
+        "monoid",
+        "closed",
+        "category"
+      ]
     },
     "tr33ngl": {
       "tags": []

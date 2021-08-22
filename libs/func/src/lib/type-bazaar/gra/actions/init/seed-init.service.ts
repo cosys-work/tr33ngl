@@ -1,4 +1,5 @@
-import { $di, $id, HEdge as Edge, HEdges as Edges, HNode as Node, HNodes as Nodes, Listoid } from "@cosys/func";
+import { HEdge as Edge, HEdges as Edges, HNode as Node, HNodes as Nodes } from "@cosys/func";
+import { $di, $id, Listoid } from "../../../../mon/listoid";
 
 export class SeedInitService {
 

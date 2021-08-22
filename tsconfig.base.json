@@ -10,7 +10,7 @@
     "importHelpers": true,
     "resolveJsonModule": true,
     "target": "es2020",
-    "module": "esnext",
+    "module": "es2020",
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
@@ -18,7 +18,7 @@
     "paths": {
       "@cosys/ack": ["libs/ack/tion/src/index.ts"],
       "@cosys/api-interfaces": ["libs/api-interfaces/src/index.ts"],
-      "@cosys/func": ["libs/func/src/index.ts"],
+      "@cosys/func": ["libs/func/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

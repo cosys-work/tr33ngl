@@ -1,14 +1,13 @@
 import {
-  BasicInitService,
   HEdge as Edge,
   HEdges as Edges,
   HGGraph as Graph,
-  HGraph,
   HNode as Node,
   HNodes as Nodes,
-  makeGraphoid,
   Phoid
 } from "@cosys/func";
+import { BasicInitService } from "./basic-init.service";
+import { HGraph, makeGraphoid } from "../../../../mon/listoid";
 
 export class GrafInitService {
 

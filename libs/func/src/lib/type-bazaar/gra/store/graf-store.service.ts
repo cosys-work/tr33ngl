@@ -1,6 +1,7 @@
 import { ObservableStore } from "@codewithdan/observable-store";
-import { GrafInitService, Phoid } from "@cosys/func";
+import { Phoid } from "@cosys/func";
 import { Observable, of } from "rxjs";
+import { GrafInitService } from "../actions/init/graf-init.service";
 
 export enum Actions {
   INIT="INIT",
