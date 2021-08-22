@@ -2,7 +2,7 @@ export interface Typed {
   type: string;
 }
 
-export const identity: <T>(u:T) => T = (u) => u;
+
 
 export interface Valued<T> {
   value: T;

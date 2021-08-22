@@ -1,4 +1,4 @@
-import { flatten2, Functorial, identity, isMappable } from "@cosys/func";
+import { flatten2, Functorial } from "@cosys/func";
 
 export type Ts<T> = T[];
 
@@ -14,28 +14,6 @@ export interface FuncMappable<T> {
 
 export interface MonadMappable<T> {
   map: <U>(func: (val: T) => Functorial<U>) => Ts<U>;
-}
-
-export class Mapper<T> implements Mappable<T> {
-  readonly value!: T;
-  readonly length!: number;
-
-  constructor(v: T) {
-    this.value = v;
-    this.length = isMappable(v) ? v.length : 1;
-  }
-
-  id(): Ts<T> {
-    return this.map(identity);
-  }
-
-  map<U>(func: (value: T, index?: number, values?: Ts<T>) => U) : Ts<U> {
-    if (isMappable<T>(this.value)) {
-      return this.value.map(func);
-    } else {
-      return [this.value].map(func);
-    }
-  }
 }
 
 export class FuncMapper<T> implements FuncMappable<T> {

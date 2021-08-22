@@ -1,9 +1,7 @@
 {
   "name": "@cosys/graphoidal",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "peerDependencies": {
-    "@codewithdan/observable-store": "^2.2.12",
-    "@cosys/func": "latest",
     "rxjs": "^7.3.0"
   },
   "dependencies": {
