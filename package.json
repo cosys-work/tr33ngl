@@ -46,7 +46,6 @@
     "@angular/router": "^12.2.2",
     "@codewithdan/observable-store": "^2.2.12",
     "@cosys/func": "workspace:latest",
-    "@cosys/graphoidal": "workspace:latest",
     "@crystalui/angular-lightbox": "^1.1.8",
     "@cypress/webpack-preprocessor": "^5.9.1",
     "@egjs/hammerjs": "^2.0.17",

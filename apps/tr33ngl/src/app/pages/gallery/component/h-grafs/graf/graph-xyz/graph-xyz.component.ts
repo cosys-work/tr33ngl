@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { GrafStore } from "@cosys/graphoidal";
+// import { GrafStore } from ".//type-bazaar/gra/store/graf-store.service";
+
 
 declare const vis: any;
 
@@ -17,9 +18,9 @@ export class GraphXyzComponent implements OnInit {
   public network!: OnAble;
 
   constructor(
-    private grafStore: GrafStore
+    // private grafStore: GrafStore
   ) {
-    this.grafStore = grafStore;
+    // this.grafStore = grafStore;
   }
 
   ngOnInit() {

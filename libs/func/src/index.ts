@@ -1,22 +1,24 @@
-export * from "./lib/nominators";
-export * from "./lib/utils/index";
-export * from "./lib/monad/index";
+export * from "./lib/util";
 
-export * from "./lib/type-bazaar/groupoid";
-export * from "./lib/type-bazaar/magma";
-export * from "./lib/type-bazaar/monoid";
-export * from "./lib/type-bazaar/shopzero";
-export * from "./lib/type-bazaar/unital";
+export * from "./lib/val/val.defn";
+export * from "./lib/nom/nom.defn";
+export * from "./lib/map/umap.defn";
 
-export * from "./examples/models/h-graph.model";
-export * from "./examples/additive-monoid";
-export * from "./examples/monadic";
-export * from "./examples/multiplicative-monoid";
-export * from "./examples/semigroup";
+export * from "./lib/func/tion/function.defn";
+export * from "./lib/func/tor/functor.defn";
+export * from "./lib/app/applicative.defn";
+export * from "./lib/mon/monad.defn";
 
-export * from "./lib/type-bazaar/gra/actions/init/basic-init.service";
-export * from "./lib/type-bazaar/gra/actions/init/graf-init.service";
-export * from "./lib/type-bazaar/gra/actions/init/seed-init.service";
-export * from "./lib/type-bazaar/gra/actions/graf-activity.service";
+export * as V from "./lib/alpha/value";
+export * as Z from "./lib/alpha/zen-mapper";
 
-export * from "./lib/type-bazaar/gra/store/graf-store.service";
+export * as F from "./lib/alpha/functor";
+export * as A from "./lib/alpha/applicative";
+export * as M from "./lib/alpha/monad";
+
+export * from "./lib/examples/models/h-graph.model";
+export * from "./lib/examples/models/h-graph.model";
+export * from "./lib/examples/additive-monoid";
+export * from "./lib/examples/monadic";
+export * from "./lib/examples/multiplicative-monoid";
+

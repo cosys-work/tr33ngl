@@ -19,7 +19,6 @@
       "@cosys/ack": ["libs/ack/tion/src/index.ts"],
       "@cosys/api-interfaces": ["libs/api-interfaces/src/index.ts"],
       "@cosys/func": ["libs/func/src/index.ts"],
-      "@cosys/graphoidal": ["libs/graph-init-term/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
