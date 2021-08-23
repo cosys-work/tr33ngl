@@ -1,15 +1,20 @@
 
 import { BasicInitService } from "./basic-init.service";
-import { HGraph, makeGraphoid } from "@cosys/func";
-import { Phoid,
+import {
+  HGraph,
+  makeGraphoid,
+  Phoid,
   HEdge as Edge,
   HEdges as Edges,
   HGGraph as Graph,
   HNode as Node,
   HNodes as Nodes
-} from "../../../examples/models/h-graph.model";
+} from "@cosys/func";
+import { Injectable } from "@angular/core";
 
-
+@Injectable({
+  providedIn: "root",
+})
 export class GrafInitService {
 
   private readonly nodes: Nodes = [];

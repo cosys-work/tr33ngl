@@ -1,14 +1,17 @@
 import { ObservableStore } from "@codewithdan/observable-store";
 
 import { Observable, of } from "rxjs";
-import { Phoid } from "../../examples/models/h-graph.model";
-import { GrafInitService } from "@cosys/func";
+import { Phoid, GrafInitService } from "@cosys/func";
+import { Injectable } from "@angular/core";
 
 
 export enum Actions {
   INIT="INIT",
 }
 
+@Injectable({
+  providedIn: "root",
+})
 export class GrafStore extends ObservableStore<Phoid> {
 
   constructor(protected grafInit: GrafInitService) {

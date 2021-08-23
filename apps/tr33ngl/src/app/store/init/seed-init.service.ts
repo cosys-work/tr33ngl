@@ -2,10 +2,15 @@ import {
   HEdge as Edge,
   HEdges as Edges,
   HNode as Node,
-  HNodes as Nodes
-} from "../../../examples/models/h-graph.model";
-import { $di, $id, Listoid } from "@cosys/func";
+  HNodes as Nodes,
+  $di, $id, Listoid
+} from "@cosys/func";
 
+import { Injectable } from "@angular/core";
+
+@Injectable({
+  providedIn: "root",
+})
 export class SeedInitService {
 
   public nodeMaker(iz: number): Node {
