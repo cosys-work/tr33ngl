@@ -1,7 +1,7 @@
 import { Monad, Monadic } from "@cosys/func";
 import { just, JustNominator, nothing, NothingNominator } from "./maybe.nominator";
 import { AlphaMonad } from "../../../alpha/monad";
-import { isNullish } from "../../../utils";
+import { isNullish } from "../../../utils/utils";
 
 
 export class Nothing

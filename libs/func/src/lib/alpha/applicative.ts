@@ -1,24 +1,23 @@
 import { AlphaFunctor } from "./functor";
 import { Applicative, Applicativity } from "../app/applicative.defn";
-import { Functorial } from "@cosys/func";
+import { Ts } from "@cosys/func";
 
 export class AlphaApplicative<T>
   extends AlphaFunctor<T>
   implements Applicativity<T> {
 
-  protected readonly applicative!: Applicativity<T>;
+  readonly applicative!: Applicativity<T>;
 
-  constructor(t: T) {
+  constructor(t: Ts<T>) {
     super(t);
     this.applicative = new Applicative(t);
   }
 
   apply<U>(
-    transformApp: Applicativity<(value: T) => U>,
-    fa: Applicativity<T>
-  ): Functorial<U | U[]>
+    transformApp: Applicativity<(value: T) => U>
+  ): Applicativity<Ts<U>>
   {
-    return this.applicative.apply(transformApp, fa);
+    return this.applicative.apply(transformApp);
   }
 
 }

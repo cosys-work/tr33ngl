@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-// import { GrafStore } from ".//type-bazaar/gra/store/graf-store.service";
-
+import { GrafStore } from "@cosys/func";
 
 declare const vis: any;
 
@@ -18,13 +17,13 @@ export class GraphXyzComponent implements OnInit {
   public network!: OnAble;
 
   constructor(
-    // private grafStore: GrafStore
+    private grafStore: GrafStore
   ) {
-    // this.grafStore = grafStore;
+    this.grafStore = grafStore;
   }
 
   ngOnInit() {
-    // this.loadVisTree(this.getTreeData(), this.selector);     // RENDER STANDARD NODES WITH TEXT LABEL
+    this.loadVisTree(this.getTreeData(), this.selector);     // RENDER STANDARD NODES WITH TEXT LABEL
   }
 
   loadVisTree(treeData: unknown, selector: number) {
@@ -53,15 +52,15 @@ export class GraphXyzComponent implements OnInit {
   }
 
   getTreeData() {
-    // const grafState = this.grafStore.state.graph;
-    // const nodes = grafState.nodes.value;
+    const grafState = this.grafStore.state.graph;
+    const nodes = grafState.nodes.value;
 
     // create an array with edges
-    // const edges = grafState.edges.value;
+    const edges = grafState.edges.value;
 
-    // return ({
-    //   nodes,
-    //   edges
-    // });
+    return ({
+      nodes,
+      edges
+    });
   }
 }

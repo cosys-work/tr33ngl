@@ -65,3 +65,5 @@ export function isPrimitive(u: unknown): false | keyof Primitives {
   const isPrim = l.includes(typ);
   return isPrim ? typ : false;
 }
+
+export type Ts<T> = T | T[];

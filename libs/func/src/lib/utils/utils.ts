@@ -26,7 +26,7 @@ export function flattener(nested: Array<unknown> | string | number): Array<unkno
   }
 }
 
-export function flatten<T>(nest: Array<T> | T): Array<T> {
+export function flatten<T>(nest: Array<unknown> | unknown): Array<T> {
   return flattener(nest as Array<any>) as Array<T>;
 }
 

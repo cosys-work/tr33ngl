@@ -4,8 +4,6 @@ This library aims to showcase an implementation of monads and basic monadic type
 
 # Reading the Code
 
-The code is so small that any decent documentation itself would be longer than the code to decently cover all aspects of the code. This coverage in itself makes it not a decent enough documentation as it is not efficient to read it by definition.
-
 Here are the three frequently needed pure functional programming types:
 
 1. Functor

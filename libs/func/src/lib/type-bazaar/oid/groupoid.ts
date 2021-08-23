@@ -1,9 +1,7 @@
-
-
 // assoc op, id, inverse
-import { Left, Right } from "../../mon/either/either";
-import { Unital } from "../ma/unital";
+import { Unital } from "../mag/unital";
 import { FValued } from "../../utils/shopzero";
+import { Left, Right } from "@cosys/func";
 
 export interface Groupoidal<T> extends FValued<T> {
   op: (a: Groupoidal<T>, func: (a: T, b: T) => T) => Groupoidal<T>;

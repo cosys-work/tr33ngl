@@ -1,10 +1,11 @@
-import { Val } from "../val/val.defn";
+import { Func } from "../func/tion/function.defn";
+import { Ts } from "../util";
 
-export interface Mappable<T> extends Val<T> {
-  map: <U>(
-    func: (value: T, index: number, values: T[]) => U
-  ) => U[];
+export interface Mappable<T> {
   readonly length: number;
+  map: <U>(
+    func: Func<T, U>
+  ) => Ts<U>;
 }
 
 export function isMappable<T>(
@@ -14,23 +15,33 @@ export function isMappable<T>(
     && maybeMappable.hasOwnProperty("length");
 }
 
-export class Mapper<T> extends Array<T> implements Mappable<T> {
+export class UMapper<T> {
   readonly u!: T;
+  readonly uArr!: T[]
   readonly length!: number;
-  protected readonly mappable!: boolean;
+  readonly singleton!: boolean;
 
-  constructor(v: T) {
-    super(v)
-    this.u = v;
-    this.length = isMappable(v) ? v.length : super.length;
+  constructor(v: Ts<T>) {
+    if (isMappable(v)) {
+      this.u = v[0];
+      this.uArr = v;
+    } else {
+      this.u = v;
+      this.uArr = Array(1).fill(v);
+    }
+    this.length = this.uArr.length;
+    this.singleton = this.length > 1;
   }
 
-  map<U>(func: (value: T, index: number, values: T[]) => U) : U[] {
-    if (isMappable<T>(this.u)) {
-      return this.u.map(func);
-    } else {
-      return [this.u].map(func);
-    }
+
+  map<U>(func: Func<T, U>) : Ts<U> {
+     return this.singleton ? this.mapInner(func)[0] : this.mapInner(func);
+  }
+
+  private mapInner<U>(
+    func: Func<T, U>
+  ): U[] {
+    return this.uArr.map(func);
   }
 }
 

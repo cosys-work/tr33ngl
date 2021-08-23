@@ -1,6 +1,6 @@
 import { AssocGroupoidal, Groupoidal } from "./groupoid";
-import { Either, Left, Right } from "../../mon/either/either";
-import { Unital } from "../ma/unital";
+import { Either, Left, Right } from "@cosys/func";
+import { Unital } from "../mag/unital";
 
 
 export class AbstractMonoid<T> implements AssocGroupoidal<T>, Unital<T> {

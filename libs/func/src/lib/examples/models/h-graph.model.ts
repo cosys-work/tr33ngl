@@ -1,4 +1,4 @@
-import { Edg, Gra, Graphoid, HGraph, Nod } from "../../mon/listoid";
+import { Edg, Gra, Graphoid, HGraph, Nod } from "@cosys/func";
 
 
 export interface HNode extends Nod {

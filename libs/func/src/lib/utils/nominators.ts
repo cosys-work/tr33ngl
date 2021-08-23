@@ -2,8 +2,6 @@ export interface Typed {
   type: string;
 }
 
-
-
 export interface Valued<T> {
   value: T;
 }

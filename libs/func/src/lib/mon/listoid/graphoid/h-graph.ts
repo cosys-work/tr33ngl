@@ -58,11 +58,12 @@ export class HGraph<N, E>
   implements Monadic<HGraf<N, E>> {
 
   readonly type = "HGraph";
+  readonly graph!: HGraf<N, E>;
   readonly value!: HGraf<N, E>;
+
   readonly edges!: Listoid<E[]>;
   readonly nodes!: Listoid<N[]>;
   readonly hEdges!: Listoid<HGraf<N, E>>;
-  readonly graph!: HGraf<N, E>;
 
   constructor(n: N[], e: E[]) {
     super(new HGraaff(n, e));

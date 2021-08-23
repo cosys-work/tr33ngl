@@ -1,5 +1,6 @@
 import { AlphaApplicative } from "./applicative";
 import { Monad, Monadic } from "../mon/monad.defn";
+import { Ts } from "../util";
 
 export class AlphaMonad<T>
   extends AlphaApplicative<T>
@@ -12,11 +13,13 @@ export class AlphaMonad<T>
     this.monad = new Monad(t);
   }
 
-  bind<U>(ma: Monadic<T>, transformApp: (value: T) => Monadic<U>): Monadic<U> | Monadic<U>[] {
-    return this.monad.bind(ma, transformApp);
+  bind<U>(
+    transformApp: (value: T) => Monadic<U>
+  ): Monadic<Ts<U>> {
+    return this.monad.bind(transformApp);
   }
 
-  return<U>(t: U): Monadic<U> {
+  return<U>(t: Ts<U>): Monadic<Ts<U>> {
     return this.monad.return(t);
   }
 

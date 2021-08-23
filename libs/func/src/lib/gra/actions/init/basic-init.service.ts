@@ -1,4 +1,4 @@
-import { HEdges as Edges, HGGraph as Graph, HNodes as Nodes } from "@cosys/func";
+import { HEdges as Edges, HGGraph as Graph, HNodes as Nodes } from "../../../examples/models/h-graph.model";
 import { SeedInitService } from "./seed-init.service";
 
 export class BasicInitService {

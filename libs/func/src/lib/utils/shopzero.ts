@@ -1,6 +1,6 @@
 
 import { firstValueFrom, from, Observable, of } from "rxjs";
-import { Graphoid, Listoid } from "../mon/listoid";
+import { Graphoid, Listoid } from "@cosys/func";
 
 export type FType<V> = V;
 export type FList<T> = Listoid<FType<T>[]>;

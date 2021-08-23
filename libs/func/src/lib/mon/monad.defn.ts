@@ -1,29 +1,43 @@
-import { Applicativity } from "../app/applicative.defn";
-import { Mappable } from "@cosys/func";
+import { Applicative, Applicativity } from "../app/applicative.defn";
+import { Ts } from "@cosys/func";
 import { AlphaApplicative } from "../alpha/applicative";
+import { flatten } from "../utils/utils";
 
 export interface Monadic<T> extends Applicativity<T> {
-  bind<U>(ma: Monadic<T>, transformApp: (value: T) => Monadic<U>): Monadic<U> | Monadic<U>[];
-  return<U>(t: U): Monadic<U>;
+  bind<U>(
+    transformApp: (value: T) => Monadic<U>
+  ): Monadic<Ts<U>>;
+  return<U>(t: Ts<U>): Monadic<Ts<U>>;
 }
 
 export class Monad<T>
   extends AlphaApplicative<T>
   implements Monadic<T> {
 
-  constructor(t: T) {
+  readonly applicative!: Applicativity<T>;
+
+  constructor(t: Ts<T>) {
     super(t);
+    this.applicative = new Applicative(t);
   }
 
-  bind<U>(ma: Monadic<T>, transformApp: (value: T) => Monadic<U>): Monadic<U> | Monadic<U>[] {
-    const ms: Mappable<T> = ma.self;
-    const msIsPlural : boolean = ms.length > 1;
-    return msIsPlural ?
-      ms.map(transformApp) :
-      ms.map(transformApp)[0];
+  bind<U>(transformApp: (value: T) => Monadic<U>): Monadic<Ts<U>> {
+
+    const transMonads: Ts<Monadic<U>> = flatten(
+        this.applicative
+        .apply(new Applicative(transformApp))
+        .fInside()
+        .inside()
+      );
+
+    const us: U[] = transMonads.map(
+      (mu)=> mu.u
+    );
+
+    return new Monad<U>(us);
   }
 
-  return<U>(t: U): Monadic<U> {
+  return<U>(t: Ts<U>): Monadic<Ts<U>> {
     return new Monad<U>(t);
   }
 

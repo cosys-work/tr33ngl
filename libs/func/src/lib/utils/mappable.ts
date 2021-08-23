@@ -1,7 +1,4 @@
-import { Functorial } from "@cosys/func";
-import { flatten2 } from "./utils";
-
-export type Ts<T> = T[];
+type Ts<T> = T[];
 
 export interface Mappable<T> {
   id: () => Ts<T>;
@@ -9,46 +6,4 @@ export interface Mappable<T> {
   length: number;
 }
 
-export interface FuncMappable<T> {
-  map: <U>(func: Functorial<(value: T) => U>) => Ts<U>;
-}
 
-export interface MonadMappable<T> {
-  map: <U>(func: (val: T) => Functorial<U>) => Ts<U>;
-}
-
-export class FuncMapper<T> implements FuncMappable<T> {
-
-  readonly val!: Ts<T>;
-
-  id<U>(u: U): U {
-    return u;
-  }
-
-  constructor(v: Ts<T>) {
-    this.val = v;
-  }
-
-  map<U>(func: Functorial<(value: T) => U>): Ts<U> {
-    const funcs = func.map(this.id);
-    if (funcs.length >= this.val.length) {
-      return this.val.map((v, index) => funcs[index](v));
-    } else {
-      return this.val.map((v) => funcs[0](v));
-    }
-  }
-}
-
-export class MonadMapper<T> implements MonadMappable<T> {
-  readonly val!: Ts<T>;
-
-  constructor(v: Ts<T>) {
-    this.val = v;
-  }
-
-  map<U>(func: (val: T) => Functorial<U>): Ts<U> {
-    const valMapFunc: Ts<Functorial<U>>  = this.val.map(func);
-    const valMapFuncMap: Ts<Ts<U>> = valMapFunc.map(((mu: Functorial<U>) => mu.map(v => v)));
-    return flatten2<U>(valMapFuncMap);
-  }
-}

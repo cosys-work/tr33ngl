@@ -1,5 +1,10 @@
-import { HEdge as Edge, HEdges as Edges, HNode as Node, HNodes as Nodes } from "@cosys/func";
-import { $di, $id, Listoid } from "../../../../mon/listoid";
+import {
+  HEdge as Edge,
+  HEdges as Edges,
+  HNode as Node,
+  HNodes as Nodes
+} from "../../../examples/models/h-graph.model";
+import { $di, $id, Listoid } from "@cosys/func";
 
 export class SeedInitService {
 
