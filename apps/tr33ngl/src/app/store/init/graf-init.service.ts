@@ -8,7 +8,7 @@ import {
   HEdges as Edges,
   HGGraph as Graph,
   HNode as Node,
-  HNodes as Nodes
+  HNodes as Nodes, HGDefault
 } from "@cosys/func";
 import { Injectable } from "@angular/core";
 
@@ -44,7 +44,7 @@ export class GrafInitService {
     return makeGraphoid(this.graph.nodes, this.graph.edges);
   }
 
-  get hGraph(): HGraph<Node, Edge> {
+  get hGraph(): HGDefault {
     return new HGraph<Node, Edge>(this.graph.nodes, this.graph.edges);
   }
 }

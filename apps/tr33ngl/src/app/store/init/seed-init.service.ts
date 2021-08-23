@@ -49,18 +49,16 @@ export class SeedInitService {
     return edgeWithDi(iz);
   }
 
-  public seedNodes(): Listoid<Nodes> {
-    const nodes = Array(5)
+  public seedNodes(): Nodes {
+    return Array(5)
       .fill(1 )
       .map((_, i) => this.nodeMaker(i));
-    return new Listoid<Node[]>(nodes);
   }
 
-  public seedEdges(): Listoid<Edges> {
-    const edges = Array(5)
+  public seedEdges(): Edges {
+    return Array(5)
       .fill(1 )
       .map((_, i) => this.edgeMaker(i));
-    return new Listoid<Edge[]>(edges);
   }
 
 }

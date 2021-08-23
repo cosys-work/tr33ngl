@@ -23,12 +23,9 @@ export * from "./lib/mon/listoid/graphoid/cartes-en";
 export * from "./lib/mon/listoid/graphoid/cartes-graph";
 export * from "./lib/mon/listoid/graphoid/graphoid.nominator";
 export * from "./lib/mon/listoid/graphoid/h-graph";
+export * from "./lib/mon/listoid/graphoid/model";
 
 export * from "./lib/gra/actions/graf-activity.service";
-export * from "./lib/gra/actions/init/seed-init.service";
-export * from "./lib/gra/actions/init/graf-init.service";
-export * from "./lib/gra/actions/init/basic-init.service";
-export * from "./lib/gra/store/graf-store.service";
 
 export * as V from "./lib/alpha/value";
 export * as Z from "./lib/alpha/zen-mapper";
@@ -39,7 +36,7 @@ export * as M from "./lib/alpha/monad";
 
 export * as LM from "./lib/laws/monad";
 
-export * as HG from "./lib/examples/models/h-graph.model";
+export * from "./lib/examples/models/h-graph.model";
 export * as AM from "./lib/examples/additive-monoid";
 export * as MA from "./lib/examples/monadic";
 export * as MM from "./lib/examples/multiplicative-monoid";

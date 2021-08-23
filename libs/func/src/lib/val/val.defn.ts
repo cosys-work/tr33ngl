@@ -3,12 +3,12 @@ import { Nom, nom, ZenNom } from "../nom/nom.defn";
 import { Ts } from "../util";
 
 
-interface Val<U> {
+export interface Val<U> {
   readonly u: U;
 }
 
 export interface ZenVal<U> extends Val<U> {
-  readonly chomsky: Nom<U>;
+  readonly chomsky: Nom<U> & Val<U>;
   readonly self: UMapper<U>;
 }
 
@@ -19,7 +19,7 @@ export class ZenValued<U>
   implements ZenNom<U> {
 
   readonly t!: string;
-  readonly chomsky!: Nom<U>;
+  readonly chomsky!: Nom<U> & Val<U>;
   readonly self!: UMapper<U>;
 
   constructor(t: Ts<U>, type?: string) {

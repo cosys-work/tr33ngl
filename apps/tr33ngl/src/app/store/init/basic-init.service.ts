@@ -21,8 +21,8 @@ export class BasicInitService {
 
   public makeDefault(): Graph {
     return this.makeGraph(
-      this.seedInit.seedNodes().value,
-      this.seedInit.seedEdges().value
+      this.seedInit.seedNodes(),
+      this.seedInit.seedEdges()
     );
   }
 

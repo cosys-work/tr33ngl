@@ -22,6 +22,8 @@ export interface HGGraph extends Gra {
 }
 
 export type Phoid = Graphoid<HNode, HEdge>;
+export type HGDefault = HGraph<HNode, HEdge>;
+
 export interface GraphoidInit {
   graph: HGGraph;
   maker: Partial<GraphoidInit>;
