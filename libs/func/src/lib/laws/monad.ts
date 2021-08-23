@@ -31,7 +31,7 @@ export class MonadicLaws<A> {
     const mBindGBindH = mBindG.bind(h);
 
     const lambdaG = (aa: Ts<A>) => g(aa);
-    const lambdaGBindH = lambdaG.bind(h);
+    const lambdaGBindH = (_: Ts<A>) => lambdaG(a).bind(h);
     const mBindLambdaGBindH = m.bind(lambdaGBindH);
 
     return mBindGBindH === mBindLambdaGBindH;
