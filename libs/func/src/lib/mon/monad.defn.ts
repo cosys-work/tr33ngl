@@ -5,9 +5,9 @@ import { flatten } from "../utils/utils";
 
 export interface Monadic<T> extends Applicativity<T> {
   bind<U>(
-    transformApp: (value: T) => Monadic<U>
-  ): Monadic<Ts<U>>;
-  return<U>(t: Ts<U>): Monadic<Ts<U>>;
+    transformApp: (value: Ts<T>) => Monadic<U>
+  ): Monadic<U>;
+  return<U>(t: Ts<U>): Monadic<U>;
 }
 
 export class Monad<T>
@@ -21,7 +21,7 @@ export class Monad<T>
     this.applicative = new Applicative(t);
   }
 
-  bind<U>(transformApp: (value: T) => Monadic<U>): Monadic<Ts<U>> {
+  bind<U>(transformApp: (value: Ts<T>) => Monadic<U>): Monadic<U> {
 
     const transMonads: Ts<Monadic<U>> = flatten(
         this.applicative
@@ -37,7 +37,7 @@ export class Monad<T>
     return new Monad<U>(us);
   }
 
-  return<U>(t: Ts<U>): Monadic<Ts<U>> {
+  return<U>(t: Ts<U>): Monadic<U> {
     return new Monad<U>(t);
   }
 

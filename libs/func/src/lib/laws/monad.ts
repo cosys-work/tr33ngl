@@ -5,19 +5,22 @@ export class MonadicLaws<A> {
   //**
   // @doc return is a left-identity with respect to bind
   // */
-  firstLaw<U>(a: A, h: (a: A) => Monadic<U>): boolean {
-    const monad = new Monad(a);
-    const retA = monad.return(a);
-    const retABindH = retA.bind(h);
-    return h(a) === retABindH;
+  firstLaw<U>(a: Ts<A>, h: (a: Ts<A>) => Monadic<U>): boolean {
+    const monad: Monadic<A> = new Monad<A>(a);
+    const retA: Monadic<A> = monad.return(a);
+
+    const retABindH: Monadic<U> = retA.bind(h);
+    const ha: Monadic<U> = h(a);
+
+    return ha === retABindH;
   }
 
   //**
   // @doc return is a right-identity with respect to bind
   // */
-  secondLaw(a: A): boolean {
-    const m = new Monad(a);
-    const mBindRet = m.bind(m.return);
+  secondLaw(a: Ts<A>): boolean {
+    const m: Monadic<A> = new Monad<A>(a);
+    const mBindRet: Monadic<A> = m.bind(m.return);
     return mBindRet === m;
   }
 
@@ -25,14 +28,15 @@ export class MonadicLaws<A> {
   // @doc associativity for bind.
   // Note that these are true not just for the 0th index monads in the results.
   // */
-  thirdLaw<U>(a: A, h: (a: Ts<U>) => Monadic<unknown>, g: (a: Ts<A>) => Monadic<U>) {
-    const m = new Monad(a);
-    const mBindG = m.bind(g);
-    const mBindGBindH = mBindG.bind(h);
+  thirdLaw<U>(a: Ts<A>, h: (a: Ts<U>) => Monadic<unknown>, g: (a: Ts<A>) => Monadic<U>) {
+    const m = new Monad<A>(a);
+    const mBindG: Monadic<U> = m.bind(g);
 
-    const lambdaG = (aa: Ts<A>) => g(aa);
-    const lambdaGBindH = (_: Ts<A>) => lambdaG(a).bind(h);
-    const mBindLambdaGBindH = m.bind(lambdaGBindH);
+    const lambdaG: (aa: Ts<A>) => Monadic<U> = (aa: Ts<A>) => g(aa);
+    const lambdaGBindH: (aa: Ts<A>) => Monadic<unknown> = (_: Ts<A>) => lambdaG(a).bind(h);
+
+    const mBindGBindH: Monadic<unknown> = mBindG.bind(h);
+    const mBindLambdaGBindH: Monadic<unknown> = m.bind(lambdaGBindH);
 
     return mBindGBindH === mBindLambdaGBindH;
   }

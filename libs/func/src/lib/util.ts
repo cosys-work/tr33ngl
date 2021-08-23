@@ -21,31 +21,31 @@ export const prims: Primitives = {
 }
 
 
-export function isnt(u: unknown): boolean {
+export function isnt(u: unknown): u is undefined {
   return typeof u === prims.undefined;
 }
 
-export function isNObj(u: unknown): boolean {
+export function isNObj(u: unknown): u is object {
   return typeof u === prims.object;
 }
 
-export function isStr(u: unknown): boolean {
+export function isStr(u: unknown): u is string {
   return typeof u === prims.string;
 }
 
-export function isBool(u: unknown): boolean {
+export function isBool(u: unknown): u is boolean {
   return typeof u === prims.boolean;
 }
 
-export function isNum(u: unknown): boolean {
+export function isNum(u: unknown): u is number {
   return typeof u === prims.number;
 }
 
-export function isBig(u: unknown): boolean {
+export function isBig(u: unknown): u is bigint {
   return typeof u === prims.bigint;
 }
 
-export function isSym(u: unknown): boolean {
+export function isSym(u: unknown): u is symbol {
   return typeof u === prims.symbol;
 }
 
@@ -53,7 +53,7 @@ export function isFun(u: unknown): boolean {
   return typeof u === prims.function;
 }
 
-export function is(u: unknown, p: keyof Primitives): boolean {
+export function is(u: unknown, p: keyof Primitives): u is typeof p {
   return p === typeof u;
 }
 

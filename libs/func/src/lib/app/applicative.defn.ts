@@ -26,6 +26,6 @@ export class Applicative<T>
   {
     const t: (a: T) => U = transformApp.self.u;
     const f: Functorial<T> = this.functor;
-    return new Applicative(f.fmap((a) => t(a)).u);
+    return new Applicative<Ts<U>>(f.fmap((a) => t(a)).u);
   }
 }

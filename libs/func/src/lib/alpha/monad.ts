@@ -14,12 +14,12 @@ export class AlphaMonad<T>
   }
 
   bind<U>(
-    transformApp: (value: T) => Monadic<U>
-  ): Monadic<Ts<U>> {
+    transformApp: (value: Ts<T>) => Monadic<U>
+  ): Monadic<U> {
     return this.monad.bind(transformApp);
   }
 
-  return<U>(t: Ts<U>): Monadic<Ts<U>> {
+  return<U>(t: Ts<U>): Monadic<U> {
     return this.monad.return(t);
   }
 

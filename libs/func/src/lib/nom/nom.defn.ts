@@ -1,12 +1,14 @@
-import { isBool, isPrimitive, Val } from "@cosys/func";
+import { isBool, isPrimitive, ZenVal, ZenValued } from "@cosys/func";
 
-export interface Nom<U> extends Val<U> {
+
+export interface Nom<U> {
   t: string;
 }
 
-export function nom<U>(u: any, type?: string): Nom<U>{
-  const isPrim = isPrimitive(u);
-  const t = !isBool(isPrim) ? isPrim : u["type"] ?? type;
-  return ({ t, u });
-}
+export interface ZenNom<U> extends ZenVal<U>, Nom<U> {}
 
+export function nom<U>(u: any, t?: string): ZenNom<U>{
+  const isPrim = isPrimitive(u);
+  const type = !isBool(isPrim) ? isPrim : u["type"] ?? t;
+  return new ZenValued(u, type);
+}
