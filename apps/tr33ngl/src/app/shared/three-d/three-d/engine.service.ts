@@ -1,5 +1,4 @@
-
-import * as THREE from 'three';
+import * as THREE from "three";
 import { ElementRef, Injectable, NgZone, OnDestroy } from "@angular/core";
 
 @Injectable({
@@ -11,13 +10,11 @@ export class EngineService implements OnDestroy {
   private renderer!: THREE.WebGLRenderer;
   private camera!: THREE.PerspectiveCamera;
   private scene!: THREE.Scene;
-  private light!: THREE.AmbientLight;
-
-  private cube!: THREE.Mesh;
-
   private frameId!: number;
 
-  public constructor(private ngZone: NgZone) {}
+  public constructor(
+    private ngZone: NgZone
+  ) {}
 
   public ngOnDestroy(): void {
     if (this.frameId !== undefined) {
@@ -25,41 +22,67 @@ export class EngineService implements OnDestroy {
     }
   }
 
-  public createScene(canvas: ElementRef<HTMLCanvasElement>): void {
-    // The first step is to get the reference of the canvas element from our HTML document
-    this.canvas = canvas.nativeElement;
+  adderToScene(): THREE.Scene {
+    const scene = this.scene;
+    const meshMaterial = new THREE.MeshBasicMaterial({ color: 0xFF00FF, wireframe: true });
+    const sphere = new THREE.Mesh( new THREE.SphereGeometry( 5 ), meshMaterial );
+    sphere.position.set( -15, 15, 15 );
+    scene.add( sphere );
 
-    this.renderer = new THREE.WebGLRenderer({
-      canvas: this.canvas,
-      alpha: true,    // transparent background
-      antialias: true // smooth edges
-    });
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    const icosahedron = new THREE.Mesh( new THREE.IcosahedronGeometry( 5 ), meshMaterial );
+    icosahedron.position.set( 15, 15, -15 );
+    scene.add( icosahedron );
 
-    // create the scene
-    this.scene = new THREE.Scene();
+    const torus = new THREE.Mesh( new THREE.TorusGeometry( 5, 3 ), meshMaterial );
+    torus.position.set( -15, 15, -15 );
+    scene.add( torus );
 
-    this.camera = new THREE.PerspectiveCamera(
-      75, window.innerWidth / window.innerHeight, 0.1, 1000
-    );
-    this.camera.position.z = 5;
-    this.scene.add(this.camera);
+    const cylinder = new THREE.Mesh( new THREE.CylinderGeometry( 5, 5, 5 ), meshMaterial );
+    cylinder.position.set( 15, -15, 15 );
+    scene.add( cylinder );
 
-    // soft white light
-    this.light = new THREE.AmbientLight(0x404040);
-    this.light.position.z = 10;
-    this.scene.add(this.light);
+    const circle = new THREE.Mesh( new THREE.CircleGeometry( 5 ), meshMaterial );
+    circle.position.set( -15, -15, 15 );
+    scene.add( circle );
+
+    const octahedron = new THREE.Mesh( new THREE.OctahedronGeometry( 5 ), meshMaterial );
+    octahedron.position.set( 15, -15, -15 );
+    scene.add( octahedron );
+
+    const torusKnot = new THREE.Mesh( new THREE.TorusKnotGeometry( 5, 1 ), meshMaterial );
+    torusKnot.position.set( -15, -15, -15 );
+    scene.add( torusKnot );
 
     const geometry = new THREE.PlaneGeometry( 1, 1 );
     const material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
     const plane = new THREE.Mesh( geometry, material );
     this.scene.add( plane );
 
-    // const geometry = new THREE.BoxGeometry(1, 1, 1);
-    // const material = new THREE.MeshBasicMaterial({color: 0x00ff00});
-    // this.cube = new THREE.Mesh(geometry, material);
-    // this.scene.add(this.cube);
+    return scene;
+  }
 
+  renderScene() {
+    this.renderer = new THREE.WebGLRenderer({
+      canvas: this.canvas,
+      alpha: true,    // transparent background
+      antialias: true // smooth edges
+    });
+    this.renderer.setSize(700, 350);
+
+    // create the scene
+    this.scene = new THREE.Scene();
+    this.camera = new THREE.PerspectiveCamera(
+      75, 16 / 9, 0.1, 1000
+    );
+    this.camera.position.set( 0, 0, 25 );
+    this.camera.lookAt( new THREE.Vector3( 0, 0, 0 ) );
+    this.scene.add(this.camera);
+  }
+
+  public createScene(canvas: ElementRef<HTMLCanvasElement>): void {
+    this.canvas = canvas.nativeElement;
+    this.renderScene();
+    this.adderToScene();
   }
 
   public animate(): void {
@@ -84,9 +107,6 @@ export class EngineService implements OnDestroy {
     this.frameId = requestAnimationFrame(() => {
       this.render();
     });
-
-    this.cube.rotation.x += 0.01;
-    this.cube.rotation.y += 0.01;
     this.renderer.render(this.scene, this.camera);
   }
 

@@ -35,8 +35,8 @@ export class GraphXyzComponent implements OnInit {
       manipulation: {
         enabled: true
       },
-      height: '250px',
-      width: '600px',
+      height: '350px',
+      width: '900px',
       clickToUse: true
     };
     const container = document.getElementsByClassName("network")[selector];
