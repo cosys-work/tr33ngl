@@ -69,7 +69,7 @@ export function isPrimitive(u: unknown): false | keyof Primitives {
 export type Ts<T> = T | T[];
 
 export const newObj = <T>(data: T) => {
-  const origData = data;
+  const origData: any = data;
   Object.keys(origData)
     .forEach(
       (key) => Object.defineProperty(

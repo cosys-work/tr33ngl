@@ -13,7 +13,8 @@ export class EngineService implements OnDestroy {
   private frameId!: number;
 
   public constructor(
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    // private axis: AxisEngineService
   ) {}
 
   public ngOnDestroy(): void {
@@ -77,6 +78,8 @@ export class EngineService implements OnDestroy {
     this.camera.position.set( 0, 0, 25 );
     this.camera.lookAt( new THREE.Vector3( 0, 0, 0 ) );
     this.scene.add(this.camera);
+
+    // this.axis.init(this.camera)
   }
 
   public createScene(canvas: ElementRef<HTMLCanvasElement>): void {
