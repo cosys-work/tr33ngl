@@ -8,16 +8,12 @@ const routes: Routes = [
     loadChildren: () => import('./charts/gridish.module').then(m => m.GridishModule)
   },
   {
-    path: 'ground',
+    path: 'gra',
     loadChildren: () => import('./gallery/component/h-grafs/h-grafs.module').then(m => m.HGrafsModule)
   },
   {
     path: 'key-val',
     loadChildren: () => import('./gallery/component/kv/kv.module').then(m => m.KvModule)
-  },
-  {
-    path: 'schemes',
-    loadChildren: () => import('./gallery/component/slides/slides.module').then(m => m.SlidesModule)
   },
   {
     path: 'init',

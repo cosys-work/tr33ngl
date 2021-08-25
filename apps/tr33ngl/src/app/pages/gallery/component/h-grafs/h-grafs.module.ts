@@ -21,6 +21,7 @@ import { GraphXyComponent } from "./graf/graph-xy/graph-xy.component";
 import { GraphXyzComponent } from "./graf/graph-xyz/graph-xyz.component";
 import { GraphDivComponent } from "./graf/graph-div/graph-div.component";
 import { ThreeDModule } from "../../../../shared/three-d/three-d.module";
+import { GraForceComponent } from './graf/gra-force/gra-force.component';
 
 const COMPS = [
   GrafComponent,
@@ -28,12 +29,14 @@ const COMPS = [
   GraphToolboxComponent,
   GraphXyComponent,
   GraphXyzComponent,
-  GraphDivComponent
+  GraphDivComponent,
+  GraForceComponent
 ]
 
 @NgModule({
   declarations: [
-    ...COMPS
+    ...COMPS,
+    GraForceComponent
   ],
   imports: [
     CommonModule,

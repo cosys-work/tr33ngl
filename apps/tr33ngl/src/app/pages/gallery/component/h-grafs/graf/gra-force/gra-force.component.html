@@ -1,0 +1,19 @@
+<div>
+  <div nz-row nzAlign="top" nzJustify="start">
+    <div nz-col class="gutter-row" [nzSpan]="12">
+      <div nz-row class="inner-box">
+        <div id="threeDGraph"></div>
+        <div id="topmenu">
+          <button id="b_a" (click)="toggleData($event)">X</button>
+          <button id="b_b" (click)="toggleData($event)">Y</button>
+          <button id="b_ab" (click)="toggleData($event)">Z</button>
+        </div>
+        <div id="menu"></div>
+      </div>
+    </div>
+  </div>
+  <div class="graphData" nz-row nzJustify="end">
+    <span id="graphDataDescription" ></span>
+  </div>
+</div>
+

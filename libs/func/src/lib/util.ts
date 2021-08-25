@@ -29,6 +29,10 @@ export function isNObj(u: unknown): u is object {
   return typeof u === prims.object;
 }
 
+export function isNull(u: unknown): u is null {
+  return u === null;
+}
+
 export function isStr(u: unknown): u is string {
   return typeof u === prims.string;
 }
@@ -68,16 +72,23 @@ export function isPrimitive(u: unknown): false | keyof Primitives {
 
 export type Ts<T> = T | T[];
 
-export const newObj = <T>(data: T) => {
-  const origData: any = data;
-  Object.keys(origData)
-    .forEach(
-      (key) => Object.defineProperty(
-        data,
-        key,
-        { get: () => origData[key] }
-      )
-    );
-  return data;
+
+export class AlphaAttribute<U> {
+
+  readonly attrib: unknown;
+
+  constructor(public attr: string, public attribute: U) {
+    this.attrib = {
+      [attr]: attribute
+    };
+  }
 }
 
+const ne: <U>(attr: string, attribute: U) => AlphaAttribute<U> = <U>(attr: string, attribute: U) => new AlphaAttribute(attr, attribute);
+
+export const newObjWithAttr:
+  <T, U>(objekt: T, attr: string, attribute: U, neType?: unknown) => T & typeof neType
+  = <T, U>(objekt: T, attr: string, attribute: U, neType = ne(attr, attribute).attrib) => {
+  console.log("neType", neType);
+  return  Object.defineProperty(objekt, attr, { value: attribute, writable: false, enumerable: false })
+}

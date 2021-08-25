@@ -114,8 +114,8 @@ export class EngineService implements OnDestroy {
   }
 
   public resize(): void {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+    const width = 700;
+    const height = 350;
 
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();

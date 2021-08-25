@@ -1,7 +1,13 @@
 <cosys-graf-header></cosys-graf-header>
 <div>
-  <div nz-row nzAlign="middle" nzJustify="start" *ngFor="let d of [0, 1]">
+  <div nz-row nzAlign="top" nzJustify="center">
     <cosys-graph-xy></cosys-graph-xy>
+    <cosys-gra-force></cosys-gra-force>
+  </div>
+  <div nz-row nzAlign="top" nzJustify="center">
+    <cosys-graph-xyz>
+      <div class="network"></div>
+    </cosys-graph-xyz>
     <cosys-graph-xyz>
       <div class="network"></div>
     </cosys-graph-xyz>

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { ImgObjSkel8n } from "../models/image.model";
 
 export const urlFactory: (index: number) => string = (index) =>
-  encodeURI(`assets/Large Scale Projects in CS_${index}.jpg`);
+  encodeURI(`assets/img/Large Scale Projects in CS_${index}.jpg`);
 
 export const imageObject: (index: number) => ImgObjSkel8n = (index) => ({
   image: urlFactory(index),
