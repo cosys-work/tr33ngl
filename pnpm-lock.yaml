@@ -45,6 +45,7 @@ importers:
       '@nestjs/throttler': ^2.0.0
       '@nestjs/typeorm': ^8.0.2
       '@ngx-formly/core': ^5.10.22
+      '@ngx-formly/schematics': 5.10.22
       '@nrwl/angular': 12.7.2
       '@nrwl/cli': 12.7.2
       '@nrwl/cypress': 12.7.2
@@ -111,6 +112,7 @@ importers:
       ng-packagr: ^12.2.0
       ng-zorro-antd: 12.0.1
       ngraph.forcelayout: ^3.1.0
+      ngx-formly-antd: ^11.0.0
       ngx-image-gallery: ^2.0.5
       ngx-lightbox: ^2.4.1
       nx: ^12.7.2
@@ -207,6 +209,7 @@ importers:
       ng-image-slider: 2.8.0_aef65abcaff07d5022c9a93c03fff48c
       ng-zorro-antd: 12.0.1_7b1ce7a0ffa832abcd32cb32ecec7aad
       ngraph.forcelayout: 3.1.0
+      ngx-formly-antd: 11.0.0_aac94b437fe1f05d32ae6b8e7625303b
       ngx-image-gallery: 2.0.5_ee7db459c2ce42ead3b6b2882e7905b0
       ngx-lightbox: 2.4.1
       passport: 0.4.1
@@ -248,6 +251,7 @@ importers:
       '@compodoc/compodoc': 1.1.14
       '@nestjs/schematics': 8.0.2_typescript@4.3.5
       '@nestjs/testing': 8.0.6_67f7e5db8827badcb202b1d38f6b1aea
+      '@ngx-formly/schematics': 5.10.22
       '@nrwl/cli': 12.7.2
       '@nrwl/cypress': 12.7.2_f332c5510517da8b74460522a5c7e253
       '@nrwl/eslint-plugin-nx': 12.7.2_c56421c4ee4f233af1f7f05a0fbd392a
@@ -3732,6 +3736,14 @@ packages:
       rxjs: 7.3.0
       tslib: 1.14.1
     dev: false
+
+  /@ngx-formly/schematics/5.10.22:
+    resolution: {integrity: sha512-zoRtB0KIrJFkxDxav4IzUa0HxllIz/HWYu66RfgRJx80DtoWvaR/zeFabWkLwBluS/o+8HXU8+E0izUnMNjyug==}
+    dependencies:
+      '@angular-devkit/core': 12.2.2
+      '@angular-devkit/schematics': 12.2.2
+      '@schematics/angular': 12.2.2
+    dev: true
 
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -12839,6 +12851,21 @@ packages:
 
   /ngraph.random/1.1.0:
     resolution: {integrity: sha512-h25UdUN/g8U7y29TzQtRm/GvGr70lK37yQPvPKXXuVfs7gCm82WipYFZcksQfeKumtOemAzBIcT7lzzyK/edLw==}
+    dev: false
+
+  /ngx-formly-antd/11.0.0_aac94b437fe1f05d32ae6b8e7625303b:
+    resolution: {integrity: sha512-vqBklP1ymJxv1lw7ypGh27nSmvjQNK75guFX5JIglk1npR3qS4wwH84G27B1t3EMZ8fxx0lkHDh+J070C6WYRA==}
+    peerDependencies:
+      '@angular/common': ^11.2.14
+      '@angular/core': ^11.2.14
+      '@ngx-formly/core': ^6.0.0-next.1
+      ng-zorro-antd: ^11.4.2
+    dependencies:
+      '@angular/common': 12.2.2_@angular+core@12.2.2+rxjs@7.3.0
+      '@angular/core': 12.2.2_rxjs@7.3.0+zone.js@0.11.4
+      '@ngx-formly/core': 5.10.22_@angular+forms@12.2.2+rxjs@7.3.0
+      ng-zorro-antd: 12.0.1_7b1ce7a0ffa832abcd32cb32ecec7aad
+      tslib: 2.3.1
     dev: false
 
   /ngx-image-gallery/2.0.5_ee7db459c2ce42ead3b6b2882e7905b0:
