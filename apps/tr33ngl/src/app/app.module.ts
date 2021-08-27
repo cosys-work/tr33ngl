@@ -15,6 +15,7 @@ import { IconsProviderModule } from './icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { MatIconModule } from "@angular/material/icon";
+import { LayoutModule } from "./layout/layout.module";
 
 registerLocaleData(en);
 
@@ -25,6 +26,7 @@ registerLocaleData(en);
     HttpClientModule,
     BrowserAnimationsModule,
     PagesModule,
+    LayoutModule,
     ScullyLibModule,
     FormsModule,
     AppRoutingModule,

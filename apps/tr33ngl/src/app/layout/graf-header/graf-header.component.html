@@ -1,5 +1,9 @@
-<div nz-row>
-  <nz-page-header class="site-page-header" nzBackIcon>
+<div class="main" nz-row nzAlign="bottom" nzJustify="center">
+
+  <nz-page-header class="site-page-header"
+                  (click)="togglr.toggleCollapsed($event)"
+                  nzBackIcon
+  >
     <nz-page-header-title>Love Plan</nz-page-header-title>
     <nz-page-header-subtitle>
       <nz-breadcrumb>
@@ -27,7 +31,7 @@
       <div class="content">
         <div class="main">
           <nz-descriptions nzSize="small" [nzColumn]="2">
-           </nz-descriptions>
+          </nz-descriptions>
         </div>
       </div>
     </nz-page-header-content>

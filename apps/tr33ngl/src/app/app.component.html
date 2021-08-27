@@ -3,14 +3,14 @@
             nzCollapsible
             nzWidth="256px"
             nzBreakpoint="md"
-            [(nzCollapsed)]="isColPSD"
+            [(nzCollapsed)]="togglr.isColPSD"
             >
     <div class="sidebar-logo">
       <a href="#">
         <mat-icon>ac_unit</mat-icon> <h1>Project Tr33ngl</h1>
       </a>
     </div>
-    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isColPSD">
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="togglr.isColPSD">
       <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
         <ul>
           <li nz-menu-item nzMatchRouter>
@@ -42,12 +42,7 @@
   <nz-layout>
     <nz-header>
       <div class="app-header">
-        <span class="header-trigger" (click)="toggleCollapsed($event)">
-            <em class="trigger"
-               nz-icon
-               [nzType]="isColPSD ? 'menu-unfold' : 'menu-fold'"
-            ></em>
-        </span>
+        <cosys-graf-header></cosys-graf-header>
       </div>
     </nz-header>
     <nz-content>

@@ -1,21 +1,24 @@
 import * as THREE from "three";
 import { ElementRef, Injectable, NgZone, OnDestroy } from "@angular/core";
+import { interval } from "rxjs";
+import { coords3d, inc } from "../../utils/utils";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class EngineService implements OnDestroy {
 
   private canvas!: HTMLCanvasElement;
   private renderer!: THREE.WebGLRenderer;
   private camera!: THREE.PerspectiveCamera;
   private scene!: THREE.Scene;
+  private plane!: THREE.Mesh[];
   private frameId!: number;
 
   public constructor(
     private ngZone: NgZone,
     // private axis: AxisEngineService
   ) {}
+
+
 
   public ngOnDestroy(): void {
     if (this.frameId !== undefined) {
@@ -54,11 +57,14 @@ export class EngineService implements OnDestroy {
     torusKnot.position.set( -15, -15, -15 );
     scene.add( torusKnot );
 
-    const geometry = new THREE.PlaneGeometry( 1, 1 );
-    const material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
-    const plane = new THREE.Mesh( geometry, material );
-    this.scene.add( plane );
-
+    const geometry = new THREE.PlaneGeometry( 20, 20 );
+    const transparent = true;
+    const opacity = 0.5;
+    const r = new THREE.MeshBasicMaterial( {color: 0xff0000, side: THREE.DoubleSide, transparent, opacity } );
+    const g = new THREE.MeshBasicMaterial( {color: 0x00ff00, side: THREE.DoubleSide, transparent, opacity } );
+    const b = new THREE.MeshBasicMaterial( {color: 0x0000ff, side: THREE.DoubleSide, transparent, opacity } );
+    this.plane = Array(3).fill(0).map((_, i) => new THREE.Mesh(geometry, [r, g, b][i % 3]));
+    this.plane.forEach((p) => this.scene.add(p));
     return scene;
   }
 
@@ -89,6 +95,7 @@ export class EngineService implements OnDestroy {
   }
 
   public animate(): void {
+
     // We have to run this outside angular zones,
     // because it could trigger heavy changeDetection cycles.
     this.ngZone.runOutsideAngular(() => {
@@ -99,11 +106,20 @@ export class EngineService implements OnDestroy {
           this.render();
         });
       }
-
       window.addEventListener('resize', () => {
         this.resize();
       });
+      const coords = coords3d();
+      const rots = [
+        () => this.plane[0].rotateX(inc(0, coords)),
+        () =>  this.plane[1].rotateY(inc(1, coords)),
+        () =>  this.plane[2].rotateZ(inc(2, coords))
+      ];
+      interval(1000).subscribe((_) => {
+        rots[coords[3]]();
+      });
     });
+
   }
 
   public render(): void {
