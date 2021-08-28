@@ -18,6 +18,10 @@ export class AlphaFunctor<T>
     return this.functor.fmap(f);
   }
 
+  pure<U>(u: U): Functorial<U> {
+    return this.functor.pure(u);
+  }
+
   inside(): Ts<T> {
     return this.functor.inside();
   }

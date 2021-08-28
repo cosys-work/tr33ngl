@@ -1,4 +1,4 @@
-import { Functor, Functorial, Ts } from "@cosys/func";
+import { Functorial, Ts } from "@cosys/func";
 import { AlphaFunctor } from "../alpha/functor";
 
 export interface Applicativity<T> extends Functorial<T>{
@@ -6,17 +6,19 @@ export interface Applicativity<T> extends Functorial<T>{
   apply<U>(
     transformApp: Applicativity<(value: T) => U>
   ): Applicativity<Ts<U>>;
+  pure<U>(u: U): Applicativity<U>;
 }
 
 export class Applicative<T>
   extends AlphaFunctor<T>
   implements Applicativity<T> {
 
-  readonly functor!: Functorial<T>;
-
   constructor(t: Ts<T>) {
     super(t);
-    this.functor = new Functor<T>(t);
+  }
+
+  pure<U>(u: U): Applicativity<U> {
+    return new Applicative(u);
   }
 
   apply<U>(

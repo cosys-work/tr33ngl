@@ -61,8 +61,6 @@ export function is(u: unknown, p: keyof Primitives): u is typeof p {
   return p === typeof u;
 }
 
-export function id<T>(u:T): T { return u; }
-
 export function isPrimitive(u: unknown): false | keyof Primitives {
   const typ = typeof u;
   const l = Object.values(prims);

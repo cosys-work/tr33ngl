@@ -19,8 +19,8 @@ export class AlphaMonad<T>
     return this.monad.bind(transformApp);
   }
 
-  return<U>(t: Ts<U>): Monadic<U> {
-    return this.monad.return(t);
+  pure<U>(u: U): Monadic<U> {
+    return this.monad.pure(u);
   }
 
 }

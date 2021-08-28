@@ -9,6 +9,7 @@ export interface Functorial<T> extends Mappable<T>, ZenVal<T> {
   inside(): Ts<T>;
   fInside(): Functorial<Ts<T>>;
   fmap<U>( f: (a: T) => U): Functorial<Ts<U>>;
+  pure<U>(u: U): Functorial<U>;
 }
 
 export class Functor<T>
@@ -43,6 +44,10 @@ export class Functor<T>
   {
     const fts: UMapper<T> = this.self;
     return new Functor<Ts<U>>(fts.map(f));
+  }
+
+  pure<U>(u: U): Functorial<U> {
+    return new Functor(u);
   }
 
 }

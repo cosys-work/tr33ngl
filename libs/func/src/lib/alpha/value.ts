@@ -1,10 +1,21 @@
-import { ZenValued } from "../val/val.defn";
+import { Val } from "../val/val.defn";
 import { Ts } from "../util";
+import { UMapper } from "../map/umap.defn";
+import { Nom, ZenNom } from "../nom/nom.defn";
+import { nom } from "../func/tion/function.defn";
 
-export class AlphaValued<T>
-  extends ZenValued<T> {
+export class AlphaValued<U>
+  extends UMapper<U>
+  implements ZenNom<U> {
 
-  protected constructor(u: Ts<T>) {
-    super(u);
+  readonly t!: string;
+  readonly chomsky!: Nom<U> & Val<U>;
+  readonly self!: UMapper<U>;
+
+  constructor(t: Ts<U>, type?: string) {
+    super(t);
+    this.chomsky = nom(t, type);
+    this.self = new UMapper(t);
+    this.t = this.chomsky.t;
   }
 }

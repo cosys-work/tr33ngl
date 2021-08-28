@@ -7,7 +7,7 @@ export interface Monadic<T> extends Applicativity<T> {
   bind<U>(
     transformApp: (value: Ts<T>) => Monadic<U>
   ): Monadic<U>;
-  return<U>(t: Ts<U>): Monadic<U>;
+  pure<U>(u: U): Monadic<U>;
 }
 
 export class Monad<T>
@@ -37,8 +37,8 @@ export class Monad<T>
     return new Monad<U>(us);
   }
 
-  return<U>(t: Ts<U>): Monadic<U> {
-    return new Monad<U>(t);
+  pure<U>(u: U): Monadic<U> {
+    return new Monad(u);
   }
 
 }

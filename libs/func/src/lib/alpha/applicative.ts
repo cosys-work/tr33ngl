@@ -20,4 +20,8 @@ export class AlphaApplicative<T>
     return this.applicative.apply(transformApp);
   }
 
+  pure<U>(u: U): Applicativity<U> {
+    return this.applicative.pure(u);
+  }
+
 }
