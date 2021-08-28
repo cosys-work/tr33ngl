@@ -1,8 +1,6 @@
 import { AfterViewInit, Injectable, NgZone } from "@angular/core";
 import ForceGraph3D, { ForceGraph3DInstance } from "3d-force-graph";
-import * as THREE from "three";
 import { csvParse } from "d3-dsv";
-import { interval } from "rxjs";
 
 export interface Described<U> {
   obj: U;
@@ -11,16 +9,20 @@ export interface Described<U> {
 
 export type GraphMorphism = (graph: ForceGraph3DInstance) => ForceGraph3DInstance;
 
+export const distAngle = () => ({ dist: 450, angle: 0 });
+
 @Injectable()
 export class GraForceService implements AfterViewInit {
 
   private curDataSetIdx!: number;
 
   private readonly dataSets!: Described<(graph: any) => any>[];
-  private readonly graphFunc: ForceGraph3DInstance = ForceGraph3D();
-  graphFuncCache!: ForceGraph3DInstance;
-
+  private readonly graphFunc: ForceGraph3DInstance = ForceGraph3D({controlType: "orbit"});
+  private graphFuncCache!: ForceGraph3DInstance;
+  private cameraZDistance: number = distAngle().dist;
+  private ngD = distAngle();
   private frameId!: number;
+
   private readonly graphElem: () => HTMLElement = () => document.getElementById("threeDGraph")!;
   private readonly graphDataElem: () => HTMLElement = () => document.getElementById("graphDataDescription")!;
 
@@ -36,11 +38,22 @@ export class GraForceService implements AfterViewInit {
   }
 
   config(fg3dI: ForceGraph3DInstance): ForceGraph3DInstance {
-    return fg3dI.width(700).height(350).backgroundColor("#000000").showNavInfo(false);
+    return fg3dI
+      .width(700)
+      .height(350)
+      .backgroundColor("#000000")
+      .showNavInfo(true)
+      .enableNavigationControls(true)
+      .cameraPosition({ z: this.cameraZDistance });
+  }
+
+  getCamZ(fd3di: ForceGraph3DInstance): number {
+    return fd3di.cameraPosition().z;
   }
 
   private graphFuncDefault(): ForceGraph3DInstance {
     this.graphFuncCache = this.config(this.graphFunc(this.graphElem()));
+    console.log("graCache", this.graphFuncCache);
     return this.graphFuncCache;
   }
 
@@ -53,18 +66,26 @@ export class GraForceService implements AfterViewInit {
   public animate(): void {
     // We have to run this outside angular zones,
     // because it could trigger heavy changeDetection cycles.
-    this.ngZone.runOutsideAngular(() => this.rotate());
+    this.ngZone.runOutsideAngular(() => {
+      if (document.readyState !== 'loading') {
+        this.rotate();
+      } else {
+        window.addEventListener('DOMContentLoaded', () => {
+          this.rotate();
+        });
+      }
+    });
   }
 
   private rotate() {
-    const quaternion = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), 0.1);
-    interval(1000).subscribe((_) => {
-      if (!!this.graphFuncCache.setRotationFromQuaternion) {
-        console.log("git gud");
-        this.graphFuncCache.setRotationFromQuaternion(quaternion);
-      }
+    this.frameId = requestAnimationFrame(() => {
+      this.graphFuncCache.cameraPosition({
+        x: this.ngD.dist * Math.sin(this.ngD.angle),
+        z: this.ngD.dist * Math.cos(this.ngD.angle)
+      })
+      this.ngD.angle = this.ngD.angle + Math.PI / 150;
+      this.rotate();
     });
-
   }
 
   toggleData = (_?: unknown) => {
