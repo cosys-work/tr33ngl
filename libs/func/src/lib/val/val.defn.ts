@@ -1,6 +1,7 @@
 import { UMapper } from "../map/umap.defn";
-import { Nom, nom, ZenNom } from "../nom/nom.defn";
+import { Nom, ZenNom } from "../nom/nom.defn";
 import { Ts } from "../util";
+import { nom } from "../func/tion/function.defn";
 
 
 export interface Val<U> {
