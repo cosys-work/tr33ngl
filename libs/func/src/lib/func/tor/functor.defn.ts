@@ -1,5 +1,5 @@
 import { Mappable, UMapper } from "../../map/umap.defn";
-import { Func } from "../tion/function.defn";
+import { FAM, Func, PFunc } from "../tion/function.defn";
 
 import { ZenVal } from "../../val/val.defn";
 import { AlphaValued } from "../../alpha/value";
@@ -7,9 +7,10 @@ import { Ts } from "../../util";
 
 export interface Functorial<T> extends Mappable<T>, ZenVal<T> {
   inside(): Ts<T>;
-  fInside(): Functorial<Ts<T>>;
-  fmap<U>( f: (a: T) => U): Functorial<Ts<U>>;
+  fInside(): Functorial<T>;
+  fmap<U>(  f:  PFunc<T, U> | FAM<PFunc<T, U>>): FAM<U>;
   pure<U>(u: U): Functorial<U>;
+  join<U>(ff: Functorial<unknown> | Functorial<Functorial<unknown>>): Functorial<U>;
 }
 
 export class Functor<T>
@@ -17,14 +18,14 @@ export class Functor<T>
   implements Functorial<T>, Mappable<T>, ZenVal<T> {
 
   constructor(t: Ts<T>) {
-    super(t);
+    super(t, "Functor");
   }
 
   inside(): Ts<T> {
     return this.map(_=>_);
   }
 
-  fInside(): Functorial<Ts<T>> {
+  fInside(): Functorial<T> {
     return this.fmap(_=>_);
   }
 
@@ -38,18 +39,28 @@ export class Functor<T>
   // a function on every value in f t.
   // */
   fmap<U>(
-    f: (a: T) => U,
+    f: PFunc<T, U> | Functorial<PFunc<T, U>>,
   ):
-    Functorial<Ts<U>>
+    Functorial<U>
   {
     const fts: UMapper<T> = this.self;
-    return new Functor<Ts<U>>(fts.map(f));
+    const mappable: PFunc<T, U> = isFunctor(f) ? f.u : f;
+    return this.join(new Functor<U>(fts.map(mappable)));
   }
 
-  pure<U>(u: U): Functorial<U> {
+  join<U>(ff: Functorial<unknown> | Functorial<Functorial<unknown>>): Functorial<U> {
+    const ffu: unknown | Functorial<unknown> = ff.u;
+    return isFunctor(ffu) ? this.join(ffu) : ff as Functorial<U>;
+  }
+
+  pure<U>(u: Ts<U>): Functorial<U> {
     return new Functor(u);
   }
 
 }
 
+export function isFunctor<T>(f: Functorial<T> | any): f is Functorial<T> {
+  const funcProperties = Object.keys(new Functor("example"));
+  return f.hasOwnProperty && funcProperties.every(f.hasOwnProperty);
+}
 

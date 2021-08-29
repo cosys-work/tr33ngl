@@ -1,5 +1,5 @@
 
-import { Functor, Functorial, Ts } from "@cosys/func";
+import { FAM, Functor, Functorial, PFunc, Ts } from "@cosys/func";
 import { AlphaZenMapper } from "./zen-mapper";
 
 
@@ -14,7 +14,7 @@ export class AlphaFunctor<T>
     this.functor = new Functor<T>(t);
   }
 
-  fmap<U>(f: (a: T) => U): Functorial<Ts<U>> {
+  fmap<U>(  f:  PFunc<T, U> | FAM<PFunc<T, U>>): FAM<U> {
     return this.functor.fmap(f);
   }
 
@@ -26,7 +26,11 @@ export class AlphaFunctor<T>
     return this.functor.inside();
   }
 
-  fInside(): Functorial<Ts<T>> {
+  fInside(): Functorial<T> {
     return this.functor.fInside();
+  }
+
+  join<U>(ff: Functorial<unknown> | Functorial<Functorial<unknown>>): Functorial<U> {
+    return this.functor.join(ff);
   }
 }

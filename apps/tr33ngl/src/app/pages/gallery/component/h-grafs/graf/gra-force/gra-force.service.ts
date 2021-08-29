@@ -53,7 +53,6 @@ export class GraForceService implements AfterViewInit {
 
   private graphFuncDefault(): ForceGraph3DInstance {
     this.graphFuncCache = this.config(this.graphFunc(this.graphElem()));
-    console.log("graCache", this.graphFuncCache);
     return this.graphFuncCache;
   }
 

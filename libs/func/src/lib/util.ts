@@ -1,3 +1,5 @@
+import { PFunc } from "./func/tion/function.defn";
+
 export interface Primitives {
   undefined: "undefined",
   object: "object",
@@ -70,11 +72,12 @@ export function isPrimitive(u: unknown): false | keyof Primitives {
 
 export type Ts<T> = T | T[];
 
+export function gOfF<T, U, V>(f: PFunc<T, U>, g: PFunc<U, V>) {
+  return (t: T) => g(f(t));
+}
 
 export class AlphaAttribute<U> {
-
   readonly attrib: unknown;
-
   constructor(public attr: string, public attribute: U) {
     this.attrib = {
       [attr]: attribute
@@ -82,11 +85,8 @@ export class AlphaAttribute<U> {
   }
 }
 
-const ne: <U>(attr: string, attribute: U) => AlphaAttribute<U> = <U>(attr: string, attribute: U) => new AlphaAttribute(attr, attribute);
-
 export const newObjWithAttr:
-  <T, U>(objekt: T, attr: string, attribute: U, neType?: unknown) => T & typeof neType
-  = <T, U>(objekt: T, attr: string, attribute: U, neType = ne(attr, attribute).attrib) => {
-  console.log("neType", neType);
+  <T, U>(objekt: T, attr: string, attribute: U, neType?: unknown) => T
+  = <T, U>(objekt: T, attr: string, attribute: U) => {
   return  Object.defineProperty(objekt, attr, { value: attribute, writable: false, enumerable: false })
 }

@@ -5,6 +5,7 @@ export * from "./lib/nom/nom.defn";
 export * from "./lib/map/umap.defn";
 
 export * from "./lib/func/tion/function.defn";
+export * from "./lib/func/tion/function.omega";
 export * from "./lib/func/tor/functor.defn";
 export * from "./lib/app/applicative.defn";
 

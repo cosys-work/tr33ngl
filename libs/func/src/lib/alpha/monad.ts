@@ -1,6 +1,7 @@
 import { AlphaApplicative } from "./applicative";
 import { Monad, Monadic } from "../mon/monad.defn";
 import { Ts } from "../util";
+import { FAM, PFunc } from "../func/tion/function.defn";
 
 export class AlphaMonad<T>
   extends AlphaApplicative<T>
@@ -21,6 +22,10 @@ export class AlphaMonad<T>
 
   pure<U>(u: U): Monadic<U> {
     return this.monad.pure(u);
+  }
+
+  fmap<U>(  f:  PFunc<T, U> | FAM<PFunc<T, U>>): FAM<U> {
+    return this.monad.fmap(f);
   }
 
 }
