@@ -29,8 +29,8 @@ export function eitherLElseR<L, R>(l: L, r: R): Eitherness<L, R> {
   try {
     const rIsNullish = r === null || r === undefined;
     return rIsNullish ? left(l) : right(r);
-  } catch (err) {
-    return left(err);
+  } catch (err: unknown) {
+    return left(err as L);
   }
 }
 

@@ -1,10 +1,10 @@
-import { ZenValued } from "../val/val.defn";
 import { Mappable } from "../map/umap.defn";
 import { Func } from "../func/tion/function.defn";
 import { Ts } from "../util";
+import { AlphaValued } from "./value";
 
 export class AlphaZenMapper<T>
-  extends ZenValued<T>
+  extends AlphaValued<T>
   implements Mappable<T> {
 
   readonly length!: number;

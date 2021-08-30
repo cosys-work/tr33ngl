@@ -35,8 +35,8 @@ export function result<T>(v: () => T): Resulting<T> {
     return resultIsNullish ?
       new Monad(fail(resulted)) :
       new Monad(pass(resulted));
-  } catch (err) {
-    return new Monad(fail(err));
+  } catch (err: unknown) {
+    return new Monad(fail(err as T));
   }
 }
 

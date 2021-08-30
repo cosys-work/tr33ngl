@@ -1,31 +1,17 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { Message } from "@cosys/api-interfaces";
 import { HttpClient } from "@angular/common/http";
-import { BehaviorSubject, timer } from "rxjs";
+import { SidebarTogglrService } from "./shared/services/root/sidebar-togglr.service";
 
 @Component({
   selector: 'cosys-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
-  isColPSD = false;
-  isCollapsed = new BehaviorSubject<boolean>(false);
   readonly hello$ = this.http.get<Message>("/api/hello");
 
-  constructor(private http: HttpClient) {}
-
-  ngOnInit(): void {
-    timer(3000).subscribe(() => {
-      this.isColPSD = true;
-      this.isCollapsed.next(this.isColPSD);
-    })
-  }
-
-  toggleCollapsed(_: Event) {
-    this.isColPSD = !this.isCollapsed.value;
-    this.isCollapsed.next(this.isColPSD);
-  }
+  constructor(private http: HttpClient, public togglr: SidebarTogglrService) {}
 
 }

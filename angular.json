@@ -173,7 +173,10 @@
               "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js",
               "node_modules/visjs-network/dist/vis-network.min.js"
             ],
-            "allowedCommonJsDependencies": ["@codewithdan/observable-store"]
+            "allowedCommonJsDependencies": [
+              "@codewithdan/observable-store",
+              "three-forcegraph"
+            ]
           },
           "configurations": {
             "production": {

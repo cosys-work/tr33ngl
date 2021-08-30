@@ -5,9 +5,9 @@ export class MonadicLaws<A> {
   //**
   // @doc return is a left-identity with respect to bind
   // */
-  firstLaw<U>(a: Ts<A>, h: (a: Ts<A>) => Monadic<U>): boolean {
+  firstLaw<U>(a: A, h: (a: Ts<A>) => Monadic<U>): boolean {
     const monad: Monadic<A> = new Monad<A>(a);
-    const retA: Monadic<A> = monad.return(a);
+    const retA: Monadic<A> = monad.pure(a);
 
     const retABindH: Monadic<U> = retA.bind(h);
     const ha: Monadic<U> = h(a);
@@ -20,7 +20,7 @@ export class MonadicLaws<A> {
   // */
   secondLaw(a: Ts<A>): boolean {
     const m: Monadic<A> = new Monad<A>(a);
-    const mBindRet: Monadic<A> = m.bind(m.return);
+    const mBindRet: Monadic<Ts<A>> = m.bind(m.pure);
     return mBindRet === m;
   }
 
