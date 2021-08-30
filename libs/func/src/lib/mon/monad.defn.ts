@@ -1,5 +1,5 @@
 import { Applicative, Applicativity } from "../app/applicative.defn";
-import { FAM, isFAM, PFunc, Ts, UMapper } from "@cosys/func";
+import { FAM, isFAM, UFunc, Ts, UMapper } from "@cosys/func";
 import { AlphaApplicative } from "../alpha/applicative";
 import { flatten } from "../utils/utils";
 
@@ -8,7 +8,7 @@ export interface Monadic<T> extends Applicativity<T> {
     transformApp: (value: Ts<T>) => Monadic<U>
   ): Monadic<U>;
   pure<U>(u: U): Monadic<U>;
-  fmap<U>(  f:  PFunc<T, U> | FAM<PFunc<T, U>>): FAM<U>
+  fmap<U>(  f:  UFunc<T, U> | FAM<UFunc<T, U>>): FAM<U>
 }
 
 export class Monad<T>
@@ -42,9 +42,9 @@ export class Monad<T>
     return new Monad(u);
   }
 
-  fmap<U>(  f:  PFunc<T, U> | FAM<PFunc<T, U>>): FAM<U> {
+  fmap<U>(  f:  UFunc<T, U> | FAM<UFunc<T, U>>): FAM<U> {
     const fts: UMapper<T> = this.self;
-    const mappable: PFunc<T, U> = isFAM(f) ? f.u : f;
+    const mappable: UFunc<T, U> = isFAM(f) ? f.u : f;
     return new Monad<U>(fts.map(mappable));
   }
 

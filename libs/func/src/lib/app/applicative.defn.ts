@@ -1,13 +1,13 @@
-import { FAM, Functorial, PFunc, Ts, UMapper } from "@cosys/func";
+import { FAM, Functorial, UFunc, Ts, UMapper } from "@cosys/func";
 import { AlphaFunctor } from "../alpha/functor";
 
 export interface Applicativity<T> extends Functorial<T>{
   readonly functor: Functorial<T>;
   apply<U>(
-    app: PFunc<T, U> | Applicativity<PFunc<T, U>>
+    app: UFunc<T, U> | Applicativity<UFunc<T, U>>
   ): Applicativity<U>;
   pure<U>(u: U): Applicativity<U>;
-  fmap<U>(  f:  PFunc<T, U> | FAM<PFunc<T, U>>): FAM<U>;
+  fmap<U>(  f:  UFunc<T, U> | FAM<UFunc<T, U>>): FAM<U>;
 }
 
 export class Applicative<T>
@@ -23,20 +23,19 @@ export class Applicative<T>
   }
 
 
-  fmap<U>(  f:  PFunc<T, U> | Applicativity<PFunc<T, U>>): Applicativity<U> {
+  fmap<U>(  f:  UFunc<T, U> | Applicativity<UFunc<T, U>>): Applicativity<U> {
     const fts: UMapper<T> = this.self;
-    const mappable: PFunc<T, U> = isApplicative(f) ? f.u : f;
+    const mappable: UFunc<T, U> = isApplicative(f) ? f.u : f;
     return new Applicative<U>(fts.map(mappable));
   }
 
   apply<U>(
-    app: PFunc<T, U> | Applicativity<PFunc<T, U>>
+    app: UFunc<T, U> | Applicativity<UFunc<T, U>>
   ):
     Applicativity<U>
   {
-    const t: (a: T) => U = isApplicative(app) ? app.self.u : app;
-    const f: Functorial<T> = this.functor;
-    return new Applicative<U>(f.fmap((a) => t(a)).u);
+    const t: UFunc<T, U> = isApplicative(app) ? app.self.u : app;
+    return new Applicative<U>(this.fmap((a) => t(a)).u);
   }
 }
 

@@ -1,5 +1,5 @@
 import { Mappable, UMapper } from "../../map/umap.defn";
-import { FAM, Func, PFunc } from "../tion/function.defn";
+import { FAM, Func, UFunc } from "../tion/function.defn";
 
 import { ZenVal } from "../../val/val.defn";
 import { AlphaValued } from "../../alpha/value";
@@ -8,7 +8,7 @@ import { Ts } from "../../util";
 export interface Functorial<T> extends Mappable<T>, ZenVal<T> {
   inside(): Ts<T>;
   fInside(): Functorial<T>;
-  fmap<U>(  f:  PFunc<T, U> | FAM<PFunc<T, U>>): FAM<U>;
+  fmap<U>(  f:  UFunc<T, U> | FAM<UFunc<T, U>>): FAM<U>;
   pure<U>(u: U): Functorial<U>;
   join<U>(ff: Functorial<unknown> | Functorial<Functorial<unknown>>): Functorial<U>;
 }
@@ -39,12 +39,12 @@ export class Functor<T>
   // a function on every value in f t.
   // */
   fmap<U>(
-    f: PFunc<T, U> | Functorial<PFunc<T, U>>,
+    f: UFunc<T, U> | Functorial<UFunc<T, U>>,
   ):
     Functorial<U>
   {
     const fts: UMapper<T> = this.self;
-    const mappable: PFunc<T, U> = isFunctor(f) ? f.u : f;
+    const mappable: UFunc<T, U> = isFunctor(f) ? f.u : f;
     return this.join(new Functor<U>(fts.map(mappable)));
   }
 

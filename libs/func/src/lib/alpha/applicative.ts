@@ -1,6 +1,6 @@
 import { AlphaFunctor } from "./functor";
 import { Applicative, Applicativity } from "../app/applicative.defn";
-import { FAM, PFunc, Ts } from "@cosys/func";
+import { FAM, Ts, UFunc } from "@cosys/func";
 
 export class AlphaApplicative<T>
   extends AlphaFunctor<T>
@@ -14,7 +14,7 @@ export class AlphaApplicative<T>
   }
 
   apply<U>(
-    app: PFunc<T, U> | Applicativity<PFunc<T, U>>
+    app: UFunc<T, U> | Applicativity<UFunc<T, U>>
   ): Applicativity<U>
   {
     return this.applicative.apply(app);
@@ -24,7 +24,7 @@ export class AlphaApplicative<T>
     return this.applicative.pure(u);
   }
 
-  fmap<U>(  f:  PFunc<T, U> | FAM<PFunc<T, U>>): FAM<U> {
+  fmap<U>(  f:  UFunc<T, U> | FAM<UFunc<T, U>>): FAM<U> {
     return this.applicative.fmap(f);
   }
 

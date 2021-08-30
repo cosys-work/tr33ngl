@@ -9,7 +9,8 @@ import { AlphaValued } from "../../alpha/value";
 export type Func<T, U> = (value: T, index: number, values: T[]) => U;
 export const idFunc: Func<unknown, unknown[]> = (t) => new Array(1).fill(t);
 
-export type PFunc<T, U> = (value: T) => U;
+export type UFunc<T, U> = (value: T) => U;
+export type PFunc<T, U> = (value?: T) => U;
 export type FAM<T> = Functorial<T> | Applicativity<T> | Monadic<T>;
 
 export function nom<U>(u: any, type?: string): Nom<U> & Val<U> {

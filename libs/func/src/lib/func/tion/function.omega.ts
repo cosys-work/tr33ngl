@@ -24,7 +24,7 @@ export const idOmega: <T>(t: FAM<T>) => PFunc<T, FAM<T>>
 }
 
 export const applyOmega: <T>(t: Ts<T>) => <U>(f: Applicativity<(a: T) => U>) =>
-  PFunc<T, Applicativity<Ts<U>>>
+  PFunc<T, Applicativity<U>>
   = <T>(t: Ts<T>) => <U>(f: Applicativity<(a: T) => U>) => () => {
   return new Applicative(t).apply(f);
 }
