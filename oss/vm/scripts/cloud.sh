@@ -18,9 +18,9 @@ docker run -d \
  -e POSTGRES_DB="$DB_NAME" \
  -e POSTGRES_PASSWORD="$DB_PASS" \
  -e POSTGRES_HOST="$PG_NAME" \
- -e NEXTCLOUD_DATA_DIR="$(pwd)/leofs/pVol" \
+ -e NEXTCLOUD_DATA_DIR="$(pwd)/scripts/leofs/pVol" \
  -v db:/var/lib/postgresql/data \
- -v pVol:"$(pwd)/leofs/pVol" \
+ -v pVol:"$(pwd)/scripts/leofs/pVol" \
  -v nextcloud:/leofs/pVol/nextcloud \
  -v apps:/leofs/pVol/custom_apps \
  -v config:/leofs/pVol/config \

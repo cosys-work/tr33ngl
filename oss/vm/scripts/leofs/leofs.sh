@@ -9,7 +9,7 @@ docker build -t $NAME .
 safe_stop_remove "$NAME"
 docker run -d \
   --net "$KEY_NET" \
-  -v pVol:"$(pwd)/pVol" \
+  -v pVol:"$(pwd)/scripts/leofs/pVol" \
   $NAME
 
-echo "...finished NEXTCLOUD installation sequence.";
+echo "...finished LEOFS installation sequence.";
