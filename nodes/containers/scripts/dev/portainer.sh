@@ -17,5 +17,6 @@ if [ "$( docker container inspect -f '{{.State.Running}}' "$PORTAINER" )" != "tr
     --name="$PORTAINER" \
     --restart=always \
     -v /var/run/docker.sock:/var/run/docker.sock \
-    -v portainer_data:/data portainer/portainer-ce:"$PORTAINER_VRSN"
+    -v portainer_data:/data \
+    portainer/portainer-ce:"$PORTAINER_VRSN"
 fi

@@ -9,7 +9,7 @@ docker build -t $NAME .
 safe_stop_remove "$NAME"
 docker run -d \
   --net "$KEY_NET" \
-  -v pVol:"$(pwd)/scripts/leofs/pVol" \
+  -v pVol:"$(pwd)/scripts/leofs/rwVol" \
   $NAME
 
 echo "...finished LEOFS installation sequence.";

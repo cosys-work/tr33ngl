@@ -4,9 +4,9 @@ export KEY_NET="key-net"
 export KEY_VOL="key-vol"
 
 
-export DB_USER="admin";
+export DB_USER="nextcloud";
 export DB_NAME="nextcloud";
-export DB_PASS="admin";
+export DB_PASS="nextcloud";
 
 
 if test -z "$BASH_VERSION"; then

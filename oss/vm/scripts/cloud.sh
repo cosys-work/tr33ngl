@@ -6,7 +6,7 @@ VRSN="stable";
 NXCD=nextcloud:$VRSN;
 
 echo "Initiating NEXTCLOUD installation sequence...";
-
+echo "Some: $DB_USER, $DB_PASS, $PG_NAME"
 docker pull $NXCD
 safe_stop_remove "$NAME"
 docker run -d \
@@ -18,13 +18,12 @@ docker run -d \
  -e POSTGRES_DB="$DB_NAME" \
  -e POSTGRES_PASSWORD="$DB_PASS" \
  -e POSTGRES_HOST="$PG_NAME" \
- -e NEXTCLOUD_DATA_DIR="$(pwd)/scripts/leofs/pVol" \
- -v db:/var/lib/postgresql/data \
- -v pVol:"$(pwd)/scripts/leofs/pVol" \
- -v nextcloud:/leofs/pVol/nextcloud \
- -v apps:/leofs/pVol/custom_apps \
- -v config:/leofs/pVol/config \
- -v data:/leofs/pVol/data \
+ -v nextcloud:/var/www/html \
+ -v apps:/var/www/html/custom_apps \
+ -v config:/var/www/html/config \
+ -v data:/var/www/html/data \
+ -e NEXTCLOUD_DATA_DIR="$(pwd)/datadir" \
+ --mount type=bind,source="$(pwd)/datadir",target=/data \
   $NXCD
 
 echo "...finished NEXTCLOUD installation sequence.";
