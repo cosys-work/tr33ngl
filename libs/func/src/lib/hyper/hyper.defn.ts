@@ -17,7 +17,7 @@ export function isEdged<N>(n: any): n is Edged<N> {
 }
 
 export function noded<N>(n: Ts<N>): Noded<N> {
-  return ({ nodes: new Listoid<N>(n)});
+  return ({ nodes: new Listoid<N>(n) });
 }
 
 export function edged<E>(e: Ts<E>): Edged<E> {
@@ -55,3 +55,24 @@ export const hG: <N>(n: Ts<Noded<N>> | Ts<HyperNoded<N>>) =>
   = <N>(n: Ts<Noded<N>> | Ts<HyperNoded<N>>) =>
   <E>(e: Ts<Edged<E>> | Ts<HyperEdged<E>>) =>
     hyperGraphical(hyperNoded(n), hyperEdged(e));
+
+export const hyper:
+  <N>(n: Ts<N>) =>
+    <E>(e: Ts<E>) =>
+      HyperGraph<N, E> =
+  <N>(n: Ts<N>) =>
+    <E>(e: Ts<E>) =>
+      hG(noded(n))(edged(e));
+
+export const hyperGraph:
+  <N>(n: Ts<N>) =>
+    <E>(e: Ts<E>) =>
+      <N>(hN: HyperNoded<N>) =>
+        <E>(hE: HyperEdged<E>) =>
+          HyperGraph<N, E> =
+  <N>(n: Ts<N>) =>
+    <E>(e: Ts<E>) =>
+      <N>(hN: HyperNoded<N>) =>
+        <E>(hE: HyperEdged<E>) => ({
+          ...hyper(n)(e), ...hG(hN)(hE)
+        });
