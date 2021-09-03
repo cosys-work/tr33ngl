@@ -20,7 +20,7 @@ export const prims: Primitives = {
   string: "string",
   symbol: "symbol",
   function: "function"
-}
+};
 
 
 export function isnt(u: unknown): u is undefined {
@@ -32,7 +32,7 @@ export function isNObj(u: unknown): u is object {
 }
 
 export function isNull(u: unknown): u is null {
-  return u === null;
+  return null === u;
 }
 
 export function isStr(u: unknown): u is string {
@@ -88,5 +88,14 @@ export class AlphaAttribute<U> {
 export const newObjWithAttr:
   <T, U>(objekt: T, attr: string, attribute: U, neType?: unknown) => T
   = <T, U>(objekt: T, attr: string, attribute: U) => {
-  return  Object.defineProperty(objekt, attr, { value: attribute, writable: false, enumerable: false })
+  return  Object.defineProperty(
+    objekt,
+    attr,
+    { value: attribute, writable: false, enumerable: true }
+  );
+};
+
+export function equivalence<T>(n: any, f: () => T): boolean {
+  const props: string[] = Object.keys(f());
+  return props.every(n.hasOwnProperty);
 }

@@ -3,14 +3,14 @@ import { FAM, Func, UFunc } from "../tion/function.defn";
 
 import { ZenVal } from "../../val/val.defn";
 import { AlphaValued } from "../../alpha/value";
-import { Ts } from "../../util";
+import {equivalence, Ts} from "../../util";
 
 export interface Functorial<T> extends Mappable<T>, ZenVal<T> {
   inside(): Ts<T>;
   fInside(): Functorial<T>;
   fmap<U>(  f:  UFunc<T, U> | FAM<UFunc<T, U>>): FAM<U>;
   pure<U>(u: U): Functorial<U>;
-  join<U>(ff: Functorial<unknown> | Functorial<Functorial<unknown>>): Functorial<U>;
+  join<U>(ff: Functorial<U> | Functorial<Functorial<U>>): Functorial<U>;
 }
 
 export class Functor<T>
@@ -48,9 +48,9 @@ export class Functor<T>
     return this.join(new Functor<U>(fts.map(mappable)));
   }
 
-  join<U>(ff: Functorial<unknown> | Functorial<Functorial<unknown>>): Functorial<U> {
-    const ffu: unknown | Functorial<unknown> = ff.u;
-    return isFunctor(ffu) ? this.join(ffu) : ff as Functorial<U>;
+  join<U>(ff: Functorial<U> | Functorial<Functorial<U>>): Functorial<U> {
+    const ffu: U | Functorial<U> = ff.u;
+    return isFunctor(ffu) ? ffu : this.pure(ffu);
   }
 
   pure<U>(u: Ts<U>): Functorial<U> {
@@ -59,8 +59,6 @@ export class Functor<T>
 
 }
 
-export function isFunctor<T>(f: Functorial<T> | any): f is Functorial<T> {
-  const funcProperties = Object.keys(new Functor("example"));
-  return f.hasOwnProperty && funcProperties.every(f.hasOwnProperty);
+export function isFunctor<T>(a: Functorial<T> | any): a is Functorial<T> {
+  return equivalence(a, () => new Functor(""));
 }
-

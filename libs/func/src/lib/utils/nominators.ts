@@ -1,4 +1,4 @@
-import {Ts} from "@cosys/func";
+import {equivalence, Ts} from "@cosys/func";
 
 export interface Typed {
   type: string;
@@ -49,9 +49,9 @@ export function name<T extends Nominator<unknown>>(v: T): string {
 }
 
 export function isNomT<T extends Nominator<unknown>>(v: AlphaNomNom<unknown>, ref: T): v is T {
-  return v.type === ref.type;
+  return v.type === ref.type && equivalence(v, () => ref);
 }
 
 export function isEqual<T extends Nominator<unknown>>(v: AlphaNomNom<unknown>, ref: T): v is T {
-  return v.type === ref.type && v.value === ref.value;
+  return isNomT(v, ref) && v.value === ref.value;
 }

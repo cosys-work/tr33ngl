@@ -1,4 +1,5 @@
-import { AlphaValued, is, nominate, Nominator, TValued } from "../../../utils/nominators";
+import { AlphaValued, isNomT, nominate, Nominator, TValued } from "../../../utils/nominators";
+import {isMappable} from "../../../map/umap.defn";
 
 
 export enum MaybeNom {
@@ -26,9 +27,10 @@ export function just<T>(v: T): JustNominator<T> {
 
 
 export function isNothing<T>(v: TValued<unknown>): v is NothingNominator<T> {
-  return is<NothingNominator<T>>(v, nothing());
+  return isNomT<NothingNominator<T>>(v, nothing());
 }
 
 export function isJust<T>(v: TValued<T>): v is JustNominator<T> {
-  return is<JustNominator<T>>(v, just(v.value));
+  const valhalla: T[] | TValued<T> = isMappable(v.value) ?  v.value.map(_=>_) : v;
+  return isNomT(v, just(valhalla));
 }

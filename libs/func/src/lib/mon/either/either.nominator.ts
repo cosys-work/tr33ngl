@@ -1,4 +1,5 @@
-import { AlphaValued, is, nominate, Nominator, TValued } from "../../utils/nominators";
+import {AlphaValued, isNomT, nominate, Nominator, TValued} from "../../utils/nominators";
+import {isMappable} from "../../map/umap.defn";
 
 
 export enum EitherNom {
@@ -24,11 +25,16 @@ export function right<T>(v: T): RightNominator<T> {
   return nominate(EitherNom.Right, v) as RightNominator<T>;
 }
 
+function getV<T>(v: TValued<T>) {
+  return isMappable(v.value) ? v.value.map(_ => _) : v;
+}
 
 export function isRight<T>(v: TValued<T>): v is RightNominator<T> {
-  return is<RightNominator<T>>(v, right(v.value));
+  const valhalla: T[] | TValued<T> = getV(v);
+  return isNomT(v, right(valhalla));
 }
 
 export function isLeft<T>(v: TValued<T>): v is LeftNominator<T> {
-  return is<LeftNominator<T>>(v, left(v.value));
+  const valhalla: T[] | TValued<T> = getV(v);
+  return isNomT(v, left(valhalla));
 }

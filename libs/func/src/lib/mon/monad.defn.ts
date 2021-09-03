@@ -1,5 +1,5 @@
 import { Applicative, Applicativity } from "../app/applicative.defn";
-import { FAM, isFAM, UFunc, Ts, UMapper } from "@cosys/func";
+import {FAM, isFAM, UFunc, Ts, UMapper, equivalence} from "@cosys/func";
 import { AlphaApplicative } from "../alpha/applicative";
 import { flatten } from "../utils/utils";
 
@@ -47,10 +47,8 @@ export class Monad<T>
     const mappable: UFunc<T, U> = isFAM(f) ? f.u : f;
     return new Monad<U>(fts.map(mappable));
   }
-
 }
 
 export function isMonad<T>(f: Monadic<T> | any): f is Monadic<T> {
-  const funcProperties = Object.keys(new Monad("example"));
-  return f.hasOwnProperty && funcProperties.every(f.hasOwnProperty);
+  return equivalence(f, () => new Monad(""));
 }

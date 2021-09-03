@@ -1,4 +1,4 @@
-import { FAM, Functorial, UFunc, Ts, UMapper } from "@cosys/func";
+import {FAM, Functorial, UFunc, Ts, UMapper, equivalence} from "@cosys/func";
 import { AlphaFunctor } from "../alpha/functor";
 
 export interface Applicativity<T> extends Functorial<T>{
@@ -40,7 +40,6 @@ export class Applicative<T>
 }
 
 
-export function isApplicative<T>(f: Applicativity<T> | any): f is Applicativity<T> {
-  const funcProperties = Object.keys(new Applicative("example"));
-  return f.hasOwnProperty && funcProperties.every(f.hasOwnProperty);
+export function isApplicative<T>(a: Applicativity<T> | any): a is Applicativity<T> {
+  return equivalence(a, () => new Applicative(""));
 }
