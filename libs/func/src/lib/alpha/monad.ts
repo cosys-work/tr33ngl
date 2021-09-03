@@ -9,7 +9,7 @@ export class AlphaMonad<T>
 
   protected readonly monad!: Monadic<T>;
 
-  constructor(t: T) {
+  constructor(t: Ts<T>) {
     super(t);
     this.monad = new Monad(t);
   }

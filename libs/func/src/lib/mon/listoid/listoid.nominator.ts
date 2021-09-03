@@ -1,4 +1,5 @@
 import { AlphaValued, Nominator } from "../../utils/nominators";
+import {Ts} from "../../util";
 
 
 export enum ListoidNom {
@@ -7,7 +8,7 @@ export enum ListoidNom {
 
 export class ListoidNominated<T> extends AlphaValued<T> implements Nominator<T> {
   type: ListoidNom.Simple = ListoidNom.Simple;
-  constructor(t: T) {
+  constructor(t: Ts<T>) {
     super(t);
   }
 }

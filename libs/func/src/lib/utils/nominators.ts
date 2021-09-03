@@ -1,3 +1,5 @@
+import {Ts} from "@cosys/func";
+
 export interface Typed {
   type: string;
 }
@@ -16,7 +18,7 @@ export function makeVal<T>(value: T): Valued<T> {
   })
 }
 
-export interface Nominator<T> extends Typed, Valued<T> {}
+export interface Nominator<T> extends Typed, Valued<Ts<T>> {}
 
 
 export function nominate<T>(type: string, value: T): Nominator<T> {
@@ -24,16 +26,16 @@ export function nominate<T>(type: string, value: T): Nominator<T> {
 }
 
 export abstract class AlphaValued<T> {
-  readonly value!: T;
+  readonly value!: Ts<T>;
 
-  protected constructor(v: T) {
+  protected constructor(v: Ts<T>) {
     this.value = v;
   }
 }
 
 export abstract class AlphaNomNom<T> extends AlphaValued<T> implements Nominator<T> {
   readonly type!: string;
-  protected constructor(value: T) {
+  protected constructor(value: Ts<T>) {
     super(value);
     this.type = typeof value;
   }
@@ -46,7 +48,7 @@ export function name<T extends Nominator<unknown>>(v: T): string {
   return v.type.toString();
 }
 
-export function is<T extends Nominator<unknown>>(v: AlphaNomNom<unknown>, ref: T): v is T {
+export function isNomT<T extends Nominator<unknown>>(v: AlphaNomNom<unknown>, ref: T): v is T {
   return v.type === ref.type;
 }
 
