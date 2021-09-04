@@ -1,15 +1,16 @@
 import { Val } from "../../val/val.defn";
 import { isBool, isPrimitive } from "../../util";
-import { Nom } from "../../nom/nom.defn";
+import { Nom } from "../../val/nom.defn";
 import { Functorial, isFunctor } from "../tor/functor.defn";
 import { Applicativity, isApplicative } from "../../app/applicative.defn";
 import { isMonad, Monadic } from "../../mon/monad.defn";
 import { AlphaValued } from "../../alpha/value";
 
 export type Func<T, U> = (value: T, index: number, values: T[]) => U;
-export const idFunc: Func<unknown, unknown[]> = (t) => new Array(1).fill(t);
-
 export type UFunc<T, U> = (value: T) => U;
+
+export const idArr: <T>(t: T) => T[] = <T>(t: T) => new Array(1).fill(t);
+
 export type PFunc<T, U> = (value?: T) => U;
 export type FAM<T> = Functorial<T> | Applicativity<T> | Monadic<T>;
 

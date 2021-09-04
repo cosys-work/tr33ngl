@@ -1,7 +1,7 @@
 export * from "./lib/util";
 
 export * from "./lib/val/val.defn";
-export * from "./lib/nom/nom.defn";
+export * from "./lib/val/nom.defn";
 export * from "./lib/map/umap.defn";
 
 export * from "./lib/func/tion/function.defn";
@@ -41,6 +41,3 @@ export * from "./lib/examples/models/h-graph.model";
 export * as AM from "./lib/examples/additive-monoid";
 export * as MA from "./lib/examples/monadic";
 export * as MM from "./lib/examples/multiplicative-monoid";
-
-
-

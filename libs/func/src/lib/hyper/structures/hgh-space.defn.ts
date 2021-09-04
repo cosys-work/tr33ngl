@@ -17,11 +17,15 @@ export interface Directed extends Pointed {
   vec1: (vec0: FixedLenListoid<Number, Number>) => FixedLenListoid<Number, Number>;
 }
 
-export type ULine = Pointed & Directed;
+export interface Planar extends Directed {
+  vec2: (vec1: FixedLenListoid<Number, Number>) => FixedLenListoid<Number, Number>;
+}
+
+export type ULine = [Pointed, Directed];
 
 export type BSegment = [Pointed, Pointed];
 
-export type QSlice = [[BSegment, BSegment, BSegment], ULine];
+export type QSlice = [[BSegment, BSegment, BSegment], ULine]; //quaternionic or octonionic traits preserved
 
 export type HSpace = [(q: QSlice) => QSlice];
 
