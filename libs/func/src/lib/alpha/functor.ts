@@ -29,7 +29,7 @@ export class AlphaFunctor<T>
     return this.functor.fInside();
   }
 
-  join<U>(ff: Functorial<unknown> | Functorial<Functorial<unknown>>): Functorial<U> {
+  join<U>(ff: Functorial<U> | Functorial<Functorial<U>>): Functorial<U> {
     return this.functor.join(ff);
   }
 }

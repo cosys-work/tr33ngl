@@ -18,9 +18,7 @@ export class GraphXyzComponent implements OnInit {
 
   constructor(
     private grafStore: GrafStore
-  ) {
-    this.grafStore = grafStore;
-  }
+  ) {}
 
   ngOnInit() {
     this.loadVisTree(this.getTreeData(), this.selector);
@@ -52,7 +50,7 @@ export class GraphXyzComponent implements OnInit {
   }
 
   getTreeData() {
-    const grafState = this.grafStore.state.u;
+    const grafState = this.grafStore.state;
     const nodes = grafState.nodes.u.value;
     const edges = grafState.edges.u.value;
     return ({

@@ -1,5 +1,6 @@
 import { Nominator } from "../../../utils/nominators";
 import { Listoid } from "../listoid";
+import {Ts} from "../../../util";
 
 
 export interface Cartesian {
@@ -56,9 +57,9 @@ export class CartesianPlaneIndex implements TimeCoordinate {
 export class DiscreteCartesianPlane implements Nominator<DiscreteCartesianPlane> {
   type: "DiscreteCartesianPlane" = "DiscreteCartesianPlane";
   value: DiscreteCartesianPlane = this;
-  indices: Listoid<CartesianPlaneIndex[]>;
+  indices: Listoid<CartesianPlaneIndex>;
 
-  constructor(indexes: CartesianPlaneIndex[]) {
+  constructor(indexes: Ts<CartesianPlaneIndex>) {
     this.indices = new Listoid(indexes);
   }
 }

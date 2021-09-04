@@ -1,12 +1,14 @@
-import { AssocGroupoidal, Groupoidal } from "./groupoid";
-import { Either, Left, Right } from "@cosys/func";
-import { Unital } from "../mag/unital";
+import {AssocGroupoidal, Groupoidal} from "./groupoid";
+import {Left, Right} from "@cosys/func";
+import {Unital} from "../mag/unital";
 
 
 export class AbstractMonoid<T> implements AssocGroupoidal<T>, Unital<T> {
 
+  readonly mon: T;
+
   constructor(protected n: T) {
-    this.n = n;
+    this.mon = n;
   }
 
   id(): AbstractMonoid<T> {
@@ -14,16 +16,15 @@ export class AbstractMonoid<T> implements AssocGroupoidal<T>, Unital<T> {
   }
 
   val(): T {
-    return this.n;
+    return this.mon;
   }
 
-  assocOp(a: Groupoidal<T>, func: Left<(a: T, b: T) => T> | Right<(b: T, a: T) => T>): Groupoidal<T> {
-    const lOrR = new Either(func.value(this.val(), a.val()), func.value(a.val(), this.val()));
-    return new AbstractMonoid<T>(lOrR.u.value);
+  assocOp(a: Groupoidal<T>, func: Left<(aa: T, bb: T) => T> | Right<(bb: T, aa: T) => T>): Groupoidal<T> {
+    const lOrR = func.value(this.val(), a.val()) || func.value(a.val(), this.val());
+    return new AbstractMonoid<T>(lOrR);
   }
 
   op(a: Groupoidal<T>, func: (a: T, b: T) => T): Groupoidal<T> {
     return new AbstractMonoid(func(this.val(), a.val()));
   }
 }
-

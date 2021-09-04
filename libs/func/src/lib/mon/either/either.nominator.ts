@@ -25,7 +25,7 @@ export function right<T>(v: T): RightNominator<T> {
   return nominate(EitherNom.Right, v) as RightNominator<T>;
 }
 
-function getV<T>(v: TValued<T>) {
+export function getV<T>(v: TValued<T>): T[] | TValued<T> {
   return isMappable(v.value) ? v.value.map(_ => _) : v;
 }
 

@@ -1,4 +1,4 @@
-import { AlphaValued, is, nominate, Nominator, TValued } from "../../../utils/nominators";
+import {AlphaValued, isNomT, nominate, Nominator} from "../../../utils/nominators";
 
 export enum ResultNom {
   Passed = "Result~Pass",
@@ -24,10 +24,10 @@ export function fail<T>(v: T): FailNominator<T> {
 }
 
 
-export function passed<T>(v: TValued<T>): v is FailNominator<T> {
-  return is<FailNominator<T>>(v, fail(v.value));
+export function passed<T>(v: any): v is PassNominator<T> {
+  return isNomT(v, pass(v));
 }
 
-export function failed<T>(v: TValued<T>): v is PassNominator<T> {
-  return is<PassNominator<T>>(v, pass(v.value));
+export function failed<T>(v: any): v is FailNominator<T> {
+  return isNomT(v, fail(v));
 }

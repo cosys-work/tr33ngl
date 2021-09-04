@@ -1,6 +1,7 @@
-import { Nominator } from "../../../utils/nominators";
-import { Graph, HGraaff, HGraph } from "./h-graph";
-import { TimeCoordinate } from "./cartes-en";
+import {Nominator} from "../../../utils/nominators";
+import {Graph, HGraph} from "./h-graph";
+import {TimeCoordinate} from "./cartes-en";
+import {Ts} from "../../../util";
 
 
 export abstract class CartesGraf<T, S> implements Nominator<CartesGraf<T, S>> {
@@ -8,8 +9,8 @@ export abstract class CartesGraf<T, S> implements Nominator<CartesGraf<T, S>> {
   abstract type: string;
   abstract value: CartesGraf<T, S>;
 
-  protected constructor(ns: T[], es: S[]) {
-    this.indices = new HGraaff(ns, es);
+  protected constructor(ns: Ts<T>, es: Ts<S>) {
+    this.indices = new HGraph(ns, es);
   }
 }
 
@@ -28,7 +29,7 @@ export class CartesTimeGraf extends CartesGraf<TimeCoordinate, TimeCoordinate>
   type: "CartesTimeGraf" = "CartesTimeGraf";
   value!: CartesTimeGraf;
 
-  constructor(ns: TimeCoordinate[], es: TimeCoordinate[]) {
+  constructor(ns: Ts<TimeCoordinate>, es: Ts<TimeCoordinate>) {
     super(ns, es);
     this.value = this;
   }
@@ -57,8 +58,8 @@ export class CartesSpaceTimeHGraph extends CartesHGraph<CartesTimeHGraph, Cartes
 }
 
 export function hGraph2Graf<A, B>(hGraph: CartesTimeHGraph):  CartesTimeGraf {
-  const tns: TimeCoordinate[] = hGraph.indices.nodes.value;
-  const tes: TimeCoordinate[] = hGraph.indices.edges.value
+  const tns: Ts<TimeCoordinate> = hGraph.indices.nodes.value;
+  const tes: Ts<TimeCoordinate> = hGraph.indices.edges.value;
   return  new CartesTimeGraf(tns, tes);
 }
 
