@@ -20,7 +20,9 @@ export class EngineComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    if ( !this.detector.webgl ) this.detector.addGetWebGLMessage();
+    if ( !this.detector.webgl ) {
+      this.detector.addGetWebGLMessage();
+    }
     this.engServ.createScene(this.rendererCanvas);
     this.engServ.animate();
   }

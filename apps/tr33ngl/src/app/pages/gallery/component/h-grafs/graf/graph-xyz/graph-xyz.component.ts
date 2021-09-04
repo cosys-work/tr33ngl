@@ -40,12 +40,20 @@ export class GraphXyzComponent implements OnInit {
     const container = document.getElementsByClassName("network")[selector];
     this.network = new vis.Network(container, treeData, options);
 
-    this.network.on("hoverNode", function (params: unknown) {
-      console.log('hoverNode Event:', params);
+    this.network.on("deselectNode", function (params: unknown) {
+      console.log('deselectNode Event:', params);
     });
 
-    this.network.on("blurNode", function(params: unknown) {
-      console.log('blurNode event:', params);
+    this.network.on("deselectEdge", function(params: unknown) {
+      console.log('deselectEdge event:', params);
+    });
+
+    this.network.on("selectNode", function (params: unknown) {
+      console.log('selectNode event', params);
+    });
+
+    this.network.on("selectEdge", function (params: unknown) {
+      console.log('selectEdge event', params);
     });
   }
 

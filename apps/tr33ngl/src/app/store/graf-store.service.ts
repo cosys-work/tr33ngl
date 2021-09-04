@@ -1,32 +1,53 @@
-import { ObservableStore } from "@codewithdan/observable-store";
+import {ObservableStore} from "@codewithdan/observable-store";
 
-import { Observable, of } from "rxjs";
-import { HGDefault } from "@cosys/func";
-import { Injectable } from "@angular/core";
-import { GrafInitService } from "./init/graf-init.service";
+import {Observable, ReplaySubject} from "rxjs";
+import {HEdge, HGDefault, HGraph, HNode} from "@cosys/func";
+import {Injectable} from "@angular/core";
+import {GrafInitService} from "./init/graf-init.service";
 
 
 export enum Actions {
   INIT="INIT",
+  REINIT="REINIT",
+  EDIT="EDIT"
 }
+
+const bufferSize = 100;
 
 @Injectable({
   providedIn: "root",
 })
 export class GrafStore extends ObservableStore<HGDefault> {
 
+  protected storeStream = new ReplaySubject<HGDefault>(bufferSize);
+
   constructor(protected grafInit: GrafInitService) {
     super({ trackStateHistory: true });
-    this.grafInit = grafInit;
     this.setState(this.grafInit.hGraph, Actions.INIT);
+    this.updateStoreStream();
+  }
+
+  private updateStoreStream() {
+    this.storeStream.next(this.getState(true));
   }
 
   get state() {
-    return this.getState(true);
+    return this.getState(false);
+  }
+
+  set state(hgDef: HGraph<HNode, HEdge>) {
+    this.setState(hgDef, Actions.REINIT);
+    this.updateStoreStream();
+  }
+
+  set change(part: Partial<HGDefault>) {
+    const newState = { ...this.getState(true), ...part };
+    this.setState(newState, Actions.EDIT);
+    this.updateStoreStream();
   }
 
   rxtiv(): Observable<HGDefault> {
-    return of(this.state);
+    return this.storeStream.asObservable();
   }
 
 }
