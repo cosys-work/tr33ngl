@@ -2,7 +2,6 @@ import { PFunc } from "./func/tion/function.defn";
 
 export interface Primitives {
   undefined: "undefined",
-  object: "object",
   boolean: "boolean",
   number: "number",
   bigint: "bigint",
@@ -13,7 +12,6 @@ export interface Primitives {
 
 export const prims: Primitives = {
   undefined: "undefined",
-  object: "object",
   boolean: "boolean",
   number: "number",
   bigint: "bigint",
@@ -22,13 +20,20 @@ export const prims: Primitives = {
   function: "function"
 };
 
+export interface NonPrimitives {
+  object: "object"
+}
+
+export const nonPrims: NonPrimitives = {
+  object: "object"
+};
 
 export function isnt(u: unknown): u is undefined {
   return typeof u === prims.undefined;
 }
 
 export function isNObj(u: unknown): u is object {
-  return typeof u === prims.object;
+  return typeof u === nonPrims.object;
 }
 
 export function isNull(u: unknown): u is null {
@@ -67,7 +72,11 @@ export function isPrimitive(u: unknown): false | keyof Primitives {
   const typ = typeof u;
   const l = Object.values(prims);
   const isPrim = l.includes(typ);
-  return isPrim ? typ : false;
+  return (isPrim && typ !== nonPrims.object) ? typ : false;
+}
+
+export function isNonPrimitive(u: unknown): false | keyof NonPrimitives {
+  return isNObj(u) ? nonPrims.object : false;
 }
 
 export type Ts<T> = T | T[];

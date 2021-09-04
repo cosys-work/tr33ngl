@@ -105,9 +105,10 @@ function sixSidedDiceRoll(): ThreeDDice {
 
 Apart from literals, we also have object types in typescript. An object type has a set of keys and values as opposed to a primitive const which has just one name and value.
 
-For example, the function `val` below returns an **_object_** which has a **_key_** named `u`.
+For example, the function `val` below returns an **_object_** which has a **_key_** named `u` with value of some 
+type `U` and it is "**readonly**" which means that this value comes with an assurance that nothing else in the program will be "writing" some new value to this attribute - so that it will not suddenly change to something else and cause unnecessary problems.
 
-```Typescript
+```typescript
 interface Val<U> {
   readonly u: U;
 }
@@ -119,3 +120,38 @@ function val<U>(u: U): Val<U> {
 const example = val(42);
 console.log("Example: ", example.u);
 ```
+
+We can also have an `interface` or "schema" or "structure" for an `object` that just "names" the type of thing it has. This is the approach taken by nominative type systems but on a more fundamental layer during compilation.
+
+```typescript
+export interface Nom<U>{
+  readonly type: typeof U;
+}
+```
+
+Here are some naming related code puns:
+
+```typescript
+import {Nom} from "@cosys/func/libs/func/src";
+
+export interface Chomsky<U> extends Nom<U>, Val<U> {
+}
+
+const chomsky: Nom<string> & Val<string> = {
+  type: "Nom Nom Nom",
+  u: "some string"
+};
+
+const cloneChomsky: Chomsky<string> = {
+  type: "Noam Noam Noam",
+  u: "some string"
+}
+
+console.log("Are the values of the type attribute the same?", chomsky.type === cloneChomsky.type);
+
+console.log("Are the values of the u attribute the same?", cloneChomsky.u === chomsky.u);
+
+console.log("Are the types the same?", 42 === 42);
+```
+
+This interface has everything that the `Nom<U>` interface has and also has everything that the `Val<U>` interface has. However, it does not add anything of its own. Therefore, the space inside the braces for the interface `Chomsky<U>` can be left empty.
