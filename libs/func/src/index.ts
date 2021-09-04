@@ -1,7 +1,6 @@
 export * from "./lib/util";
 
 export * from "./lib/val/val.defn";
-export * from "./lib/val/nom.defn";
 export * from "./lib/map/umap.defn";
 
 export * from "./lib/func/tion/function.defn";

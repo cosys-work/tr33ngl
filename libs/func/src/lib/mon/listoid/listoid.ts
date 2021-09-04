@@ -6,7 +6,7 @@ import {Ts} from "../../util";
 export class Listoid<A>
   extends AlphaMonad<ListoidNominated<A>> {
 
-  protected value!: Ts<A>;
+  readonly value!: Ts<A>;
   readonly length!: number;
   constructor(value: Ts<A>) {
     super(new ListoidNominated<A>(value));
@@ -15,16 +15,12 @@ export class Listoid<A>
   }
 }
 
-export class FixedLenListoid<Number, T> extends Listoid<T> {
+export class FixedLenListoid<T> extends Listoid<T> {
 
-  readonly ref!: Array<T>;
+  ref!: Array<T>;
 
-  constructor(len: Number, arr: Array<T>, emp?: T) {
+  constructor(arr: Array<T>) {
     super(arr);
-    if (len.valueOf() <= arr.length) {
-      this.ref = Array(len).map((_, i) => arr[i]);
-    } else {
-      this.ref = Array(len).map((_, i) => i < arr.length ? arr[i] : emp);
-    }
+    this.ref = Array(arr.length).map((_, i) => arr[i]);
   }
 }

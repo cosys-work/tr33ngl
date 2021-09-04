@@ -16,7 +16,8 @@ export type FAM<T> = Functorial<T> | Applicativity<T> | Monadic<T>;
 
 export function nom<U>(u: any, typ?: string): Nom<U> & Val<U> {
   const isPrim = isPrimitive(u);
-  const type: string = isNonPrimitive(u) && !isPrim ? typ ?? u["type"] ?? nonPrims.object : nonPrims.object;
+  // we try our best to find the intended name
+  const type: string = isNonPrimitive(u) && !isPrim ? typ ?? u["type"] ?? nonPrims.object : isPrim;
   return ({ u, type });
 }
 

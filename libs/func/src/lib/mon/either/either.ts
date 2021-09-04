@@ -27,7 +27,7 @@ export class Left<T>
 export type Eitherness<L, R> = LeftNominator<L> | RightNominator<R>;
 export function eitherLElseR<L, R>(l: L, r: R): Eitherness<L, R> {
   try {
-    const rIsNullish = r === null || r === undefined;
+    const rIsNullish = null === r || r === undefined;
     return rIsNullish ? left(l) : right(r);
   } catch (err: unknown) {
     return left(err as L);
@@ -38,6 +38,6 @@ export class Either<L, R> extends Monad<Eitherness<L, R>> {
   readonly type!: string;
   constructor(l: L, r: R) {
     super(eitherLElseR(l, r));
-    this.type = super.chomsky.t;
+    this.type = super.chomsky.type;
   }
 }

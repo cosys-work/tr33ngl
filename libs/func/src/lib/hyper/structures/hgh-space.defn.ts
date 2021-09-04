@@ -10,15 +10,15 @@ export interface Dim {
 }
 
 export interface Pointed extends Dim {
-  vec0: FixedLenListoid<Number, Number>;
+  vec0: FixedLenListoid<Number>;
 }
 
 export interface Directed extends Pointed {
-  vec1: (vec0: FixedLenListoid<Number, Number>) => FixedLenListoid<Number, Number>;
+  vec1: (vec0: FixedLenListoid<Number>) => FixedLenListoid<Number>;
 }
 
 export interface Planar extends Directed {
-  vec2: (vec1: FixedLenListoid<Number, Number>) => FixedLenListoid<Number, Number>;
+  vec2: (vec1: FixedLenListoid<Number>) => FixedLenListoid<Number>;
 }
 
 export type ULine = [Pointed, Directed];

@@ -22,12 +22,14 @@ function theAnswer() {
     return clue;
 }
 
-console.log(`The answer to 
+console.log(`
+The answer to 
 life, 
 universe 
 and 
 everything 
-is:`, theAnswer());
+is:`, 
+  theAnswer());
 ```
 
 So we have seen that `clue` is a **_value_** containing a number. Further, `question` is a **_function_** that 
@@ -119,7 +121,8 @@ interface Val<U> {
 }
 
 function val<U>(u: U): Val<U> {
-    return ({u});
+    return ({u}); // short for { u: u } 
+  // i.e add a key named u, give it the value that u from input currently has
 }
 
 const example = val(42);
@@ -130,15 +133,13 @@ We can also have an `interface` or "schema" or "structure" for an `object` that 
 
 ```typescript
 export interface Nom<U>{
-  readonly type: typeof U;
+  readonly type: string;
 }
 ```
 
 Here are some naming related code puns:
 
 ```typescript
-import {Nom} from "@cosys/func/libs/func/src";
-
 export interface Chomsky<U> extends Nom<U>, Val<U> {
 }
 
@@ -152,13 +153,13 @@ const cloneChomsky: Chomsky<string> = {
   u: "some string"
 }
 
-console.log("Are the values of the type attribute the same?")
-console.log(chomsky.type === cloneChomsky.type);
-
 console.log("Are the values of the u attribute the same?");
 console.log(cloneChomsky.u === chomsky.u);
+
+console.log("Are the values of the type attribute the same?")
+console.log(chomsky.type === cloneChomsky.type);
 
 console.log("Are the types the same?", 42 === 42); // yup
 ```
 
-This interface has everything that the `Nom<U>` interface has and also has everything that the `Val<U>` interface has. However, we are not add any new things of its own to this interface. Therefore, the space inside the braces for the interface `Chomsky<U>` can be left empty.
+This interface has everything that the `Nom<U>` interface has and also has everything that the `Val<U>` interface has. However, we are not adding any new things of its own to this interface. Therefore, the space inside the braces for the interface `Chomsky<U>` can be left empty.
