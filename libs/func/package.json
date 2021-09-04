@@ -1,6 +1,6 @@
 {
   "name": "@cosys/func",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "Monad, Monadic Hypergraph, monadic, applicative, functorial laws, groupoid, magma, monoid...",
   "main": "src/index.ts",
   "scripts": {
