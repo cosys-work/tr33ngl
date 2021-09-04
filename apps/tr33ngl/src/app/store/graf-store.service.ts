@@ -35,12 +35,12 @@ export class GrafStore extends ObservableStore<HGDefault> {
     return this.getState(false);
   }
 
-  set state(hgDef: HGraph<HNode, HEdge>) {
+  set reset(hgDef: HGraph<HNode, HEdge>) {
     this.setState(hgDef, Actions.REINIT);
     this.updateStoreStream();
   }
 
-  set change(part: Partial<HGDefault>) {
+  set edit(part: Partial<HGDefault>) {
     const newState = { ...this.getState(true), ...part };
     this.setState(newState, Actions.EDIT);
     this.updateStoreStream();
