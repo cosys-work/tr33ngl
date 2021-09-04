@@ -1,4 +1,4 @@
-# Value and ValU
+# 0. Value and ValU
 
 Functional Programming is about functions but functions themselves are about values. 
 
@@ -10,16 +10,19 @@ In typescript, you can typically achieve it like this:
 const clue = 42;
 ```
 
-This creates a constant value holder that we can carry around with us and reuse. We say that the value `42` has been 
-assigned to the `const clue`. If you have this and someone asks you for a ***c***lue about the answer to "***l***ife, ***u***niverse, and ***e***verything" you can just give them your `clue` constant. This is exactly what this function below does:
+This creates a "constant" value holder that we can carry around with us and reuse. We say that the value `42` has been 
+assigned to the `const clue`. If you have this and someone asks you for a ***c***lue about the answer to "***l***ife,
+***u***niverse, and ***e***verything" you can just give them your `clue` constant. This is exactly what this function named `theAnswer` shown below does:
 
 
 ```typescript
 const clue = 42;
 
-function question() {
+function theAnswer() {
     return clue;
 }
+
+console.log("The answer to life, universe and everything is: ", theAnswer());
 ```
 
 So we have seen that `clue` is a **_value_** containing a number. Further, `question` is a **_function_** that 
@@ -65,7 +68,10 @@ within the type declaration. Here's another example of a literal type definition
 ```typescript
 
 function randomOnetoSix(): 1 | 2 | 3 | 4 | 5 | 6 {
-    return Math.floor(Math.random() * 10) % 6 + 1;
+    const between0and1 = Math.random();
+    const between0and10 = between0and1 * 10;
+    const from0to9 = Math.floor(between0and10);
+    return from1to6 = from0to9 % 6 + 1;
 }
 
 function sixSidedDiceRoll(): 1 | 2 | 3 | 4 | 5 | 6 {
