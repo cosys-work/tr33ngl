@@ -22,7 +22,12 @@ function theAnswer() {
     return clue;
 }
 
-console.log("The answer to life, universe and everything is: ", theAnswer());
+console.log(`The answer to 
+life, 
+universe 
+and 
+everything 
+is:`, theAnswer());
 ```
 
 So we have seen that `clue` is a **_value_** containing a number. Further, `question` is a **_function_** that 
@@ -147,11 +152,13 @@ const cloneChomsky: Chomsky<string> = {
   u: "some string"
 }
 
-console.log("Are the values of the type attribute the same?", chomsky.type === cloneChomsky.type);
+console.log("Are the values of the type attribute the same?")
+console.log(chomsky.type === cloneChomsky.type);
 
-console.log("Are the values of the u attribute the same?", cloneChomsky.u === chomsky.u);
+console.log("Are the values of the u attribute the same?");
+console.log(cloneChomsky.u === chomsky.u);
 
-console.log("Are the types the same?", 42 === 42);
+console.log("Are the types the same?", 42 === 42); // yup
 ```
 
-This interface has everything that the `Nom<U>` interface has and also has everything that the `Val<U>` interface has. However, it does not add anything of its own. Therefore, the space inside the braces for the interface `Chomsky<U>` can be left empty.
+This interface has everything that the `Nom<U>` interface has and also has everything that the `Val<U>` interface has. However, we are not add any new things of its own to this interface. Therefore, the space inside the braces for the interface `Chomsky<U>` can be left empty.
