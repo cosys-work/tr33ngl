@@ -27,8 +27,8 @@ export class AppController {
    * */
   @Get(':id')
   getSession(@Param('id') id: string):
-    Response<Gra<Session>> {
-    return this.appService.getData();
+    Session {
+    return this.appService.z.getSession(id);
   }
 
   @Get(':id/open/:uri')
@@ -37,7 +37,7 @@ export class AppController {
     @Param('uri') uri: string
   ):
     Response<Gra<UIComp>> {
-    return this.appService.getData();
+    return this.appService.z.getGraResp(null);
   }
 
   @Post(':id/login/:uri')
@@ -47,7 +47,7 @@ export class AppController {
     @Body() post: Request<Gra<Login>>,
   ):
     Response<Gra<Login>> {
-    return this.appService.getData();
+    return this.appService.z.getGraResp(null);
   }
 
   @Get(':id/grep/:uri')
@@ -56,7 +56,7 @@ export class AppController {
     @Param('uri') uri: string,
   ):
     Response<Gra<Grep>> {
-    return this.appService.getData();
+    return this.appService.z.getGraResp(null);
   }
 
   //**
@@ -68,7 +68,7 @@ export class AppController {
     @Param("trac") trac: boolean
   ):
     Response<Gra<SaveOrTrac>> {
-    return this.appService.getData();
+    return this.appService.z.getGraResp(null);
   }
 
   //**
@@ -80,23 +80,31 @@ export class AppController {
     @Param("auto") auto: boolean
   ):
     Response<Gra<ScanOrAuto>> {
-    return this.appService.getData();
+    return this.appService.z.getGraResp(null);
   }
 
   @Get(':id/conf')
   getConfig(@Param('id') id: string):
-    Response<Gra<Conf>> { return this.appService.getData(); }
+    Response<Gra<Conf>> {
+    return this.appService.z.getGraResp(null);
+  }
 
   @Get(':id/open/conf')
   openConfig(@Param('id') id: string):
-    Response<Gra<OpenConf>> { return this.appService.getData(); }
+    Response<Gra<OpenConf>> {
+    return this.appService.z.getGraResp(null);
+  }
 
   @Get(':id/login/conf')
   loginConfig(@Param('id') id: string):
-    Response<Gra<LoginConf>> { return this.appService.getData(); }
+    Response<Gra<LoginConf>> {
+    return this.appService.z.getGraResp(null);
+  }
 
   @Get(':id/grep/conf')
   grepConfig(@Param('id') id: string):
-    Response<Gra<GrepConf>> { return this.appService.getData(); }
+    Response<Gra<GrepConf>> {
+    return this.appService.z.getGraResp(null);
+  }
 
 }
