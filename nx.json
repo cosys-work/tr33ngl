@@ -31,12 +31,7 @@
   },
   "projects": {
     "ack-tion": {
-      "tags": [
-        "action",
-        "monoid",
-        "closed",
-        "category"
-      ]
+      "tags": ["action", "monoid", "closed", "category"]
     },
     "api": {
       "tags": []
