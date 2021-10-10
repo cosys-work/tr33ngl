@@ -12,8 +12,8 @@ const routes: Routes = [
     loadChildren: () => import('./gallery/component/h-grafs/h-grafs.module').then(m => m.HGrafsModule)
   },
   {
-    path: 'key-val',
-    loadChildren: () => import('./gallery/component/kv/kv.module').then(m => m.KvModule)
+    path: 'form',
+    loadChildren: () => import('./schema/schemata.module').then(m => m.SchemataModule)
   },
   {
     path: 'init',
@@ -28,7 +28,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
 export class PagesRoutingModule {}

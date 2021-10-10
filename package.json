@@ -141,6 +141,7 @@
     "@compodoc/compodoc": "^1.1.14",
     "@nestjs/schematics": "^8.0.2",
     "@nestjs/testing": "^8.0.6",
+    "@ngx-formly/schematics": "5.10.22",
     "@nrwl/cli": "12.7.2",
     "@nrwl/cypress": "12.8.0",
     "@nrwl/eslint-plugin-nx": "12.7.2",
