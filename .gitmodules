@@ -1,0 +1,3 @@
+[submodule "vm/jvm/temptr33"]
+	path = vm/jvm/temptr33
+	url = git@github.com:cosys-work/temptr33.git
