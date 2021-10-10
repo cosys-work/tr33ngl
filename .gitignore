@@ -41,7 +41,7 @@ testem.log
 .DS_Store
 Thumbs.db
 /nodes/containers/dist/
-/oss/vm/.vagrant/
+/oss/nextcloud-postgres/.vagrant/
 /**/.pnpm-debug.log
 /chrome-tome/
 /libs/func/docs/build/
